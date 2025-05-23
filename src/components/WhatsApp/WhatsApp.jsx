@@ -1,5 +1,5 @@
 import WhatsappLogo from '../../assets/img/Whatsapp.svg';
-import './WhatsappStyles.css';
+import '../WhatsApp/WhatsAppStyles.css';
 
 function Whatsapp() {
   return (

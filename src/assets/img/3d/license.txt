@@ -1,0 +1,11 @@
+Model Information:
+* title:	Gym Weights - Game Asset
+* source:	https://sketchfab.com/3d-models/gym-weights-game-asset-76c7f49863384f47a6856a768c2d8d5e
+* author:	maddhattpatt (https://sketchfab.com/maddhatt)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Gym Weights - Game Asset" (https://sketchfab.com/3d-models/gym-weights-game-asset-76c7f49863384f47a6856a768c2d8d5e) by maddhattpatt (https://sketchfab.com/maddhatt) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

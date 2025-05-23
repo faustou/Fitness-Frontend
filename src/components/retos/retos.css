@@ -1,0 +1,280 @@
+.retos-section {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  padding: 13rem 2rem;
+  background-color: #0b0f10;
+  flex-wrap: wrap;
+  perspective: 1200px;
+}
+
+/* WRAPPERS con control total de stacking */
+.reto-1-wrapper {
+  position: relative;
+  border-radius: 4rem;
+  background: linear-gradient(to bottom right, #12181c, #080808);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 30px 50px rgba(0, 0, 0, 0.824);
+  transition: box-shadow 0.3s ease, z-index 0.3s ease;
+}
+
+.reto-2-wrapper,
+.reto-3-wrapper {
+  height: 350px;
+  position: relative;
+  border-radius: 4rem;
+  background: linear-gradient(to bottom right, #12181c, #080808);
+  box-shadow: 0 30px 60px rgba(0, 0, 0, 0.6), 0 30px 50px rgba(0, 0, 0, 0.824);
+  transition: box-shadow 0.3s ease, z-index 0.3s ease;
+}
+
+.reto-1-wrapper {
+  transform: perspective(1000px) rotateY(12deg) rotateZ(-2deg) scale(1.05);
+  z-index: 1;
+  margin-right: -10px;
+  top: 20px;
+}
+
+.reto-2-wrapper {
+  transform: perspective(1000px) rotateY(12deg) rotateZ(4deg) scale(1.05);
+  top: 40px;
+  z-index: 2;
+  margin-right: 50px;
+}
+
+.reto-3-wrapper {
+  transform: perspective(1000px) rotateY(12deg) rotateZ(-11deg) scale(1.05);
+  margin-left: -40px;
+  z-index: 3;
+  overflow: visible;
+}
+
+/* Hover sobresale el resto */
+.reto-1-wrapper:hover,
+.reto-2-wrapper:hover,
+.reto-3-wrapper:hover {
+  z-index: 10;
+  box-shadow: 0 0 40px rgba(107, 223, 255, 0.3);
+  transform: scale(1.1);
+}
+
+/* CARD BASE */
+.reto-card {
+  background: linear-gradient(to bottom right, #12181c, #0f1318);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: #e6f1ff;
+  padding: 2rem;
+  width: 250px;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: space-between;
+  min-height: 300px;
+  position: relative;
+  transform-style: preserve-3d;
+  overflow: visible;
+  box-shadow: none; /* sombra está en el wrapper */
+  z-index: auto;
+  height: 350px;
+  width: 300px;
+}
+
+.reto-card:hover {
+  box-shadow: none;
+  z-index: auto;
+}
+
+/* Tipografía */
+.reto-card h3 {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.reto-card p {
+  font-size: 0.95rem;
+  color: #9baec5;
+  line-height: 1.4;
+}
+
+/* Cards individuales */
+.reto-1 {
+  clip-path: polygon(0 51%, 0 0, 53% 0, 80% 5%, 100% 0, 96% 14%, 100% 29%, 100% 78%, 100% 100%, 0 100%, 0 80%, 14% 66%);
+  transform: perspective(1000px) rotateY(15deg) rotateX(20deg) rotate(-5deg);
+  transform-origin: top left;
+  background: linear-gradient(to top, #12181c, #263036);
+}
+
+.reto-2 {
+  clip-path: polygon(0 47%, 6% 35%, 0 0, 62% 0, 93% 0, 84% 23%, 100% 40%, 96% 74%, 100% 100%, 59% 98%, 9% 98%, 0 100%);
+  transform: perspective(1000px) rotateY(-15deg) rotate(20deg) rotateX(-15deg) translateZ(20px);
+  transform-origin: center;
+  background: linear-gradient(to top, #12181c, #263036);
+}
+
+.reto-3 {
+  clip-path: polygon(4% 12%, 0 0, 15% 3%, 29% 0, 100% 0, 100% 28%, 83% 60%, 100% 80%, 100% 100%, 4% 100%, 0 80%, 0 24%);
+  transform: perspective(1000px) rotateY(-15deg) rotate(-5deg) rotateX(-15deg) translateZ(20px);
+  background: linear-gradient(to top right, #12181c, #263036);
+}
+
+/* Botón */
+.reto-btn {
+  background-color: transparent;
+  border: 1px solid #3be9ff;
+  color: white;
+  font-weight: bold;
+  padding: 0.7rem 1.5rem;
+  border-radius: 0.8rem;
+  cursor: pointer;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 8px rgba(59, 233, 255, 0.15);
+  display: inline-block;
+  text-decoration: none;
+}
+
+.reto-btn:hover {
+  background-color: rgba(59, 233, 255, 0.1);
+  box-shadow: 0 0 15px rgba(59, 233, 255, 0.4);
+}
+
+.retos-title-container {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.retos-title {
+  color: #e6f1ff;
+  font-size: 3.5rem;
+  font-weight: 900;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 0;
+}
+
+.retos-title span {
+  color: #3be9ff;
+}
+
+
+@media (max-width: 768px) {
+  .reto-card {
+    max-width: ;
+  }
+  .retos-title {
+    font-size: 1.5rem;
+  }
+
+  .retos-title span {
+    font-size: 1.5rem;
+  }
+
+}
+
+@media (max-width: 990px) {
+  .retos-section {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .reto-1-wrapper,
+  .reto-2-wrapper,
+  .reto-3-wrapper {
+    width: 250px;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+    margin-left: 20px;
+  }
+
+  .reto-2-wrapper {
+    top: 0px;
+  }
+
+  .reto-3-wrapper {
+  transform: perspective(1000px) rotateY(12deg) rotateZ(-5deg) scale(1.05);
+  z-index: 3;
+  overflow: visible;
+  }
+
+  .reto-card {
+
+    width: 250px;
+    max-width: 320px;
+    height: auto;
+  }
+  .reto-card:hover {
+    box-shadow: none;
+  }
+}
+
+
+/* === MODAL VIDEO PARA RETOS === */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.modal-content {
+  background-color: #1b1b1b;
+  padding: 1rem;
+  border-radius: 1rem;
+  color: white;
+  position: relative;
+  width: 95%;
+  max-width: 700px;
+  box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+}
+
+.modal-video-box {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 0.8rem;
+  box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+}
+
+.modal-video-box iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 0.8rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #3be9ff;
+  color: #0b0f10;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding: 0.5rem 0.8rem;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 12px rgba(59, 233, 255, 0.5);
+
+  z-index: 10; /* 👈 Esto lo pone por encima del iframe */
+}
+
+.modal-close:hover {
+  background-color: #1b1b1b;
+  color: #3be9ff;
+  border: 1px solid #3be9ff;
+}

@@ -1,0 +1,28 @@
+.banner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10rem;
+  padding: 0 1rem; /* espacio lateral interno */
+  box-sizing: border-box;
+}
+
+.banner a {
+  display: inline-block;
+  margin: 0 auto;
+  max-width: 1200px;
+  width: 100%;
+}
+
+.banner a img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease;
+}
+
+.banner a img:hover {
+  transform: scale(1.02);
+}

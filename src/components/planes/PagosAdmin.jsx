@@ -6,7 +6,7 @@ function PagosAdmin() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch("http://localhost:3000/api/pagos?clave=1234")
+    fetch(`${import.meta.env.VITE_API_URL}/api/pagos?clave=1234`)
       .then((res) => res.json())
       .then((data) => {
         setPagos(data.reverse());
@@ -32,7 +32,7 @@ function PagosAdmin() {
   if (!confirmacion) return;
 
   try {
-    await fetch(`http://localhost:3000/api/pagos/${id}?clave=1234`, {
+    await fetch(`${import.meta.env.VITE_API_URL}/api/pagos/${id}?clave=1234`, {
       method: "DELETE",
     });
     // Remover el pago del estado actual

@@ -7,6 +7,7 @@
   width: 100%;
   z-index: 1000; /* más alto para que quede encima */
   backdrop-filter: blur(10px);
+  height: 70px;
   pointer-events: none;
 }
 
@@ -24,7 +25,9 @@
   width: 100%;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
   font-family: 'Segoe UI', sans-serif;
-  pointer-events: none;
+  height: 100%;
+  width: 100%;
+  pointer-events: auto;
 }
 
 

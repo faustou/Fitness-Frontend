@@ -15,7 +15,7 @@ function PlanesCards() {
 
   const handleBuy = async (planInfo) => {
     try {
-      const response = await axios.post('http://localhost:3000/create_preference', {
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/create_preference`, {
         title: planInfo.title,
         quantity: 1,
         price: planInfo.price,

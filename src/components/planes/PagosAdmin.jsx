@@ -18,6 +18,9 @@ function PagosAdmin() {
       });
   }, []);
 
+  console.log("ENV:", import.meta.env.VITE_API_URL);
+
+
   const pagosFiltrados = pagos.filter((pago) => {
     const valor = filtro.toLowerCase();
     return (

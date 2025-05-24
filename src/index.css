@@ -9,7 +9,7 @@ body {
 }
 
   
-nav {
+nav.menu-lateral {
   position: absolute;
   top: 0;
   margin-top: 1.5rem;
@@ -18,8 +18,8 @@ nav {
   width: 300px;
   font-family: 'Segoe UI', sans-serif;
   z-index: 999;
+  background-color: white;
 }
-
 section {
   scroll-margin-top: 70px;
 }

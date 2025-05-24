@@ -33,6 +33,7 @@ export const Example = () => {
 
   return (
     <motion.nav
+      className="menu-lateral"
       initial={false}
       animate={isOpen ? "open" : "closed"}
       custom={height}

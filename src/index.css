@@ -19,6 +19,10 @@ nav {
   font-family: 'Segoe UI', sans-serif;
   z-index: 999;
 }
+
+section {
+  scroll-margin-top: 120px; /* Ajustá al alto real del navbar */
+}
   
 .background {
   position: absolute;

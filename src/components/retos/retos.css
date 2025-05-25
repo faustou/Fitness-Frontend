@@ -257,10 +257,8 @@
 
 .modal-close {
   position: absolute;
-  top: -10px;
-  right: -10px;
-  background-color: #3be9ff;
-  color: #0b0f10;
+  top: -16px;
+  right: -1px;
   border: none;
   font-size: 1.2rem;
   font-weight: bold;
@@ -268,13 +266,11 @@
   border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 0 12px rgba(59, 233, 255, 0.5);
 
   z-index: 10; /* 👈 Esto lo pone por encima del iframe */
 }
 
 .modal-close:hover {
-  background-color: #1b1b1b;
   color: #3be9ff;
   border: 1px solid #3be9ff;
 }

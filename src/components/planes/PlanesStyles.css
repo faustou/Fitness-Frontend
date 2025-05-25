@@ -169,6 +169,13 @@
   max-width: 850px;
 }
 
+.vip-wrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 850px;
+}
+
 .plan-card.vip-bg {
   position: absolute;
   top: 8px;
@@ -185,6 +192,8 @@
   background: rgb(8 84 95 / 85%);
   padding: 2rem 3rem;
   display: flex;
+  width: 100%;
+  max-width: 850px;
   flex-direction: column;
   align-items: center;
   box-shadow: 0 0 70px rgba(0, 0, 0, 0.4);
@@ -414,10 +423,8 @@
 .modal-close {
   display: flex;
   margin-top: 1rem;
-  padding: 0.5rem 1rem;
   background: transparent;
   border: 1px solid white;
-  background-color: #0b0f10!important;
   border-radius: 0.5rem;
   cursor: pointer;
 }
@@ -456,7 +463,71 @@
   font-weight: 100;
 }
 
+@media (max-width: 1200px) {
+  .modal-content {
+    max-width: 700px!important;
+    min-width: unset;
+    width: 85%;
+    padding: 1rem;
+  }
+}
 
+@media (max-width: 768px) {
+  
+  .modal-content {
+    max-width: 90%!important;
+    min-width: unset;
+    width: 85%;
+    padding: 1rem;
+  }
+
+  .modal-title {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .modal-plan-header {
+    padding: 1rem;
+    gap: 0.8rem;
+  }
+
+  .modal-icon {
+    font-size: 1.6rem;
+  }
+
+  .modal-plan-title {
+    font-size: 0.95rem;
+  }
+
+  .modal-price-old {
+    font-size: 1rem;
+  }
+
+  .modal-price-final {
+    font-size: 1.2rem;
+  }
+
+  .modal-price-final span {
+    font-size: 0.9rem;
+  }
+
+  .modal-benefits {
+    font-size: 0.9rem;
+  }
+
+  .modal-warning {
+    font-size: 0.85rem;
+  }
+
+  .modal-close {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+
+  .modal-close img {
+    width: 20px;
+  }
+}
 
 
 /* Responsive */
@@ -519,7 +590,7 @@
   position: relative;
   border: 4px white!important;
   min-width: 300px;
-  max-width: 90%;
+  max-width: 900px!important;
 }
 
 .blue-2eGCEt.svelte-1r8rfwf.svelte-1r8rfwf {
@@ -528,10 +599,8 @@
 
 .modal-close {
   margin-top: 1rem;
-  padding: 0.5rem 1rem;
   background: transparent;
   border: 1px solid white;
-  background-color: #0b0f10;
   color: white;
   border-radius: 0.5rem;
   cursor: pointer;
@@ -540,3 +609,91 @@
 .modal-close:hover {
   background-color: rgba(255, 255, 255, 0.1);
 }
+
+.antes-despues-title {
+  padding-bottom: 6rem;
+}
+
+@media (max-width: 768px) {
+  .antes-despues-title {
+    font-size: 2.5rem;
+  }
+
+  .plan-card-wrapper {
+    width: 200px; /* antes era 240px */
+    max-height: 400px;
+  }
+
+  .plan-card {
+    padding: 1.2rem;
+  }
+
+  .plan-card h3 {
+    font-size: 1.2rem;
+  }
+
+  .plan-duration {
+    font-size: 0.8rem;
+  }
+
+  .plan-icon {
+    font-size: 1.5rem;
+  }
+
+  .plan-price-old {
+    font-size: 1.3rem;
+  }
+
+  .price-final {
+    font-size: 1.1rem;
+  }
+
+  .discount-badge {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.4rem;
+  }
+
+  .plan-button {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .plan-card-bg {
+    top: 55px;
+    left: 30px;
+    width: 70%;
+    height: 70%;
+  }
+
+  .plan-card.vip {
+    margin: 0 auto;
+    width: 300px;
+    padding: 1.5rem 1rem;
+    clip-path: polygon(0% 12%, 5% 4%, 15% 0%, 70% 0, 100% 0%, 100% 25%, 100% 85%, 93% 93%, 85% 100%, 15% 100%, 5% 93%, 0% 85%);
+  }
+
+  .plan-card.vip h3 {
+    font-size: 1.4rem;
+  }
+
+  .vip-benefits {
+    flex-direction: column;
+    gap: 1.5rem;
+    max-width: 90%;
+  }
+
+  .vip-button-wrapper .plan-button {
+    padding: 0.6rem 1.4rem;
+    font-size: 0.9rem;
+  }
+
+  .plan-card-wrapper.vip-wrapper {
+    width: 95%;
+  }
+  .vip-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+

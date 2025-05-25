@@ -12,12 +12,13 @@ import Retos from './components/retos/Retos';
 import PagosAdmin from './components/planes/PagosAdmin';
 import Lanzamiento from './components/retos/lanzamiento';
 import Faqs from './components/Faq/Faqs';
+import Bienvenida from './components/home/bienvenida';
 
 function MainSite() {
   return (
     <>
       {/* IDs para navegación con anclas */}
-      <section id="home"><Home /></section>
+      <section id="home"><Bienvenida /></section>
       <section id="retos"><Retos /></section>
       <Lanzamiento />
       <section id="exitos"><AntesDespuesSection /></section>

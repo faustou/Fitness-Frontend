@@ -30,6 +30,7 @@ function PlanesCards() {
 
   return (
     <section className="planes-section">
+      <h2 className="antes-despues-title">CONTRATA <span>MIS SERVICIOS</span></h2>
       <div className="planes-cards">
 
         {/* Card ORO */}
@@ -140,7 +141,7 @@ function PlanesCards() {
       </div>
 
       {/* Card VIP */}
-      <div className="plan-card-wrapper" style={{ maxWidth: '850px', width: '100%' }}>
+      <div className="plan-card-wrapper vip-wrapper">
         <div className="" style={{ borderRadius: '2rem' }}></div>
         <div className="plan-card vip">
           <h3>PLAN VIP - MENSUAL</h3>

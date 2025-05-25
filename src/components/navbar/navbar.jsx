@@ -14,7 +14,7 @@ function Navbar() {
           <div className="navbar-logo">
             <a href="#home">
               <span>GERMAN</span>
-              <span>ALVARADO</span>
+              <span className="last-name">ALVARADO</span>
             </a>
 
           </div>

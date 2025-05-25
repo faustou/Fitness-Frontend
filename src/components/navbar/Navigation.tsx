@@ -12,8 +12,8 @@ const variants = {
   }
 };
 
-export const Navigation = () => (
-    <motion.ul className="styles-ul" variants={variants}>
+export const Navigation = ({isOpen}) => (
+    <motion.ul className={`styles-ul ${!isOpen ? "oculto-ul" : ""}`} variants={variants}>
       {menuItems.map((item, index) => (
         <MenuItem text={item} key={index} index={index} />
       ))}

@@ -4,13 +4,14 @@
     padding: 0.5rem 1.2rem;
     border-radius: 2rem;
     color: white;
-    font-size: 1rem;
+    font-size: 0.9rem;
     transition: background-color 0.3s ease, color 0.3s ease;
   }
   
   .navbar-button:hover {
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: #3be9ff;
     cursor: pointer;
+    color: black;
   }
 
 html {

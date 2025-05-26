@@ -43,6 +43,7 @@ function Bienvenida() {
         </div>
       </div>
     </section>
+    
   );
 }
 

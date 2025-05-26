@@ -36,7 +36,7 @@ function PlanesCards() {
         {/* Card ORO */}
         <div className="plan-card-wrapper oro-wrapper">
           <div className="plan-card-bg"></div>
-          <div className="plan-card oro">
+          <div className="plan-card plan-card-gold oro">
             <h3>ORO</h3>
             <p className="plan-duration">6 meses</p>
             <div className="plan-icon">🥇</div>
@@ -71,7 +71,7 @@ function PlanesCards() {
         {/* Card PLATA */}
         <div className="plan-card-wrapper destacada plata-wrapper">
           <div className="plan-card-bg"></div>
-          <div className="plan-card plata">
+          <div className="plan-card plan-card-silver plata">
             <h3>PLATA</h3>
             <p className="plan-duration">3 meses</p>
             <div className="plan-icon">🥈</div>
@@ -106,7 +106,7 @@ function PlanesCards() {
         {/* Card BRONCE */}
         <div className="plan-card-wrapper bronce-wrapper">
           <div className="plan-card-bg"></div>
-          <div className="plan-card bronce">
+          <div className="plan-card plan-card-bronze bronce">
             <div className="bronce-border"></div>
             <h3>BRONCE</h3>
             <p className="plan-duration">1 mes</p>
@@ -141,49 +141,52 @@ function PlanesCards() {
       </div>
 
       {/* Card VIP */}
-      <div className="plan-card-wrapper vip-wrapper">
-        <div className="" style={{ borderRadius: '2rem' }}></div>
-        <div className="plan-card vip">
-          <h3>PLAN VIP - MENSUAL</h3>
-          <div className="plan-price-container">
-            <p className="plan-price-old">$70000</p>
-            <div className="plan-price-new">
-              <span className="price-final">$49000</span>
-              <span className="discount-badge">30% OFF</span>
-            </div>
+    <div className="plan-card-wrapper vip-wrapper">
+      <div className="plan-card vip">
+        <h3>PLAN VIP - MENSUAL</h3>
+        <div className="plan-price-container">
+          <p className="plan-price-old">$70000</p>
+          <div className="plan-price-new">
+            <span className="price-final">$49000</span>
+            <span className="discount-badge">30% OFF</span>
           </div>
-          <div className="vip-benefits">
-            <div className="vip-column">
-              <ul>
-                <li>Beneficio destacado</li>
-                <li>Otro beneficio más</li>
-              </ul>
-            </div>
-            <div className="vip-button-wrapper">
-              <button
-                className="plan-button"
-                onClick={() =>
-                  handleBuy({
-                    title: 'Plan VIP - German Alvarado',
-                    price: 49000,
-                    oldPrice: 70000,
-                    name: 'VIP',
-                    duration: '1 MES',
-                  })
-                }
-              >
-                COMENZAR
-              </button>
-            </div>
-            <div className="vip-column">
-              <ul>
-                <li>Beneficio destacado</li>
-                <li>Otro beneficio más</li>
-              </ul>
-            </div>
+        </div>
+        <div className="vip-benefits">
+          <div className="vip-column">
+            <ul>
+              <li>Beneficio destacado</li>
+              <li>Otro beneficio más</li>
+            </ul>
+          </div>
+          <div className="vip-button-wrapper">
+            <button
+              className="plan-button"
+              onClick={() =>
+                handleBuy({
+                  title: 'Plan VIP - German Alvarado',
+                  price: 49000,
+                  oldPrice: 70000,
+                  name: 'VIP',
+                  duration: '1 MES',
+                })
+              }
+            >
+              COMENZAR
+            </button>
+          </div>
+          <div className="vip-column">
+            <ul>
+              <li>Beneficio destacado</li>
+              <li>Otro beneficio más</li>
+            </ul>
           </div>
         </div>
       </div>
+
+      {/* borde animado ENCIMA de la card */}
+      <div className="vip-border-anim"></div>
+    </div>
+
 
       {/* MODAL */}
       {isModalOpen && modalPlan && (

@@ -82,8 +82,6 @@
 
 /* Card principal */
 .plan-card {
-  background: rgb(8 84 95 / 85%);
-  border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 2rem;
   text-align: center;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
@@ -189,21 +187,16 @@
 }
 
 .plan-card.vip {
-  background: rgb(8 84 95 / 85%);
   padding: 2rem 3rem;
   display: flex;
-  width: 100%;
-  max-width: 850px;
   flex-direction: column;
   align-items: center;
-  box-shadow: 0 0 70px rgba(0, 0, 0, 0.4);
-  border-radius: 2rem;
+  width: 100%;
+  max-width: 850px;
   position: relative;
   overflow: hidden;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  clip-path: polygon(0% 15%, 4% 5%, 15% 0%, 70% 0, 100% 0%, 100% 29%, 100% 85%, 93% 93%, 85% 100%, 15% 100%, 0% 100%, 0% 100%);
   z-index: 1;
+  border: 6px solid transparent; /* necesario para el background animado */
 }
 
 .plan-card.vip h3 {
@@ -265,7 +258,7 @@
 }
 
 .plata {
-  clip-path: polygon(0% 15%, 4% 5%, 15% 0%, 70% 0, 81% 20%, 100% 29%, 100% 85%, 93% 93%, 85% 100%, 22% 100%, 11% 90%, 0 79%);
+  clip-path: polygon(0% 15%, 0% 0%, 15% 0%, 70% 0, 81% 20%, 100% 29%, 100% 100%, 93% 100%, 85% 100%, 22% 100%, 11% 100%, 0 100%);
 }
 
 .bronce {
@@ -305,7 +298,7 @@
 
 
 .vip {
-  clip-path: polygon(0% 15%, 4% 5%, 15% 0%, 70% 0, 81% 20%, 100% 29%, 100% 85%, 93% 93%, 85% 100%, 15% 100%, 5% 93%, 0% 85%);
+  clip-path: polygon(0% 0%, 0% 0%, 15% 0%, 70% 0, 81% 20%, 100% 29%, 100% 101%, 93% 100%, 85% 100%, 15% 100%, 5% 100%, 0% 100%);
 }
 
 .plan-card-wrapper.destacada {
@@ -320,9 +313,6 @@
   height: 80%;
 }
 
-.plan-card-wrapper.destacada .plan-card {
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
-}
 
 /* ===================== */
 /*      MODAL NUEVO     */
@@ -697,3 +687,168 @@
   }
 }
 
+/* border animation */
+
+@property --border-animation {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+@keyframes rotation {
+  to {
+    --border-animation: 360deg;
+  }
+}
+
+.plan-card-gold {
+  animation: rotation 2.5s linear infinite;
+  border: 6px solid transparent;
+
+  background:
+    linear-gradient(rgb(8 84 95 / 85%), rgb(8 84 95 / 85%)) padding-box,
+    conic-gradient(
+      from var(--border-animation),
+      #FFD700,
+      #3be9ff,
+      #FFD700,
+      #3be9ff,
+      #FFD700
+    ) border-box;
+
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 1rem;
+}
+
+.plan-card-silver {
+  animation: rotation 2.5s linear infinite;
+  border: 6px solid transparent;
+
+  background:
+    linear-gradient(rgb(8 84 95 / 85%), rgb(8 84 95 / 85%)) padding-box,
+    conic-gradient(
+      from var(--border-animation),
+      #C0C0C0,
+      #3be9ff,
+      #C0C0C0,
+      #3be9ff,
+      #C0C0C0
+    ) border-box;
+
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 1rem;
+}
+
+.plan-card-bronze {
+  animation: rotation 2.5s linear infinite;
+  border: 6px solid transparent;
+
+  background:
+    linear-gradient(rgb(8 84 95 / 85%), rgb(8 84 95 / 85%)) padding-box,
+    conic-gradient(
+      from var(--border-animation),
+      #CD7F32,
+      #3be9ff,
+      #CD7F32,
+      #3be9ff,
+      #CD7F32
+    ) border-box;
+
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  border-radius: 1rem;
+}
+
+@keyframes rotation {
+  to {
+    --border-animation: 360deg;
+  }
+}
+
+@property --border-animation {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.vip-border-anim {
+  position: absolute;
+  inset: 0;
+  z-index: 3; /* encima de la card */
+  pointer-events: none;
+  border-radius: 2rem;
+  padding: 8px;
+  border: 6px solid transparent;
+  animation: rotation 2.5s linear infinite;
+  background: 
+    conic-gradient(
+      from var(--border-animation),
+      #11c930,
+      #3be9ff,
+      #11c930,
+      #3be9ff,
+      #11c930
+    );
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+  pointer-events: none;
+}
+
+.gold-border-anim,
+.silver-border-anim,
+.bronze-border-anim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: 1rem;
+  padding: 6px;
+  border: 6px solid transparent;
+  background-origin: border-box;
+  background-clip: padding-box, border-box;
+  animation: rotation 2.5s linear infinite;
+}
+
+/* Oro */
+.gold-border-anim {
+  background:
+    linear-gradient(rgb(8 84 95 / 85%), rgb(8 84 95 / 85%)) padding-box,
+    conic-gradient(
+      from var(--border-animation),
+      #FFD700,
+      #3be9ff,
+      #FFD700,
+      #3be9ff
+    ) border-box;
+}
+
+/* Plata */
+.silver-border-anim {
+  background:
+    linear-gradient(rgb(8 84 95 / 85%), rgb(8 84 95 / 85%)) padding-box,
+    conic-gradient(
+      from var(--border-animation),
+      #C0C0C0,
+      #3be9ff,
+      #C0C0C0,
+      #3be9ff
+    ) border-box;
+}
+
+/* Bronce */
+.bronze-border-anim {
+  background:
+    linear-gradient(rgb(8 84 95 / 85%), rgb(8 84 95 / 85%)) padding-box,
+    conic-gradient(
+      from var(--border-animation),
+      #CD7F32,
+      #3be9ff,
+      #CD7F32,
+      #3be9ff
+    ) border-box;
+}

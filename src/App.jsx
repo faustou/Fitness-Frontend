@@ -13,10 +13,12 @@ import PagosAdmin from './components/planes/PagosAdmin';
 import Lanzamiento from './components/retos/lanzamiento';
 import Faqs from './components/Faq/Faqs';
 import Bienvenida from './components/home/bienvenida';
+import ModalPublicidad from './components/modal-publicidad/modalPublicidad';
 
 function MainSite() {
   return (
     <>
+      <ModalPublicidad />
       {/* IDs para navegación con anclas */}
       <section id="home"><Bienvenida /></section>
       <section id="retos"><Retos /></section>

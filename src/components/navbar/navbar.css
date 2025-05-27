@@ -1,21 +1,18 @@
 .navbar-wrapper {
   display: flex;
   justify-content: center;
-  position: fixed; /* 🔥 antes era relative */
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1000; /* más alto para que quede encima */
-  backdrop-filter: blur(10px);
+  z-index: 1000;
 }
-
 
 .navbar-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  gap: 2rem;
-  padding: 1rem 2rem;
+  padding: 1rem 1.5rem;
   background-color: rgb(8 84 95 / 19%) !important;
   border-radius: 0.6rem;
   margin-top: 1.5rem;
@@ -27,15 +24,27 @@
 
 .last-name {
   color: #3be9ff;
-
 }
-
-
 
 .menu-hamburguesa {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
+
+.onclickButton {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
+}
+
 
 .navbar-logo a {
   text-decoration: none;
@@ -85,24 +94,28 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Responsive: ocultar links y mostrar hamburguesa desde 990px */
+/* 📱 Responsive */
 @media (max-width: 990px) {
+  .navbar-wrapper {
+    backdrop-filter: blur(10px);
+  }
   .navbar-links {
     display: none;
   }
+
   .navbar-container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-    padding: 1rem 2rem;
-    background-color: rgba(17, 17, 17, 0.95);
-    border-radius: 0.6rem;
-    margin-top: 1.5rem;
-    max-width: 1000px;
-    width: 100%;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-    font-family: 'Segoe UI', sans-serif;
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .onclickButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .onclickButton svg {
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -111,4 +124,3 @@ html {
     display: none;
   }
 }
-

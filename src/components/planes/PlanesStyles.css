@@ -572,7 +572,7 @@
 }
 
 .modal-content {
-  background-color: rgb(8 84 95 / 85%)!important;
+  background-color: rgb(2 43 49 / 97%) !important;
   padding: 2rem;
   border-radius: 1rem;
   color: white;
@@ -688,79 +688,6 @@
 }
 
 /* border animation */
-
-@property --border-animation {
-  syntax: "<angle>";
-  inherits: false;
-  initial-value: 0deg;
-}
-
-@keyframes rotation {
-  to {
-    --border-animation: 360deg;
-  }
-}
-
-.plan-card-gold {
-  animation: rotation 2.5s linear infinite;
-  border: 6px solid transparent;
-
-  background:
-    linear-gradient(rgb(8 84 95 / 85%), rgb(8 84 95 / 85%)) padding-box,
-    conic-gradient(
-      from var(--border-animation),
-      #FFD700,
-      #3be9ff,
-      #FFD700,
-      #3be9ff,
-      #FFD700
-    ) border-box;
-
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  border-radius: 1rem;
-}
-
-.plan-card-silver {
-  animation: rotation 2.5s linear infinite;
-  border: 6px solid transparent;
-
-  background:
-    linear-gradient(rgb(8 84 95 / 85%), rgb(8 84 95 / 85%)) padding-box,
-    conic-gradient(
-      from var(--border-animation),
-      #C0C0C0,
-      #3be9ff,
-      #C0C0C0,
-      #3be9ff,
-      #C0C0C0
-    ) border-box;
-
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  border-radius: 1rem;
-}
-
-.plan-card-bronze {
-  animation: rotation 2.5s linear infinite;
-  border: 6px solid transparent;
-
-  background:
-    linear-gradient(rgb(8 84 95 / 85%), rgb(8 84 95 / 85%)) padding-box,
-    conic-gradient(
-      from var(--border-animation),
-      #CD7F32,
-      #3be9ff,
-      #CD7F32,
-      #3be9ff,
-      #CD7F32
-    ) border-box;
-
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
-  border-radius: 1rem;
-}
-
 @keyframes rotation {
   to {
     --border-animation: 360deg;
@@ -780,7 +707,7 @@
   pointer-events: none;
   border-radius: 2rem;
   padding: 8px;
-  border: 6px solid transparent;
+  border: 1px solid transparent;
   animation: rotation 2.5s linear infinite;
   background: 
     conic-gradient(
@@ -799,8 +726,52 @@
   pointer-events: none;
 }
 
-.gold-border-anim,
-.silver-border-anim,
+
+/* Oro */
+.gold-border-anim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: 1rem;
+  padding: 6px;
+  border: 2px solid transparent;
+  animation: rotation 2.5s linear infinite;
+  background: conic-gradient(
+    from var(--border-animation),
+    #FFD700,
+    #3be9ff,
+    #FFD700,
+    #3be9ff
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+}
+
+/* Plata */
+.silver-border-anim {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  border-radius: 1rem;
+  padding: 6px;
+  border: 2px solid transparent;
+  animation: rotation 2.5s linear infinite;
+  background: conic-gradient(
+    from var(--border-animation),
+    #C0C0C0,
+    #3be9ff,
+    #C0C0C0,
+    #3be9ff
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
+}
+
+/* Bronce */
 .bronze-border-anim {
   position: absolute;
   inset: 0;
@@ -808,47 +779,16 @@
   pointer-events: none;
   border-radius: 1rem;
   padding: 6px;
-  border: 6px solid transparent;
-  background-origin: border-box;
-  background-clip: padding-box, border-box;
+  border: 2px solid transparent;
   animation: rotation 2.5s linear infinite;
-}
-
-/* Oro */
-.gold-border-anim {
-  background:
-    linear-gradient(rgb(8 84 95 / 85%), rgb(8 84 95 / 85%)) padding-box,
-    conic-gradient(
-      from var(--border-animation),
-      #FFD700,
-      #3be9ff,
-      #FFD700,
-      #3be9ff
-    ) border-box;
-}
-
-/* Plata */
-.silver-border-anim {
-  background:
-    linear-gradient(rgb(8 84 95 / 85%), rgb(8 84 95 / 85%)) padding-box,
-    conic-gradient(
-      from var(--border-animation),
-      #C0C0C0,
-      #3be9ff,
-      #C0C0C0,
-      #3be9ff
-    ) border-box;
-}
-
-/* Bronce */
-.bronze-border-anim {
-  background:
-    linear-gradient(rgb(8 84 95 / 85%), rgb(8 84 95 / 85%)) padding-box,
-    conic-gradient(
-      from var(--border-animation),
-      #CD7F32,
-      #3be9ff,
-      #CD7F32,
-      #3be9ff
-    ) border-box;
+  background: conic-gradient(
+    from var(--border-animation),
+    #CD7F32,
+    #3be9ff,
+    #CD7F32,
+    #3be9ff
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  -webkit-mask-composite: destination-out;
 }

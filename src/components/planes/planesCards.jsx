@@ -227,10 +227,6 @@ function PlanesCards() {
                     <p className="modal-price-final">${modalPlan.price} <span>*30%OFF*</span> </p>
                   </div>
                 </div>
-                <ul className="modal-benefits">
-                  <li>Acceso completo</li>
-                  <li>Soporte prioritario</li>
-                </ul>
               </div>
 
               {preferenceId && (

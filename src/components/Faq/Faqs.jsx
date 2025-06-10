@@ -26,7 +26,7 @@ function Faqs() {
 
                     <div className="faq-item">
                     <h3 className="faq-question">¿Hay seguimiento personalizado?</h3>
-                    <p className="faq-answer">Sí, cada plan incluye asistencia directa según el tipo de suscripción.</p>
+                    <p className="faq-answer">La duración de los planes es fija y varía según el plan que elijas. Encontrarás los detalles específicos de cada uno en su descripción.</p>
                     </div>
                 </div>
             </section>

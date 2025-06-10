@@ -1,5 +1,6 @@
 import './styles-antes-despues.css';
-import Obeso from '../../assets/img/gordo.png'
+import Normal from '../../assets/img/normal.png'
+import Muscle from '../../assets/img/muscle.png'
 
 function AntesDespuesSection() {
   return (
@@ -12,13 +13,13 @@ function AntesDespuesSection() {
           <div className="imagen-container">
             <div className="imagen-item">
               {/* Reemplazar src por tu imagen "antes" */}
-              <img src={Obeso} alt="Antes" />
+              <img src={Normal} alt="Antes" />
               <span>Antes</span>
             </div>
             <div className="separador" />
             <div className="imagen-item">
               {/* Reemplazar src por tu imagen "despues" */}
-              <img src={Obeso} alt="Después" />
+              <img src={Muscle} alt="Después" />
               <span>Después</span>
             </div>
           </div>
@@ -29,12 +30,12 @@ function AntesDespuesSection() {
           <div className="antes-despues-card" key={i}>
             <div className="imagen-container">
               <div className="imagen-item">
-                <img src={Obeso} alt="Antes" />
+                <img src={Normal} alt="Antes" />
                 <span>Antes</span>
               </div>
               <div className="separador" />
               <div className="imagen-item">
-                <img src={Obeso} alt="Después" />
+                <img src={Muscle} alt="Después" />
                 <span>Después</span>
               </div>
             </div>

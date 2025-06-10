@@ -27,7 +27,7 @@ function Retos() {
       <div className="reto-1-wrapper">
         <div className="reto-card reto-1">
           <h3>KETO 30 DIAS</h3>
-          <p>Descripción breve del reto en pocas líneas.</p>
+          <p>Un plan de 30 días para iniciarte en el estilo de vida keto, con pautas claras, recetas y acompañamiento para optimizar tu alimentación y alcanzar tus objetivos.</p>
           <a
             className="reto-btn"
             href="https://wa.me/5491121563405?text=Quiero%20comenzar%20el%20reto%20de%2030%20d%C3%ADas%20keto%21"
@@ -43,10 +43,10 @@ function Retos() {
       <div className="reto-2-wrapper">
         <div className="reto-card reto-2">
           <h3>ENTRADA EN CALOR</h3>
-          <p>Descripción breve del reto en pocas líneas.</p>
+          <p>“Activá tu cuerpo con esta rutina de entrada en calor ideal para preparar músculos y articulaciones antes de entrenar. ¡Mejorá tu rendimiento y prevení lesiones en solo unos minutos!”</p>
           <button
             className="reto-btn"
-            onClick={() => handleOpenModal('dQw4w9WgXcQ')}
+            onClick={() => handleOpenModal('zykDJg8JA3Y')}
           >
             Comenzar reto
           </button>
@@ -57,10 +57,10 @@ function Retos() {
       <div className="reto-3-wrapper">
         <div className="reto-card reto-3">
           <h3>¿HIPERTROFIA?</h3>
-          <p>Descripción breve del reto en pocas líneas.</p>
+          <p>¿Sabías que para que nuestros músculos crezcan deben “romperse? ¡Este proceso se llama hipertrofia muscular y aquí te contamos todos los detalles que no sabías, comparte!</p>
           <button
             className="reto-btn"
-            onClick={() => handleOpenModal('xvFZjo5PgG0')}
+            onClick={() => handleOpenModal('7U9YVWhzScE')}
           >
             Comenzar reto
           </button>

@@ -46,23 +46,24 @@ function PlanesCards() {
           <p className="plan-duration">6 meses</p>
           <div className="plan-icon">🥇</div>
           <div className="plan-price-container">
-            <p className="plan-price-old">$57000</p>
+            <p className="plan-price-old">$95000</p>
             <div className="plan-price-new">
-              <span className="price-final">$40000</span>
+              <span className="price-final">$66500</span>
               <span className="discount-badge">30% OFF</span>
             </div>
           </div>
           <ul>
-            <li>Beneficio destacado</li>
-            <li>Otro beneficio más</li>
+            <li>Rutina + Dieta</li>
+            <li>Control semanal</li>
+            <li>Consultas diarias</li>
           </ul>
           <button
             className="plan-button"
             onClick={() =>
               handleBuy({
                 title: 'Plan Oro - German Alvarado',
-                price: 40000,
-                oldPrice: 57000,
+                price: 95000,
+                oldPrice: 66500,
                 name: 'ORO',
                 duration: '6 meses',
               })
@@ -86,23 +87,23 @@ function PlanesCards() {
             <p className="plan-duration">3 meses</p>
             <div className="plan-icon">🥈</div>
             <div className="plan-price-container">
-              <p className="plan-price-old">$57000</p>
+              <p className="plan-price-old">$55000</p>
               <div className="plan-price-new">
-                <span className="price-final">$40000</span>
+                <span className="price-final">$38500</span>
                 <span className="discount-badge">30% OFF</span>
               </div>
             </div>
             <ul>
-              <li>Beneficio destacado</li>
-              <li>Otro beneficio más</li>
+              <li>Rutina + Dieta</li>
+              <li>Control cada 15 dias</li>
             </ul>
             <button
               className="plan-button"
               onClick={() =>
                 handleBuy({
                   title: 'Plan Plata - German Alvarado',
-                  price: 40000,
-                  oldPrice: 57000,
+                  price: 38500,
+                  oldPrice: 55000,
                   name: 'PLATA',
                   duration: '3 meses',
                 })
@@ -133,8 +134,8 @@ function PlanesCards() {
               </div>
             </div>
             <ul>
-              <li>Beneficio destacado</li>
-              <li>Otro beneficio más</li>
+              <li>Planificacion</li>
+              <li>Rutina personalizada</li>
             </ul>
             <button
               className="plan-button"
@@ -159,19 +160,19 @@ function PlanesCards() {
         {/* Card VIP */}
       <div className="plan-card-wrapper vip-wrapper">
         <div className="plan-card vip">
-          <h3>PLAN VIP - MENSUAL</h3>
+          <h3>PLAN DE ALTO RENDIMIENTO <br /> PARA ATLETAS</h3>
           <div className="plan-price-container">
-            <p className="plan-price-old">$70000</p>
+            <p className="plan-price-old">$28000</p>
             <div className="plan-price-new">
-              <span className="price-final">$49000</span>
+              <span className="price-final">$19600</span>
               <span className="discount-badge">30% OFF</span>
             </div>
           </div>
           <div className="vip-benefits">
             <div className="vip-column">
               <ul>
-                <li>Beneficio destacado</li>
-                <li>Otro beneficio más</li>
+                <li>Planificacion de objetivos</li>
+                <li>Rutina y dieta</li>
               </ul>
             </div>
             <div className="vip-button-wrapper">
@@ -180,8 +181,8 @@ function PlanesCards() {
                 onClick={() =>
                   handleBuy({
                     title: 'Plan VIP - German Alvarado',
-                    price: 49000,
-                    oldPrice: 70000,
+                    price: 19600,
+                    oldPrice: 28000,
                     name: 'VIP',
                     duration: '1 MES',
                   })
@@ -192,8 +193,8 @@ function PlanesCards() {
             </div>
             <div className="vip-column">
               <ul>
-                <li>Beneficio destacado</li>
-                <li>Otro beneficio más</li>
+                <li>Controles semanales</li>
+                <li>Seguimiento diario</li>
               </ul>
             </div>
           </div>

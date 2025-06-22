@@ -1,0 +1,126 @@
+.navbar-wrapper {
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+.navbar-container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background-color: rgb(8 84 95 / 19%) !important;
+  border-radius: 0.6rem;
+  margin-top: 1.5rem;
+  max-width: 750px;
+  width: 100%;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.last-name {
+  color: #3be9ff;
+}
+
+.menu-hamburguesa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.onclickButton {
+  all: unset;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(4px);
+}
+
+
+.navbar-logo a {
+  text-decoration: none;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.1;
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.navbar-logo:hover {
+  transform: scale(1.02);
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+.navbar-links a {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-links p {
+  margin: 0;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.navbar-links p:hover::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  background-color: #3be9ff;
+  bottom: -4px;
+  left: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* 📱 Responsive */
+@media (max-width: 990px) {
+  .navbar-wrapper {
+    backdrop-filter: blur(10px);
+  }
+  .navbar-links {
+    display: none;
+  }
+
+  .navbar-container {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .onclickButton {
+    width: 36px;
+    height: 36px;
+  }
+
+  .onclickButton svg {
+    width: 22px;
+    height: 22px;
+  }
+}
+
+@media (min-width: 991px) {
+  .menu-hamburguesa {
+    display: none;
+  }
+}

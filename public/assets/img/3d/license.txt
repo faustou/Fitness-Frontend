@@ -1,0 +1,11 @@
+Model Information:
+* title:	Gym Equipment
+* source:	https://sketchfab.com/3d-models/gym-equipment-28ef8a0ceef346568bd381fed0796e31
+* author:	squalll_999 (https://sketchfab.com/squalll_999)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Gym Equipment" (https://sketchfab.com/3d-models/gym-equipment-28ef8a0ceef346568bd381fed0796e31) by squalll_999 (https://sketchfab.com/squalll_999) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

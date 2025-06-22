@@ -1,0 +1,230 @@
+.bienvenida-section {
+  width: 100vw;
+  height: 100vh;
+  background-image: url('../../assets/img/man-plank.png'); /* Cambiá esto al path real */
+  background-size: cover;
+  background-position: right;
+  position: relative;
+  font-family: 'Segoe UI', sans-serif;
+  color: #dffbff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.bienvenida-overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bienvenida-content {
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}
+
+.bienvenida-content h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+  letter-spacing: 1px;
+}
+
+.btn-comenzar {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 0.5rem;
+  background: rgba(0, 255, 255, 0.1);
+  border: 1px solid #0ff;
+  color: #dffbff;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+  transition: background 0.3s ease;
+}
+
+.btn-comenzar:hover {
+  background: rgba(0, 255, 255, 0.25);
+}
+
+.bienvenida-floating {
+  position: absolute;
+  background: rgba(0, 255, 255, 0.05);
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  border-radius: 0.7rem;
+  padding: 0.8rem 1.2rem;
+  text-align: center;
+  font-size: 0.9rem;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.15);
+  backdrop-filter: blur(4px);
+  color: #dffbff;
+}
+
+.top-left {
+  top: 14.5rem;
+  left: -9.5rem;
+}
+
+.top-right {
+  top: 12.9rem;
+  right: -9.1rem;
+}
+
+.bottom-left {
+  bottom: 11.5rem;
+  left: -8rem;
+}
+
+.bottom-right {
+  bottom: 12.5rem;
+  right: -6.5rem;
+}
+.bottom-right:hover, .bottom-left:hover, .top-right:hover, .top-left:hover {
+    transform: scale(1.03);
+}
+
+.floating-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  line-height: 1;
+    margin-bottom: 0.4rem;
+}
+
+.floating-title span {
+    font-size: 3rem;
+    display: inline-block;
+    padding-bottom: 0.4rem;
+}
+
+.floating-icon {
+  font-size: 1.5rem;
+  margin-bottom: 0.3rem;
+}
+
+.floating-value,
+.floating-graph {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 1.5rem;
+  width: 100%;
+  text-align: center;
+  font-size: 0.9rem;
+  color: #b0faff;
+  animation: bounce 2s infinite;
+  letter-spacing: 1px;
+}
+
+.floating-graph {
+    width: 100px;
+    height: 50px;
+}
+
+.floating-graph-heart {
+    width: 50px;
+    height: 40px;
+    margin-bottom: 0.8rem;
+    margin-top: 0.5rem;
+}
+
+
+.bienvenida-content::before,
+.bienvenida-content::after {
+  content: "";
+  position: absolute;
+  border: 1px solid rgba(0, 255, 255, 0.3);
+  width: 300px;
+  height: 180px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bienvenida-content::before {
+  top: 0;
+  left: 0;
+  border-right: none;
+  border-bottom: none;
+  transform: translate(-20px, -20px);
+}
+
+.bienvenida-content::after {
+  bottom: 0;
+  right: 0;
+  border-left: none;
+  border-top: none;
+  transform: translate(20px, 20px);
+}
+
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(6px);
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+    .bienvenida-overlay {
+        padding-top: 7rem;
+    }
+
+    .top-left {
+        top: 9.4rem;
+        left: -4.5rem;
+        transform: scale(0.7);
+    }
+    .top-right {
+        top: 7.9rem;
+        right: -5.1rem;
+        transform: scale(0.7);
+    }
+
+    .bottom-left {
+        bottom: 8.91rem;
+        left: 9.9rem;
+        transform: scale(0.7);
+    }
+
+    .bottom-right {
+        bottom: 7.5rem;
+        right: 7rem;
+        transform: scale(0.7);
+    }
+
+  .bienvenida-content h1 {
+    font-size: 0.8rem;
+  }
+
+  .btn-comenzar {
+    font-size: 0.7rem;
+    padding: 0.6rem 1.4rem;
+  }
+
+  .bienvenida-floating {
+    padding: 0.5rem 1.55rem;
+    font-size: 0.75rem;
+  }
+
+  .floating-icon {
+    font-size: 1.2rem;
+  }
+
+  .scroll-indicator {
+    font-size: 0.8rem;
+  }
+}
+

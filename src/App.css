@@ -1,0 +1,33 @@
+
+/* Navbar */
+
+.logo {
+    width: 130px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body, html {
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+  
+
+
+
+@media (max-width: 991px) {
+    .navbar {
+        display: none!important;
+    }
+    .menu-hamburguesa {
+        display: flex;
+    }
+}
+@media (min-width: 991px) {
+    .menu-hamburguesa {
+        display: none!important;
+    }
+}
+

@@ -5,7 +5,7 @@ import PechoAbdomen from './PechoAbdomen.jsx';
 import './styles-ejercicios.css';
 import PiernasIcon from '../../assets/img/piernas.svg';
 import AbdomenPechoIcon from '../../assets/img/abdomenPecho.svg';
-import BrazosHombrosIcon from '../../assets/img/BrazosHombros.svg';
+import BrazosHombrosIcon from '../../assets/img/brazosHombros.svg';
 
 function Ejercicios() {
   return (

@@ -1,7 +1,6 @@
 import { Link, Route, Routes } from 'react-router-dom';
 import Piernas from './Piernas.jsx'; // Importa los componentes de las categorías
 import Espalda from './Espalda.jsx';
-import BrazosHombros from './BrazosHombros.jsx';
 import PechoAbdomen from './PechoAbdomen.jsx';
 import './styles-ejercicios.css';
 import PiernasIcon from '../../assets/img/piernas.svg';

@@ -2,16 +2,21 @@ import { useState } from 'react';
 
 import RemoBajoMancuernaGif from '../../assets/img/RemoBajoMancuerna.gif';
 import gluteosGif from '../../assets/img/elevacionDePierna.gif';
+import Person from '../../assets/img/person.svg'
+import Back from '../../assets/img/muscles/back.png'
+import Clock from '../../assets/img/clock.svg'
 
 const ejercicios = [
   {
     nombre: 'Remo Bajo Mancuerna',
     gif: RemoBajoMancuernaGif,
+    muscle: Back,
     descripcion: 'Este ejercicio trabaja principalmente el Remo Bajo Mancuerna...',
   },
   {
-    nombre: 'Glúteos',
+    nombre: 'GLÚTEOS',
     gif: gluteosGif,
+    muscle: Back,
     descripcion: 'Este ejercicio trabaja los glúteos...',
   },
 ];
@@ -47,10 +52,24 @@ function Espalda() {
             className="gif-ejercicio"
           />
           <p>{ejercicioSeleccionado.descripcion}</p>
+          <div className='content-info'>
+            <div className='dificultad'>
+              <div>
+                <p> <img src={Clock} alt="Piernas" /> 30s</p>
+              </div>
+              <div>
+                <p> <img src={Person} alt="Piernas" /> Intermedio</p>
+              </div>
+            </div>
+            <div>
+              <img className='muscle' src={ejercicioSeleccionado.muscle} alt="" />
+            </div>
+          </div>
           <button onClick={() => setEjercicioSeleccionado(null)} className="cerrar-ejercicio">
             Volver a la lista
           </button>
         </div>
+        
       )}
     </div>
   );

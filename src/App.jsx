@@ -14,7 +14,7 @@ import Lanzamiento from './components/retos/lanzamiento';
 import Faqs from './components/Faq/Faqs';
 import Bienvenida from './components/home/bienvenida';
 import ModalPublicidad from './components/modal-publicidad/modalPublicidad';
-import Ejercicios from './components/ejercicios/Ejercicios';
+import Ejercicios from './components/ejercicios/Ejercicios.jsx';
 import Piernas from './components/ejercicios/Piernas';
 import Espalda from './components/ejercicios/Espalda';
 import BrazosHombros from './components/ejercicios/BrazosHombros.jsx';

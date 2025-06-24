@@ -17,7 +17,7 @@ import ModalPublicidad from './components/modal-publicidad/modalPublicidad';
 import Ejercicios from './components/ejercicios/Ejercicios';
 import Piernas from './components/ejercicios/Piernas';
 import Espalda from './components/ejercicios/Espalda';
-import BrazosHombros from './components/ejercicios/BrazosHombros';
+import BrazosHombros from './components/ejercicios/BrazosHombros.jsx';
 import PechoAbdomen from './components/ejercicios/PechoAbdomen';
 
 function MainSite() {

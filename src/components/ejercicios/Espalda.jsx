@@ -8,13 +8,37 @@ import Clock from '../../assets/img/clock.svg'
 
 const ejercicios = [
   {
-    nombre: 'Remo Bajo Mancuerna',
+    nombre: 'REMO BAJO MANCUERNA',
     gif: RemoBajoMancuernaGif,
     muscle: Back,
     descripcion: 'Este ejercicio trabaja principalmente el Remo Bajo Mancuerna...',
   },
   {
-    nombre: 'GLÚTEOS',
+    nombre: 'REMO CABALLO',
+    gif: gluteosGif,
+    muscle: Back,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+  },
+  {
+    nombre: 'REMO BAJO MAQUINA',
+    gif: gluteosGif,
+    muscle: Back,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+  },
+  {
+    nombre: 'REMO CON APOLLO',
+    gif: gluteosGif,
+    muscle: Back,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+  },
+  {
+    nombre: 'REMO BAJO POLEA',
+    gif: gluteosGif,
+    muscle: Back,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+  },
+  {
+    nombre: 'DOMINADAS',
     gif: gluteosGif,
     muscle: Back,
     descripcion: 'Este ejercicio trabaja los glúteos...',
@@ -35,7 +59,7 @@ function Espalda() {
         {ejercicios.map((ejercicio, index) => (
           <button
             key={index}
-            className="boton-ejercicio"
+            className={`boton-ejercicio ${ejercicioSeleccionado?.nombre === ejercicio.nombre ? 'activo' : ''}`}
             onClick={() => mostrarEjercicio(ejercicio)}
           >
             {ejercicio.nombre}
@@ -43,34 +67,37 @@ function Espalda() {
         ))}
       </div>
 
-      {ejercicioSeleccionado && (
-        <div className="contenido-ejercicio">
-          <h3>{ejercicioSeleccionado.nombre}</h3>
-          <img
-            src={ejercicioSeleccionado.gif}
-            alt={`Gif de ${ejercicioSeleccionado.nombre}`}
-            className="gif-ejercicio"
-          />
-          <p>{ejercicioSeleccionado.descripcion}</p>
-          <div className='content-info'>
-            <div className='dificultad'>
-              <div>
-                <p> <img src={Clock} alt="Piernas" /> 30s</p>
-              </div>
-              <div>
-                <p> <img src={Person} alt="Piernas" /> Intermedio</p>
-              </div>
+      {ejercicioSeleccionado ? (
+      <div className="contenido-ejercicio">
+        <h3>{ejercicioSeleccionado.nombre}</h3>
+        <img
+          src={ejercicioSeleccionado.gif}
+          alt={`Gif de ${ejercicioSeleccionado.nombre}`}
+          className="gif-ejercicio"
+        />
+        <p>{ejercicioSeleccionado.descripcion}</p>
+        <div className='content-info'>
+          <div className='dificultad'>
+            <div>
+              <p> <img src={Clock} alt="Piernas" /> 30s</p>
             </div>
             <div>
-              <img className='muscle' src={ejercicioSeleccionado.muscle} alt="" />
+              <p> <img src={Person} alt="Piernas" /> Intermedio</p>
             </div>
           </div>
-          <button onClick={() => setEjercicioSeleccionado(null)} className="cerrar-ejercicio">
-            Volver a la lista
-          </button>
+          <div>
+            <img className='muscle' src={ejercicioSeleccionado.muscle} alt="" />
+          </div>
         </div>
+        <button onClick={() => setEjercicioSeleccionado(null)} className="cerrar-ejercicio">
+          Volver a la lista
+        </button>
+      </div>
+    ) : (
+      <p style={{ color: '#aaa', marginTop: '2rem' }}>Seleccione un ejercicio</p>
+    )}
+
         
-      )}
     </div>
   );
 }

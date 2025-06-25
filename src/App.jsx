@@ -57,7 +57,7 @@ function App() {
         <Route path="/admin" element={<ProtectedPagosAdmin />} />
         
         {/* Ruta principal para Ejercicios */}
-        <Route path="/ejercicios" element={<Ejercicios />}>
+        <Route path="/ejercicios/*" element={<Ejercicios />}>
           {/* Rutas internas de cada categoría */}
           <Route path="piernas" element={<Piernas />} />
           <Route path="espalda" element={<Espalda />} />

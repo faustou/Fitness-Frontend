@@ -3,7 +3,6 @@
     flex-direction: column;
     align-items: center;
     color: white;
-    gap: 2rem;
     background-color: #07181f;
     height: 100vh;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -19,10 +18,17 @@
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
+    margin-top: 1rem;
 }
 .category-button {
     background-color: #112830;
     border-radius: 15px;
+}
+
+.category-button.activo {
+  border: 2px solid #00bcd4;
+  border-radius: 20px;
+  box-shadow: 0 0 10px #07ccef;
 }
 
 .menu img {
@@ -38,15 +44,16 @@
 }
 
 .botones-ejercicios {
+  margin-top: 1rem;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
 .boton-ejercicio {
-  padding: 10px 20px;
-  font-size: 1rem;
+  padding: 5px 5px;
+  font-size: 0.6rem;
   cursor: pointer;
   border: none;
   background-color: #112830;
@@ -54,6 +61,17 @@
   border-radius: 15px;
   transition: background-color 0.3s;
 }
+
+.boton-ejercicio.activo {
+  background-color: #07ccef; /* color cuando está activo */
+  color: #07181f;
+  font-weight: bold;
+}
+
+.boton-ejercicio.activo:hover {
+  background-color: #05b4d6; /* color al pasar el mouse sobre el activo */
+}
+
 
 .boton-ejercicio:hover {
   background-color: #112830;
@@ -63,9 +81,8 @@
   margin-top: 20px;
   text-align: center;
   background-color: #112830;
-  border-radius: 25px;
+  border-radius: 20px;
   margin: 1rem;
-  border: 1px solid #112830;
   margin-top: 2rem;
 }
 
@@ -106,7 +123,7 @@
 
 .content-info {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: flex-start;
 }
 
@@ -114,14 +131,14 @@
   position: relative;
   top: 0;
   right: 0;
-  height: 150px;
+  height: 120px;
 }
 
 .gif-ejercicio {
   max-width: 95%;
   height: auto;
   margin-top: 10px;
-  border-radius: 25px;
+  border-radius: 20px;
 }
 
 .cerrar-ejercicio {
@@ -131,9 +148,9 @@
   font-weight: 600;
   cursor: pointer;
   border: none;
-  background-color: #07ccef;
-  color: #1b1f0a;
-  border-radius: 5px;
+  background-color: #07181f;
+  color: white;
+  border-radius: 20px;
   transition: background-color 0.3s;
   margin-bottom: 1rem;
 }

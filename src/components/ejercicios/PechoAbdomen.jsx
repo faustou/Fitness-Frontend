@@ -5,6 +5,7 @@ import gluteosGif from '../../assets/img/elevacionDePierna.gif';
 import Back from '../../assets/img/muscles/back.png'
 import Clock from '../../assets/img/clock.svg'
 import Person from '../../assets/img/person.svg'
+import Timer from './Timer';
 
 const ejercicios = [
   {
@@ -12,47 +13,55 @@ const ejercicios = [
     gif: cuadricepsGif,
     muscle: Back,
     descripcion: 'Este ejercicio trabaja principalmente el músculo cuádriceps...',
+    dificultad: 'Intermedia',
   },
   {
     nombre: 'GLUTEOS',
     gif: gluteosGif,
     muscle: Back,
     descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
   },
   {
     nombre: 'REMO CABALLO',
     gif: gluteosGif,
     muscle: Back,
     descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
   },
   {
     nombre: 'REMO BAJO MAQUINA',
     gif: gluteosGif,
     muscle: Back,
     descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
   },
   {
     nombre: 'REMO CON APOLLO',
     gif: gluteosGif,
     muscle: Back,
     descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
   },
   {
     nombre: 'REMO BAJO POLEA',
     gif: gluteosGif,
     muscle: Back,
     descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
   },
   {
     nombre: 'DOMINADAS',
     gif: gluteosGif,
     muscle: Back,
     descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
   },
 ];
 
 function PechoAbdomen() {
   const [ejercicioSeleccionado, setEjercicioSeleccionado] = useState(null);
+  const [mostrarDificultad, setMostrarDificultad] = useState(false);
 
   const mostrarEjercicio = (ejercicio) => {
     setEjercicioSeleccionado(ejercicio);
@@ -83,18 +92,26 @@ function PechoAbdomen() {
         />
         <p>{ejercicioSeleccionado.descripcion}</p>
         <div className='content-info'>
-          <div className='dificultad'>
+          <div className="dificultad">
             <div>
-              <p> <img src={Clock} alt="Piernas" /> 30s</p>
+              <p><img src={Clock} alt="Clock" /> 30s</p>
             </div>
-            <div>
-              <p> <img src={Person} alt="Piernas" /> Intermedio</p>
+
+            <div className="tooltip-wrapper">
+              <img
+                src={Person}
+                alt="Person"
+                className="tooltip-icon"
+                onClick={() => setMostrarDificultad(prev => !prev)}
+              />
+              {mostrarDificultad && <span className="tooltip-floating">{ejercicioSeleccionado.dificultad}</span>}
             </div>
           </div>
           <div>
             <img className='muscle' src={ejercicioSeleccionado.muscle} alt="" />
           </div>
         </div>
+        <Timer />
         <button onClick={() => setEjercicioSeleccionado(null)} className="cerrar-ejercicio">
           Volver a la lista
         </button>

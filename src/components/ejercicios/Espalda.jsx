@@ -6,6 +6,9 @@ import Person from '../../assets/img/person.svg'
 import Back from '../../assets/img/muscles/back.png'
 import Clock from '../../assets/img/clock.svg'
 import Timer from './Timer';
+import Trapecio from '../../assets/img/muscles/Trapecio.png';
+import Dorsal from '../../assets/img/muscles/Dorsal.png';
+
 
 const ejercicios = [
   {
@@ -16,37 +19,100 @@ const ejercicios = [
     dificultad: 'Intermedia',
   },
   {
-    nombre: 'REMO CABALLO',
+    nombre: 'DOMINADAS',
     gif: gluteosGif,
     muscle: Back,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Avanzada',
   },
   {
-    nombre: 'REMO BAJO MAQUINA',
+    nombre: 'REMO CON BARRA',
     gif: gluteosGif,
     muscle: Back,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Intermedia',
   },
   {
-    nombre: 'REMO CON APOLLO',
+    nombre: 'DOMINADAS AGARRE AMPLIO',
     gif: gluteosGif,
     muscle: Back,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Intermedia',
   },
   {
-    nombre: 'REMO BAJO POLEA',
+    nombre: 'REMO BAJO POLEA AGARRE CERRADO',
     gif: gluteosGif,
     muscle: Back,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Intermedia',
   },
   {
-    nombre: 'DOMINADAS',
+    nombre: 'PESO MUERTO',
     gif: gluteosGif,
-    muscle: Back,
+    muscle: Dorsal,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'HYPEREXTENSIONES',
+    gif: gluteosGif,
+    muscle: Dorsal,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'PESO MUERTO RUMANO',
+    gif: gluteosGif,
+    muscle: Dorsal,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'SUPERMAN EN EL SUELO',
+    gif: gluteosGif,
+    muscle: Dorsal,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'JALONES',
+    gif: gluteosGif,
+    muscle: Trapecio,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'FACE PULLS',
+    gif: gluteosGif,
+    muscle: Trapecio,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'REMO EN MAQUINA HAMMER CON AGARRE NEUTRO',
+    gif: gluteosGif,
+    muscle: Trapecio,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'ENCOGIMINETO INVERTIDO',
+    gif: gluteosGif,
+    muscle: Trapecio,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'Y-RAISE CON MANCUERNA',
+    gif: gluteosGif,
+    muscle: Trapecio,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'REMO EN T',
+    gif: gluteosGif,
+    muscle: Trapecio,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Intermedia',
   },

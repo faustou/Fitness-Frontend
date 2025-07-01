@@ -45,7 +45,7 @@ const ejercicios = [
   },
 ];
 
-function PechoAbdomen() {
+function Mobilidad() {
   const [ejercicioSeleccionado, setEjercicioSeleccionado] = useState(null);
   const [mostrarDificultad, setMostrarDificultad] = useState(false);
 
@@ -55,7 +55,7 @@ function PechoAbdomen() {
 
   return (
     <div className="ejercicio-container">
-      <h2>Ejercicios de Pecho y Abdomen</h2>
+      <h2>Ejercicios de Mobilidad</h2>
       <div className="botones-ejercicios">
         {ejercicios.map((ejercicio, index) => (
           <button
@@ -111,4 +111,4 @@ function PechoAbdomen() {
   );
 }
 
-export default PechoAbdomen;
+export default Mobilidad;

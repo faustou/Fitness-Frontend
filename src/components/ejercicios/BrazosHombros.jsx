@@ -2,58 +2,131 @@ import { useState } from 'react';
 
 import cuadricepsGif from '../../assets/img/elevacionDePierna.gif';
 import gluteosGif from '../../assets/img/elevacionDePierna.gif';
-import Back from '../../assets/img/muscles/back.png'
-import Clock from '../../assets/img/clock.svg'
-import Person from '../../assets/img/person.svg'
+import AntebrazoFrente from '../../assets/img/muscles/antebrazo-frente.png';
+import Biceps from '../../assets/img/muscles/biceps.png';
+import Shoulder from '../../assets/img/muscles/shoulder.png';
+import Tricep from '../../assets/img/muscles/tricep.png'
+import Clock from '../../assets/img/clock.svg';
+import Person from '../../assets/img/person.svg';
 import Timer from './Timer';
 
 const ejercicios = [
   {
-    nombre: 'CUADRICEPS',
+    nombre: 'PRESS MARTILLO',
     gif: cuadricepsGif,
-    muscle: Back,
+    muscle: AntebrazoFrente,
     descripcion: 'Este ejercicio trabaja principalmente el músculo cuádriceps...',
     dificultad: 'Intermedia',
   },
   {
-    nombre: 'GLUTEOS',
+    nombre: 'CURL DE BICEP',
     gif: gluteosGif,
-    muscle: Back,
+    muscle: Biceps,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Intermedia',
   },
   {
-    nombre: 'REMO CABALLO',
+    nombre: 'CURL SCOT',
     gif: gluteosGif,
-    muscle: Back,
+    muscle: Biceps,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Intermedia',
   },
   {
-    nombre: 'REMO BAJO MAQUINA',
+    nombre: 'CURL MARTILLO',
     gif: gluteosGif,
-    muscle: Back,
+    muscle: Biceps,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Intermedia',
   },
   {
-    nombre: 'REMO CON APOLLO',
+    nombre: 'CURL POLEA',
     gif: gluteosGif,
-    muscle: Back,
+    muscle: Biceps,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Intermedia',
   },
   {
-    nombre: 'REMO BAJO POLEA',
+    nombre: 'CURL 45°',
     gif: gluteosGif,
-    muscle: Back,
+    muscle: Biceps,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Intermedia',
   },
   {
-    nombre: 'DOMINADAS',
+    nombre: 'CURL SPIDER',
     gif: gluteosGif,
-    muscle: Back,
+    muscle: Biceps,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'VUELOS LATERALES MACUERNA',
+    gif: gluteosGif,
+    muscle: Shoulder,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'VUELOS LATERALES POLEA PISO',
+    gif: gluteosGif,
+    muscle: Shoulder,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'VUELOS LATEREALES SENTADO INCLINADO',
+    gif: gluteosGif,
+    muscle: Shoulder,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'VUELOS LATERALES A UN BRAZO POLEA ALTURA MANO',
+    gif: gluteosGif,
+    muscle: Shoulder,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'TRICEP SOGA',
+    gif: gluteosGif,
+    muscle: Tricep,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'TRICEP MEDIO',
+    gif: gluteosGif,
+    muscle: Tricep,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'FRANCES POLEA',
+    gif: gluteosGif,
+    muscle: Tricep,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'FRANCES CON MANCUERNA',
+    gif: gluteosGif,
+    muscle: Tricep,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'FRANCES A UN BRAZO MANCUENA',
+    gif: gluteosGif,
+    muscle: Tricep,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Intermedia',
+  },
+  {
+    nombre: 'ROMPECRANEOS',
+    gif: gluteosGif,
+    muscle: Tricep,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Intermedia',
   },

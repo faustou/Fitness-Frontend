@@ -2,58 +2,74 @@ import { useState } from 'react';
 
 import cuadricepsGif from '../../assets/img/elevacionDePierna.gif';
 import gluteosGif from '../../assets/img/elevacionDePierna.gif';
-import Back from '../../assets/img/muscles/back.png'
+import Gluteo from '../../assets/img/muscles/gluteo.png'
+import Gemelos from '../../assets/img/muscles/gemelos.png'
+import Pantorrilla from '../../assets/img/muscles/pantorrilla.png'
 import Clock from '../../assets/img/clock.svg'
 import Person from '../../assets/img/person.svg'
 import Timer from './Timer';
 
 const ejercicios = [
   {
-    nombre: 'CUADRICEPS',
+    nombre: 'HIP TRUST',
     gif: cuadricepsGif,
-    muscle: Back,
+    muscle: Gluteo,
     descripcion: 'Este ejercicio trabaja principalmente el músculo cuádriceps...',
     dificultad: 'Avanzado',
   },
   {
-    nombre: 'GLUTEOS',
+    nombre: 'PATADA DE GLUOTE',
     gif: gluteosGif,
-    muscle: Back,
+    muscle: Gluteo,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Avanzado',
   },
   {
-    nombre: 'REMO CABALLO',
+    nombre: 'MEDIA SENTADILLA',
     gif: gluteosGif,
-    muscle: Back,
+    muscle: Gluteo,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Avanzado',
   },
   {
-    nombre: 'REMO BAJO MAQUINA',
+    nombre: 'ABEDUCCION MAQUINA',
     gif: gluteosGif,
-    muscle: Back,
+    muscle: Gluteo,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Avanzado',
   },
   {
-    nombre: 'REMO CON APOLLO',
+    nombre: 'ABEDUCCION POLEA',
     gif: gluteosGif,
-    muscle: Back,
+    muscle: Gluteo,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Avanzado',
   },
   {
-    nombre: 'REMO BAJO POLEA',
+    nombre: 'SOLEO SENTADO',
     gif: gluteosGif,
-    muscle: Back,
+    muscle: Pantorrilla,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Avanzado',
   },
   {
-    nombre: 'DOMINADAS',
+    nombre: 'GEMELOS PRENSA',
     gif: gluteosGif,
-    muscle: Back,
+    muscle: Gemelos,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Avanzado',
+  },
+  {
+    nombre: 'GEMELOS PARADO',
+    gif: gluteosGif,
+    muscle: Gemelos,
+    descripcion: 'Este ejercicio trabaja los glúteos...',
+    dificultad: 'Avanzado',
+  },
+  {
+    nombre: 'GEMELOS MAQUINA',
+    gif: gluteosGif,
+    muscle: Gemelos,
     descripcion: 'Este ejercicio trabaja los glúteos...',
     dificultad: 'Avanzado',
   },

@@ -6,8 +6,8 @@ import Person from '../../assets/img/person.svg'
 import Back from '../../assets/img/muscles/back.png'
 import Clock from '../../assets/img/clock.svg'
 import Timer from './Timer';
-import Trapecio from '../../assets/img/muscles/Trapecio.png';
-import Dorsal from '../../assets/img/muscles/Dorsal.png';
+import Trapecio from '../../assets/img/muscles/trapecio.png';
+import Dorsal from '../../assets/img/muscles/dorsal.png';
 
 
 const ejercicios = [

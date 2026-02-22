@@ -1,0 +1,24 @@
+.timer-workout {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background-color: #112830;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+.timer-workout.activo {
+  background-color: #07ccef;
+  color: #07181f;
+}
+
+.timer-icono {
+  font-size: 1rem;
+}
+
+.timer-tiempo {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+}

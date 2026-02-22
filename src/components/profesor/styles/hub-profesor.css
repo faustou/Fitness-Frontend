@@ -1,0 +1,586 @@
+.hub-profesor {
+  min-height: 100vh;
+  background-color: #07181f;
+  color: white;
+  padding-bottom: 2rem;
+}
+
+/* Header */
+.profesor-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1rem;
+  background: linear-gradient(135deg, #07181f 0%, #0c2a3f 50%, #112830 100%);
+  border-bottom: 1px solid #1a3a4a;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.profesor-header h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.contador-alumnos {
+  background-color: #112830;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  color: #07ccef;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.btn-admin {
+  position: relative;
+  padding: 0.6rem 1.1rem;
+  border: 1px solid rgba(7, 204, 239, 0.3);
+  border-radius: 12px;
+  background-color: rgba(7, 204, 239, 0.08);
+  color: #07ccef;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.btn-admin:hover {
+  background-color: rgba(7, 204, 239, 0.15);
+  border-color: #07ccef;
+}
+
+.btn-admin-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 4px;
+  border-radius: 9px;
+  background-color: #ef4444;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+}
+
+.btn-agregar-alumno {
+  padding: 0.6rem 1.25rem;
+  border: none;
+  border-radius: 12px;
+  background-color: #07ccef;
+  color: #07181f;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-agregar-alumno:hover {
+  background-color: #05b4d6;
+}
+
+.btn-logout {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #112830;
+  border: 1px solid #1a3a4a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-logout:hover {
+  background-color: #1a3a4a;
+  border-color: #07ccef;
+}
+
+/* Barra de búsqueda */
+.busqueda-container {
+  padding: 1rem;
+}
+
+.input-busqueda {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: none;
+  border-radius: 12px;
+  background-color: #112830;
+  color: white;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.input-busqueda::placeholder {
+  color: #666;
+}
+
+.input-busqueda:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #07ccef;
+}
+
+/* Lista de alumnos */
+.lista-alumnos {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 0 1rem;
+}
+
+/* Card de alumno */
+.alumno-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background-color: #112830;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.alumno-card:hover {
+  background-color: #1a3a4a;
+  transform: translateX(4px);
+}
+
+/* Card pendiente */
+.alumno-card.pendiente {
+  border: 1px dashed #4a5a6a;
+  background-color: rgba(17, 40, 48, 0.7);
+}
+
+.alumno-card.pendiente:hover {
+  border-color: #07ccef;
+}
+
+/* Avatar */
+.alumno-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #07ccef, #05b4d6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.alumno-avatar span {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #07181f;
+}
+
+.alumno-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.alumno-avatar.pendiente {
+  background: linear-gradient(135deg, #4a5a6a, #3a4a5a);
+}
+
+.alumno-avatar.pendiente span {
+  color: #aaa;
+}
+
+/* Info del alumno */
+.alumno-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.alumno-nombre-container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.alumno-nombre {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge-pendiente {
+  font-size: 0.65rem;
+  padding: 0.15rem 0.5rem;
+  background-color: #f59e0b;
+  color: #07181f;
+  border-radius: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  flex-shrink: 0;
+}
+
+.alumno-objetivo {
+  font-size: 0.85rem;
+  color: #07ccef;
+  margin: 0 0 0.35rem 0;
+}
+
+.alumno-dias {
+  font-size: 0.75rem;
+  color: #888;
+}
+
+.dias-label {
+  margin-right: 0.25rem;
+}
+
+.dias-valor {
+  color: #aaa;
+}
+
+/* Stats */
+.alumno-stats {
+  display: flex;
+  gap: 1rem;
+  flex-shrink: 0;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.stat-valor {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #07ccef;
+}
+
+.stat-label {
+  font-size: 0.65rem;
+  color: #888;
+  text-transform: uppercase;
+}
+
+/* Flecha */
+.alumno-arrow {
+  font-size: 1.25rem;
+  color: #555;
+  flex-shrink: 0;
+}
+
+/* No resultados */
+.no-resultados {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #666;
+}
+
+/* Loading y Error */
+.loading-alumnos,
+.error-alumnos {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1rem;
+  gap: 1rem;
+  color: #888;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid #112830;
+  border-top-color: #07ccef;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-alumnos button {
+  padding: 0.5rem 1rem;
+  background-color: #07ccef;
+  color: #07181f;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.error-alumnos button:hover {
+  background-color: #05b4d6;
+}
+
+/* Modal Nuevo Alumno */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background-color: #112830;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 400px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem;
+  border-bottom: 1px solid #1a3a4a;
+}
+
+.modal-header h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.modal-close {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background-color: #1a3a4a;
+  color: white;
+  font-size: 1.25rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.modal-close:hover {
+  background-color: #234a5a;
+}
+
+.modal-form {
+  padding: 1.25rem;
+}
+
+.form-group {
+  margin-bottom: 1rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border: none;
+  border-radius: 12px;
+  background-color: #07181f;
+  color: white;
+  font-size: 1rem;
+}
+
+.form-group input::placeholder {
+  color: #555;
+}
+
+.form-group input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #07ccef;
+}
+
+.form-group input:disabled {
+  opacity: 0.6;
+}
+
+.modal-mensaje {
+  padding: 0.75rem 1rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.modal-mensaje.error {
+  background-color: rgba(255, 100, 100, 0.15);
+  color: #ff6464;
+}
+
+.modal-mensaje.exito {
+  background-color: rgba(7, 204, 239, 0.15);
+  color: #07ccef;
+}
+
+.modal-info {
+  background-color: #07181f;
+  padding: 0.875rem 1rem;
+  border-radius: 10px;
+  margin-bottom: 1rem;
+}
+
+.modal-info p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #888;
+  line-height: 1.4;
+}
+
+/* Link de registro */
+.link-registro-container {
+  margin-bottom: 1rem;
+}
+
+.link-label {
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0 0 0.5rem 0;
+}
+
+.link-box {
+  display: flex;
+  gap: 0.5rem;
+  background-color: #07181f;
+  border-radius: 10px;
+  padding: 0.5rem;
+}
+
+.link-text {
+  flex: 1;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  color: #07ccef;
+  word-break: break-all;
+}
+
+.btn-copiar {
+  padding: 0.5rem 1rem;
+  background-color: #1a3a4a;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-copiar:hover {
+  background-color: #234a5a;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-cancelar,
+.btn-crear {
+  flex: 1;
+  padding: 0.875rem;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-cancelar {
+  background-color: #1a3a4a;
+  color: white;
+}
+
+.btn-cancelar:hover:not(:disabled) {
+  background-color: #234a5a;
+}
+
+.btn-crear {
+  background-color: #07ccef;
+  color: #07181f;
+}
+
+.btn-crear:hover:not(:disabled) {
+  background-color: #05b4d6;
+}
+
+.btn-cancelar:disabled,
+.btn-crear:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .profesor-header {
+    padding: 1rem;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .profesor-header h1 {
+    font-size: 1.25rem;
+  }
+
+  .btn-agregar-alumno {
+    font-size: 0.85rem;
+    padding: 0.5rem 1rem;
+  }
+
+  .alumno-card {
+    padding: 0.875rem;
+    gap: 0.75rem;
+  }
+
+  .alumno-avatar {
+    width: 48px;
+    height: 48px;
+  }
+
+  .alumno-stats {
+    display: none; /* Ocultar en móvil para ahorrar espacio */
+  }
+
+  .alumno-nombre {
+    font-size: 1rem;
+  }
+}

@@ -1,0 +1,206 @@
+.ejercicio-actual {
+  padding-bottom: 2rem;
+}
+
+/* Header del ejercicio */
+.ejercicio-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ejercicio-nombre {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #b8d4e3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.ejercicio-dificultad {
+  padding: 0.4rem 0.9rem;
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border: 1px solid rgba(7, 204, 239, 0.3);
+  border-radius: 20px;
+  font-size: 0.7rem;
+  color: #07ccef;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Sección visual (GIF + Músculo) */
+.ejercicio-visual {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  margin-bottom: 1.25rem;
+  background: linear-gradient(135deg, #0f3347 0%, #0a2535 50%, #112830 100%);
+  border-radius: 20px;
+  padding: 1.5rem;
+  border: 1px solid rgba(7, 204, 239, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.ejercicio-visual::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(7, 204, 239, 0.3), transparent);
+}
+
+.ejercicio-gif {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #0a1e28 0%, #07181f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+.ejercicio-muscle {
+  width: 90px;
+  height: auto;
+  opacity: 0.95;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+/* Badges info */
+.ejercicio-badges {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.6rem 1.1rem;
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 25px;
+  font-size: 0.85rem;
+  color: #b8d4e3;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.badge:hover {
+  border-color: rgba(7, 204, 239, 0.3);
+  transform: translateY(-2px);
+}
+
+.badge-icono {
+  font-size: 1rem;
+}
+
+/* Navegación entre ejercicios */
+.ejercicio-navegacion {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-nav {
+  flex: 1;
+  padding: 1.1rem;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  color: white;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-nav:hover:not(:disabled) {
+  background: linear-gradient(135deg, #153545 0%, #112830 100%);
+  border-color: rgba(7, 204, 239, 0.3);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.btn-nav:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.btn-nav.destacado {
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  color: #07181f;
+  border-color: transparent;
+  box-shadow: 0 8px 25px rgba(7, 204, 239, 0.3);
+}
+
+.btn-nav.destacado:hover {
+  background: linear-gradient(135deg, #0ad4fa 0%, #07ccef 100%);
+  box-shadow: 0 10px 30px rgba(7, 204, 239, 0.4);
+  transform: translateY(-3px);
+}
+
+.btn-nav.bloqueado {
+  background: linear-gradient(135deg, #1a2530 0%, #151f28 100%);
+  color: #5a6a7a;
+  font-size: 0.8rem;
+  border-color: transparent;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .ejercicio-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .ejercicio-nombre {
+    font-size: 1.2rem;
+  }
+
+  .ejercicio-gif {
+    width: 130px;
+    height: 130px;
+  }
+
+  .ejercicio-muscle {
+    width: 70px;
+  }
+
+  .ejercicio-visual {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .ejercicio-badges {
+    flex-wrap: wrap;
+  }
+
+  .badge {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.8rem;
+  }
+
+  .btn-nav {
+    padding: 0.95rem;
+    font-size: 0.85rem;
+  }
+}

@@ -1,0 +1,305 @@
+.barra-progreso-container {
+  padding: 1rem 1.25rem;
+  background: linear-gradient(180deg, #0a1e28 0%, #112830 100%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.5s ease;
+}
+
+/* Niveles de progreso - efectos de fondo */
+.barra-progreso-container.nivel-warm {
+  background: linear-gradient(180deg, #1a2a20 0%, #112830 100%);
+}
+
+.barra-progreso-container.nivel-hot {
+  background: linear-gradient(180deg, #2a2515 0%, #1a1510 100%);
+}
+
+.barra-progreso-container.nivel-fire {
+  background: linear-gradient(180deg, #2a1a15 0%, #1a1210 100%);
+  animation: fireBackground 2s ease-in-out infinite;
+}
+
+@keyframes fireBackground {
+  0%, 100% {
+    box-shadow: inset 0 0 30px rgba(249, 115, 22, 0.1);
+  }
+  50% {
+    box-shadow: inset 0 0 50px rgba(249, 115, 22, 0.2);
+  }
+}
+
+/* Header de progreso */
+.barra-progreso-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.progreso-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.progreso-label {
+  font-size: 0.7rem;
+  color: #5a7a8a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.progreso-porcentaje {
+  font-size: 1.1rem;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  transition: color 0.3s ease;
+}
+
+.progreso-porcentaje.nivel-cold {
+  color: #07ccef;
+}
+
+.progreso-porcentaje.nivel-warm {
+  color: #4ade80;
+}
+
+.progreso-porcentaje.nivel-hot {
+  color: #fbbf24;
+}
+
+.progreso-porcentaje.nivel-fire {
+  color: #f97316;
+  animation: firePulse 1s ease-in-out infinite;
+}
+
+@keyframes firePulse {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(249, 115, 22, 0.5);
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(249, 115, 22, 0.8);
+  }
+}
+
+.fire-icon {
+  animation: fireIconBounce 0.5s ease-in-out infinite;
+}
+
+@keyframes fireIconBounce {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-2px) scale(1.1);
+  }
+}
+
+.ejercicios-count {
+  font-size: 0.85rem;
+  color: #5a7a8a;
+  font-weight: 600;
+}
+
+/* Barra de progreso lineal */
+.barra-fondo {
+  height: 8px;
+  background-color: rgba(7, 24, 31, 0.8);
+  border-radius: 4px;
+  overflow: visible;
+  margin-bottom: 1rem;
+  position: relative;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.barra-llenado {
+  height: 100%;
+  border-radius: 4px;
+  transition: background 0.5s ease;
+  position: relative;
+}
+
+/* Colores por nivel */
+.barra-llenado.nivel-cold {
+  background: linear-gradient(90deg, #0891b2, #07ccef);
+  box-shadow: 0 0 10px rgba(7, 204, 239, 0.4);
+}
+
+.barra-llenado.nivel-warm {
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.4);
+}
+
+.barra-llenado.nivel-hot {
+  background: linear-gradient(90deg, #f59e0b, #fbbf24);
+  box-shadow: 0 0 15px rgba(251, 191, 36, 0.5);
+}
+
+.barra-llenado.nivel-fire {
+  background: linear-gradient(90deg, #ea580c, #f97316, #fb923c);
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.6);
+  animation: fireBarGlow 1s ease-in-out infinite;
+}
+
+@keyframes fireBarGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(249, 115, 22, 0.9), 0 0 40px rgba(234, 88, 12, 0.5);
+  }
+}
+
+/* Partículas de fuego */
+.barra-fire-particles {
+  position: absolute;
+  right: -5px;
+  top: -15px;
+  display: flex;
+  gap: 2px;
+}
+
+.barra-fire-particles .particle {
+  font-size: 0.9rem;
+  animation: particleFloat 1s ease-in-out infinite;
+  filter: drop-shadow(0 0 5px rgba(249, 115, 22, 0.8));
+}
+
+.barra-fire-particles .particle.delay-1 {
+  animation-delay: 0.2s;
+}
+
+.barra-fire-particles .particle.delay-2 {
+  animation-delay: 0.4s;
+}
+
+@keyframes particleFloat {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(-8px) scale(1.2);
+    opacity: 0.8;
+  }
+}
+
+/* Container de thumbnails */
+.thumbnails-container {
+  display: flex;
+  gap: 0.75rem;
+  overflow-x: auto;
+  padding: 0.5rem 0;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.thumbnails-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Thumbnail individual */
+.thumbnail {
+  flex-shrink: 0;
+  width: 58px;
+  height: 58px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background: linear-gradient(135deg, #0a1e28 0%, #112830 100%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.thumbnail:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
+
+.thumbnail.activo {
+  border-color: #07ccef;
+  box-shadow: 0 0 20px rgba(7, 204, 239, 0.4), 0 6px 20px rgba(0, 0, 0, 0.3);
+  transform: scale(1.08);
+}
+
+/* Thumbnail activo con progreso fire */
+.nivel-fire .thumbnail.activo {
+  border-color: #f97316;
+  box-shadow: 0 0 20px rgba(249, 115, 22, 0.5), 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+.thumbnail.completado {
+  opacity: 0.85;
+}
+
+/* Check overlay para completados */
+.thumbnail-check {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.9) 0%, rgba(22, 163, 74, 0.9) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 1.25rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Check con progreso fire */
+.nivel-fire .thumbnail-check {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.9) 0%, rgba(234, 88, 12, 0.9) 100%);
+}
+
+/* Número del ejercicio */
+.thumbnail-numero {
+  position: absolute;
+  bottom: 3px;
+  right: 4px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.7) 0%, rgba(0, 0, 0, 0.5) 100%);
+  padding: 2px 5px;
+  border-radius: 6px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .barra-progreso-container {
+    padding: 0.875rem 1rem;
+  }
+
+  .thumbnail {
+    width: 50px;
+    height: 50px;
+    border-radius: 12px;
+  }
+
+  .thumbnails-container {
+    gap: 0.6rem;
+  }
+
+  .progreso-porcentaje {
+    font-size: 1rem;
+  }
+
+  .barra-fondo {
+    height: 6px;
+  }
+}

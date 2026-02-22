@@ -1,0 +1,352 @@
+.pantalla-inicio {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1.5rem;
+  background: linear-gradient(180deg, #07181f 0%, #0a1e28 50%, #0d2535 100%);
+}
+
+/* Botón volver */
+.btn-volver-inicio {
+  align-self: flex-start;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.25rem;
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #5a7a8a;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 1.5rem;
+}
+
+.btn-volver-inicio:hover {
+  border-color: rgba(7, 204, 239, 0.4);
+  color: #07ccef;
+  background: linear-gradient(135deg, #153545 0%, #112830 100%);
+  transform: translateX(-2px);
+}
+
+/* Header */
+.inicio-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.inicio-titulo {
+  font-size: 2rem;
+  font-weight: 800;
+  margin: 0 0 0.75rem 0;
+  background: linear-gradient(135deg, #ffffff 0%, #b8d4e3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.inicio-fecha {
+  color: #5a7a8a;
+  font-size: 0.95rem;
+  text-transform: capitalize;
+  margin: 0;
+  font-weight: 500;
+}
+
+/* Stats */
+.inicio-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem 2rem;
+  background: linear-gradient(135deg, #0f3347 0%, #112830 100%);
+  border-radius: 20px;
+  border: 1px solid rgba(7, 204, 239, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+.stat:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(7, 204, 239, 0.15);
+  border-color: rgba(7, 204, 239, 0.4);
+}
+
+.stat-numero {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: #5a7a8a;
+  margin-top: 0.35rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+/* Lista de ejercicios */
+.inicio-ejercicios-lista {
+  flex: 1;
+  margin-bottom: 2rem;
+}
+
+.inicio-ejercicios-lista h3 {
+  font-size: 0.75rem;
+  color: #5a7a8a;
+  margin-bottom: 1.25rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.ejercicios-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.ejercicio-preview-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.ejercicio-preview-item:hover {
+  border-color: rgba(7, 204, 239, 0.3);
+  background: linear-gradient(135deg, #153545 0%, #112830 100%);
+  transform: translateX(5px);
+}
+
+.ejercicio-preview-numero {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #07181f;
+  flex-shrink: 0;
+}
+
+.ejercicio-preview-gif {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: linear-gradient(135deg, #0a1e28 0%, #07181f 100%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  flex-shrink: 0;
+}
+
+.ejercicio-preview-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.ejercicio-preview-nombre {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: white;
+}
+
+.ejercicio-preview-series {
+  font-size: 0.8rem;
+  color: #5a7a8a;
+  font-weight: 500;
+}
+
+/* Botón comenzar */
+.btn-comenzar {
+  width: 100%;
+  padding: 1.4rem;
+  border: none;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  color: #07181f;
+  font-size: 1.15rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: auto;
+  box-shadow: 0 10px 30px rgba(7, 204, 239, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-comenzar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s ease;
+}
+
+.btn-comenzar:hover::before {
+  left: 100%;
+}
+
+.btn-comenzar:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 40px rgba(7, 204, 239, 0.4);
+}
+
+.btn-comenzar:active {
+  transform: translateY(-1px);
+}
+
+/* ==================== CICLO MENSUAL - DESCARGA ==================== */
+
+/* Estado descarga general */
+.pantalla-inicio.es-descarga {
+  background: linear-gradient(180deg, #0a1f0a 0%, #0d250d 50%, #102810 100%);
+}
+
+.pantalla-inicio.es-descarga .stat {
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.pantalla-inicio.es-descarga .stat-numero {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.pantalla-inicio.es-descarga .ejercicio-preview-numero {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+
+.pantalla-inicio.es-descarga .btn-comenzar {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  box-shadow: 0 10px 30px rgba(34, 197, 94, 0.3);
+}
+
+.pantalla-inicio.es-descarga .btn-comenzar:hover {
+  box-shadow: 0 15px 40px rgba(34, 197, 94, 0.4);
+}
+
+/* Banner de descarga */
+.inicio-descarga-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.25rem;
+  background: rgba(34, 197, 94, 0.15);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 14px;
+  margin-bottom: 1.5rem;
+}
+
+.descarga-leaf {
+  font-size: 1.75rem;
+}
+
+.descarga-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.descarga-info strong {
+  font-size: 0.95rem;
+  color: #22c55e;
+}
+
+.descarga-info span {
+  font-size: 0.8rem;
+  color: #5a8a5a;
+}
+
+/* Indicador de semana del ciclo */
+.inicio-semana-ciclo {
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.inicio-semana-ciclo span {
+  display: inline-block;
+  padding: 0.4rem 0.9rem;
+  background: rgba(7, 204, 239, 0.1);
+  border: 1px solid rgba(7, 204, 239, 0.2);
+  border-radius: 20px;
+  font-size: 0.75rem;
+  color: #07ccef;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.pantalla-inicio.es-descarga .inicio-semana-ciclo span {
+  background: rgba(34, 197, 94, 0.1);
+  border-color: rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .pantalla-inicio {
+    padding: 1.25rem;
+  }
+
+  .inicio-titulo {
+    font-size: 1.65rem;
+  }
+
+  .inicio-stats {
+    gap: 1rem;
+  }
+
+  .stat {
+    padding: 1.25rem 1.5rem;
+    border-radius: 16px;
+  }
+
+  .stat-numero {
+    font-size: 2rem;
+  }
+
+  .ejercicio-preview-item {
+    padding: 0.875rem 1rem;
+    gap: 0.75rem;
+  }
+
+  .ejercicio-preview-gif {
+    width: 45px;
+    height: 45px;
+  }
+
+  .btn-comenzar {
+    padding: 1.25rem;
+    font-size: 1.1rem;
+  }
+}

@@ -1,0 +1,428 @@
+.historial-semanal {
+  padding: 1rem;
+}
+
+/* Selector de mes */
+.hs-mes-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.hs-mes-label {
+  font-size: 0.8rem;
+  color: #5a7a8a;
+  font-weight: 500;
+}
+
+.hs-mes-tabs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  padding-bottom: 0.25rem;
+  scrollbar-width: none;
+}
+
+.hs-mes-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.hs-mes-tab {
+  position: relative;
+  padding: 0.5rem 0.85rem;
+  border: none;
+  border-radius: 8px;
+  background-color: rgba(17, 40, 48, 0.8);
+  color: #7a9aaa;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.hs-mes-tab:hover {
+  background-color: rgba(26, 58, 74, 0.9);
+  color: white;
+}
+
+.hs-mes-tab.activo {
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  color: #07181f;
+}
+
+.hs-mes-tab.actual:not(.activo) {
+  border: 1px solid rgba(7, 204, 239, 0.4);
+}
+
+.hs-mes-badge {
+  font-size: 0.55rem;
+  padding: 0.1rem 0.3rem;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  font-weight: 700;
+}
+
+.hs-mes-tab:not(.activo) .hs-mes-badge {
+  background-color: rgba(7, 204, 239, 0.2);
+  color: #07ccef;
+}
+
+.hs-mes-tab.activo .hs-mes-badge {
+  background-color: rgba(7, 24, 31, 0.3);
+  color: #07181f;
+}
+
+/* Loading y vacío */
+.historial-semanal-loading,
+.historial-semanal-vacio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  text-align: center;
+}
+
+.historial-semanal-loading .loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(7, 204, 239, 0.2);
+  border-top-color: #07ccef;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 1rem;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.historial-semanal-vacio .vacio-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  opacity: 0.6;
+}
+
+.historial-semanal-vacio h3 {
+  color: white;
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+}
+
+.historial-semanal-vacio p {
+  color: #5a7a8a;
+  font-size: 0.9rem;
+  margin: 0 0 1.5rem;
+}
+
+.btn-crear-muestra {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  color: #07181f;
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-crear-muestra:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Header con tabs */
+.hs-header {
+  margin-bottom: 1rem;
+}
+
+.hs-tabs {
+  display: flex;
+  gap: 0.5rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.hs-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.hs-tab {
+  padding: 0.6rem 1rem;
+  border: none;
+  border-radius: 10px;
+  background: rgba(17, 40, 48, 0.8);
+  color: #7a9aaa;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.hs-tab.activa {
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  color: #07181f;
+}
+
+/* Comparativa cards */
+.hs-comparativa {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.comparativa-card {
+  background: linear-gradient(135deg, rgba(17, 40, 48, 0.8) 0%, rgba(13, 37, 53, 0.8) 100%);
+  border-radius: 12px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid rgba(7, 204, 239, 0.1);
+}
+
+.comp-label {
+  font-size: 0.65rem;
+  color: #5a7a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 0.25rem;
+}
+
+.comp-valor {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: white;
+}
+
+.comp-cambio {
+  font-size: 0.7rem;
+  font-weight: 600;
+  margin-top: 0.2rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+.comp-cambio.positivo {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.15);
+}
+
+.comp-cambio.negativo {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.15);
+}
+
+.comp-sub {
+  font-size: 0.65rem;
+  color: #5a7a8a;
+  margin-top: 0.1rem;
+}
+
+/* Gráfico container */
+.hs-grafico-container {
+  background: linear-gradient(135deg, rgba(17, 40, 48, 0.6) 0%, rgba(13, 37, 53, 0.6) 100%);
+  border-radius: 16px;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+  border: 1px solid rgba(7, 204, 239, 0.1);
+}
+
+.hs-grafico-titulo {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #07ccef;
+  margin: 0 0 1rem;
+  text-align: center;
+}
+
+/* Selector de ejercicio */
+.hs-ejercicio-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  padding: 0 0.5rem;
+}
+
+.hs-ejercicio-selector label {
+  font-size: 0.8rem;
+  color: #5a7a8a;
+  font-weight: 500;
+}
+
+.hs-ejercicio-selector select {
+  flex: 1;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(7, 204, 239, 0.2);
+  border-radius: 8px;
+  background: rgba(7, 24, 31, 0.8);
+  color: white;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.hs-ejercicio-selector select:focus {
+  outline: none;
+  border-color: #07ccef;
+}
+
+/* Tabla de semanas */
+.hs-tabla-container {
+  background: linear-gradient(135deg, rgba(17, 40, 48, 0.6) 0%, rgba(13, 37, 53, 0.6) 100%);
+  border-radius: 16px;
+  padding: 1rem;
+  border: 1px solid rgba(7, 204, 239, 0.1);
+}
+
+.hs-tabla-titulo {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #07ccef;
+  margin: 0 0 0.75rem;
+}
+
+.hs-tabla {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.hs-tabla-header {
+  display: grid;
+  grid-template-columns: 60px 1fr 1.5fr 1fr;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  font-size: 0.7rem;
+  color: #5a7a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid rgba(7, 204, 239, 0.1);
+}
+
+.hs-tabla-row {
+  display: grid;
+  grid-template-columns: 60px 1fr 1.5fr 1fr;
+  gap: 0.5rem;
+  padding: 0.6rem 0.5rem;
+  background: rgba(7, 24, 31, 0.5);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  color: white;
+  align-items: center;
+}
+
+.hs-tabla-row .semana-num {
+  font-weight: 700;
+  color: #07ccef;
+}
+
+.hs-tabla-row .volumen-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.cambio-badge {
+  font-size: 0.65rem;
+  font-weight: 600;
+  padding: 0.1rem 0.35rem;
+  border-radius: 4px;
+}
+
+.cambio-badge.up {
+  color: #22c55e;
+  background: rgba(34, 197, 94, 0.2);
+}
+
+.cambio-badge.down {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.2);
+}
+
+/* Estado vacío de ejercicio */
+.hs-sin-datos-ejercicio {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+  color: #5a7a8a;
+  font-size: 0.9rem;
+}
+
+/* ApexCharts customization */
+.apexcharts-canvas {
+  background: transparent !important;
+}
+
+.apexcharts-tooltip {
+  background: rgba(7, 24, 31, 0.95) !important;
+  border: 1px solid rgba(7, 204, 239, 0.3) !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3) !important;
+}
+
+.apexcharts-tooltip-title {
+  background: rgba(7, 204, 239, 0.1) !important;
+  border-bottom: 1px solid rgba(7, 204, 239, 0.2) !important;
+  color: #07ccef !important;
+  font-weight: 600 !important;
+}
+
+.apexcharts-tooltip-text {
+  color: white !important;
+}
+
+.apexcharts-tooltip-series-group {
+  padding: 4px 8px !important;
+}
+
+.apexcharts-legend-text {
+  color: #7a9aaa !important;
+}
+
+.apexcharts-xaxis-label,
+.apexcharts-yaxis-label {
+  fill: #5a7a8a !important;
+}
+
+.apexcharts-gridline {
+  stroke: rgba(7, 204, 239, 0.08) !important;
+}
+
+.apexcharts-marker {
+  stroke-width: 2px !important;
+}
+
+/* Responsive */
+@media (max-width: 400px) {
+  .hs-comparativa {
+    grid-template-columns: 1fr;
+  }
+
+  .comparativa-card {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .comp-label {
+    margin-bottom: 0;
+  }
+
+  .hs-tabla-header,
+  .hs-tabla-row {
+    grid-template-columns: 50px 1fr 1.2fr 0.8fr;
+    font-size: 0.75rem;
+  }
+}

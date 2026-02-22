@@ -19,6 +19,19 @@ import Piernas from './components/ejercicios/Piernas';
 import Espalda from './components/ejercicios/Espalda';
 import BrazosHombros from './components/ejercicios/BrazosHombros.jsx';
 import PechoAbdomen from './components/ejercicios/PechoAbdomen';
+import RutinaDia from './components/rutina/RutinaDia';
+import HubAlumno from './components/rutina/HubAlumno';
+import HubProfesor from './components/profesor/HubProfesor';
+import PerfilAlumno from './components/profesor/PerfilAlumno';
+import EditorRutina from './components/profesor/EditorRutina';
+
+// Auth
+import { AuthProvider } from './context/AuthContext';
+import Login from './components/auth/Login';
+import Registro from './components/auth/Registro';
+import ProtectedRoute from './components/auth/ProtectedRoute';
+import ProfesorPendiente from './components/auth/ProfesorPendiente';
+import AdminProfesores from './components/auth/AdminProfesores';
 
 function MainSite() {
   return (
@@ -52,19 +65,58 @@ function ProtectedPagosAdmin() {
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<MainSite />} />
-        <Route path="/admin" element={<ProtectedPagosAdmin />} />
-        
-        {/* Ruta principal para Ejercicios */}
-        <Route path="/ejercicios/*" element={<Ejercicios />}>
-          {/* Rutas internas de cada categoría */}
-          <Route path="piernas" element={<Piernas />} />
-          <Route path="espalda" element={<Espalda />} />
-          <Route path="brazos-hombros" element={<BrazosHombros />} />
-          <Route path="pecho-abdomen" element={<PechoAbdomen />} />
-        </Route>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<MainSite />} />
+          <Route path="/admin" element={<ProtectedPagosAdmin />} />
+
+          {/* Auth */}
+          <Route path="/login" element={<Login />} />
+          <Route path="/registro" element={<Registro />} />
+          <Route path="/pendiente" element={<ProfesorPendiente />} />
+          <Route path="/admin/profesores" element={<AdminProfesores />} />
+
+          {/* Hub del alumno - Protegido */}
+          <Route path="/alumno" element={
+            <ProtectedRoute requiredRole="alumno">
+              <HubAlumno />
+            </ProtectedRoute>
+          } />
+
+          {/* Rutina del día del alumno - Protegido */}
+          <Route path="/mi-rutina/:dia" element={
+            <ProtectedRoute requiredRole="alumno">
+              <RutinaDia />
+            </ProtectedRoute>
+          } />
+
+          {/* Panel del Profesor - Protegido */}
+          <Route path="/profesor" element={
+            <ProtectedRoute requiredRole="profesor">
+              <HubProfesor />
+            </ProtectedRoute>
+          } />
+          <Route path="/profesor/alumno/:id" element={
+            <ProtectedRoute requiredRole="profesor">
+              <PerfilAlumno />
+            </ProtectedRoute>
+          } />
+          <Route path="/profesor/alumno/:id/rutina/:rutinaId" element={
+            <ProtectedRoute requiredRole="profesor">
+              <EditorRutina />
+            </ProtectedRoute>
+          } />
+
+          {/* Ruta anterior - Biblioteca de ejercicios (backup) */}
+          <Route path="/ejercicios/*" element={<Ejercicios />}>
+            {/* Rutas internas de cada categoría */}
+            <Route path="piernas" element={<Piernas />} />
+            <Route path="espalda" element={<Espalda />} />
+            <Route path="brazos-hombros" element={<BrazosHombros />} />
+            <Route path="pecho-abdomen" element={<PechoAbdomen />} />
+          </Route>
+        </Routes>
+      </AuthProvider>
     </BrowserRouter>
   );
 }

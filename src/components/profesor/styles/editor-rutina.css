@@ -1,0 +1,997 @@
+.editor-rutina {
+  min-height: 100vh;
+  background-color: #07181f;
+  color: white;
+  padding-bottom: 2rem;
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Header */
+.editor-header {
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.25rem;
+  background: linear-gradient(180deg, #0d2535 0%, #07181f 100%);
+  border-bottom: 1px solid rgba(7, 204, 239, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.editor-header h2 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #a0c4d4 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-cancelar,
+.btn-guardar {
+  padding: 0.6rem 1.1rem;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-cancelar {
+  background: linear-gradient(135deg, #112830 0%, #0a1e28 100%);
+  color: #7a9aaa;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-cancelar:hover {
+  background: linear-gradient(135deg, #1a3a4a 0%, #112830 100%);
+  color: white;
+  border-color: rgba(7, 204, 239, 0.3);
+}
+
+.btn-guardar {
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  color: #07181f;
+  box-shadow: 0 4px 15px rgba(7, 204, 239, 0.3);
+}
+
+.btn-guardar:hover {
+  box-shadow: 0 6px 20px rgba(7, 204, 239, 0.4);
+  transform: translateY(-1px);
+}
+
+.btn-guardar:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+/* Info básica */
+.editor-info {
+  padding: 1.25rem;
+  background: linear-gradient(135deg, rgba(13, 37, 53, 0.8) 0%, rgba(7, 24, 31, 0.8) 100%);
+  border-bottom: 1px solid rgba(7, 204, 239, 0.1);
+}
+
+.info-row {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.info-alumno,
+.info-dia,
+.info-mes {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+}
+
+.info-alumno .label,
+.info-dia .label,
+.info-mes .label {
+  color: #5a7a8a;
+  font-weight: 500;
+}
+
+.info-alumno .valor,
+.info-dia .valor,
+.info-mes .valor {
+  color: #07ccef;
+  font-weight: 600;
+}
+
+.input-nombre-rutina {
+  width: 100%;
+  padding: 0.9rem 1rem;
+  margin-top: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 14px;
+  background: linear-gradient(135deg, #112830 0%, #0a1e28 100%);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.input-nombre-rutina::placeholder {
+  color: #4a6a7a;
+}
+
+.input-nombre-rutina:focus {
+  outline: none;
+  border-color: #07ccef;
+  box-shadow: 0 0 20px rgba(7, 204, 239, 0.2);
+}
+
+/* Ejercicios agregados */
+.ejercicios-agregados {
+  padding: 1.25rem;
+}
+
+.seccion-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.seccion-header h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+  color: white;
+}
+
+.seccion-header .hint {
+  font-size: 0.7rem;
+  color: #5a7a8a;
+  font-style: italic;
+}
+
+.lista-vacia {
+  text-align: center;
+  padding: 2.5rem 1.5rem;
+  background: linear-gradient(135deg, #112830 0%, #0a1e28 100%);
+  border-radius: 16px;
+  margin-bottom: 1rem;
+  border: 1px dashed rgba(90, 122, 138, 0.3);
+}
+
+.lista-vacia p {
+  margin: 0;
+  color: #7a9aaa;
+  font-size: 0.95rem;
+}
+
+.lista-vacia .hint {
+  font-size: 0.8rem;
+  color: #5a7a8a;
+  margin-top: 0.5rem;
+}
+
+/* Lista de ejercicios */
+.lista-ejercicios {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-bottom: 1rem;
+  list-style: none;
+  padding: 0;
+}
+
+.ejercicio-en-rutina {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border-radius: 16px;
+  cursor: grab;
+  touch-action: none;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.3s ease;
+}
+
+.ejercicio-en-rutina:hover {
+  border-color: rgba(7, 204, 239, 0.2);
+}
+
+.ejercicio-en-rutina:active {
+  cursor: grabbing;
+  background: linear-gradient(135deg, #1a3a4a 0%, #112830 100%);
+}
+
+.ejercicio-orden {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  color: #07181f;
+  border-radius: 50%;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(7, 204, 239, 0.3);
+}
+
+.ejercicio-info-mini {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.ejercicio-thumb {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  background-color: #07181f;
+  flex-shrink: 0;
+}
+
+.ejercicio-datos {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ejercicio-nombre-mini {
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ejercicio-dificultad-mini {
+  font-size: 0.7rem;
+  color: #07ccef;
+}
+
+/* Config de series/reps/peso */
+.ejercicio-config {
+  display: flex;
+  gap: 0.4rem;
+  flex-shrink: 0;
+}
+
+.config-grupo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.config-grupo label {
+  font-size: 0.55rem;
+  color: #5a7a8a;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.config-grupo input {
+  width: 44px;
+  padding: 0.45rem 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  background: linear-gradient(135deg, #07181f 0%, #0a1e28 100%);
+  color: white;
+  text-align: center;
+  font-size: 0.9rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.config-grupo input:focus {
+  outline: none;
+  border-color: #07ccef;
+  box-shadow: 0 0 12px rgba(7, 204, 239, 0.25);
+}
+
+/* Reps por serie */
+.reps-por-serie {
+  width: 100%;
+  padding-top: 0.6rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid #1a3a4a;
+}
+
+.reps-por-serie-label {
+  display: block;
+  font-size: 0.65rem;
+  color: #888;
+  text-transform: uppercase;
+  margin-bottom: 0.4rem;
+  letter-spacing: 0.5px;
+}
+
+.reps-por-serie-inputs {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.rep-serie-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+}
+
+.rep-serie-num {
+  font-size: 0.6rem;
+  color: #07ccef;
+  font-weight: 600;
+}
+
+.input-rep-serie {
+  width: 42px;
+  padding: 0.35rem;
+  border: none;
+  border-radius: 6px;
+  background-color: #07181f;
+  color: white;
+  text-align: center;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.input-rep-serie:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #07ccef;
+}
+
+.input-rep-serie.input-descarga {
+  border: 1px solid rgba(34, 197, 94, 0.4);
+  color: #22c55e;
+}
+
+.input-rep-serie.input-descarga:focus {
+  box-shadow: 0 0 0 2px #22c55e;
+}
+
+.btn-eliminar-ejercicio {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(239, 68, 68, 0.3);
+}
+
+.btn-eliminar-ejercicio:hover {
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+  transform: scale(1.05);
+}
+
+/* Botón agregar ejercicio */
+.btn-agregar-ejercicio {
+  width: 100%;
+  padding: 1.1rem;
+  border: 2px dashed rgba(7, 204, 239, 0.3);
+  border-radius: 16px;
+  background: transparent;
+  color: #07ccef;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-agregar-ejercicio:hover {
+  border-color: #07ccef;
+  background: rgba(7, 204, 239, 0.08);
+  box-shadow: 0 0 20px rgba(7, 204, 239, 0.15);
+}
+
+/* Modal Biblioteca */
+.biblioteca-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  overflow: hidden;
+}
+
+.biblioteca-modal {
+  width: 100%;
+  max-height: 88vh;
+  background: linear-gradient(180deg, #0d2535 0%, #07181f 100%);
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border-top: 1px solid rgba(7, 204, 239, 0.3);
+}
+
+.biblioteca-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-bottom: 1px solid rgba(7, 204, 239, 0.1);
+  flex-shrink: 0;
+}
+
+.biblioteca-header h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 0;
+  background: linear-gradient(135deg, #ffffff 0%, #07ccef 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.btn-cerrar-biblioteca {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  background: rgba(239, 68, 68, 0.15);
+  color: #ef4444;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.btn-cerrar-biblioteca:active {
+  background: #ef4444;
+  color: white;
+}
+
+/* Búsqueda */
+.biblioteca-busqueda-container {
+  position: relative;
+  padding: 0.75rem 1rem;
+  flex-shrink: 0;
+}
+
+.biblioteca-busqueda {
+  width: 100%;
+  padding: 0.75rem 0.75rem 0.75rem 2.5rem;
+  border: 1px solid rgba(7, 204, 239, 0.2);
+  border-radius: 10px;
+  background: rgba(17, 40, 48, 0.8);
+  color: white;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  box-sizing: border-box;
+}
+
+.biblioteca-busqueda-icon {
+  position: absolute;
+  left: 1.7rem;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.biblioteca-busqueda:focus + .biblioteca-busqueda-icon {
+  opacity: 1;
+}
+
+.biblioteca-busqueda::placeholder {
+  color: #5a7a8a;
+}
+
+.biblioteca-busqueda:focus {
+  outline: none;
+  border-color: #07ccef;
+}
+
+/* Categorías */
+.biblioteca-categorias {
+  display: flex;
+  gap: 0.35rem;
+  padding: 0 1rem 0.75rem;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex-shrink: 0;
+}
+
+.biblioteca-categorias::-webkit-scrollbar {
+  display: none;
+}
+
+.cat-btn {
+  padding: 0.45rem 0.75rem;
+  border: none;
+  border-radius: 8px;
+  background: rgba(17, 40, 48, 0.8);
+  color: #7a9aaa;
+  font-size: 0.72rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.cat-btn.activa {
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  color: #07181f;
+}
+
+.cat-btn:not(.activa):active {
+  background: rgba(26, 58, 74, 0.8);
+  color: white;
+}
+
+/* Lista de biblioteca */
+.biblioteca-lista {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Cards de ejercicios */
+.biblioteca-ejercicio {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem;
+  background: rgba(17, 40, 48, 0.6);
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.biblioteca-ejercicio:active:not(.agregado) {
+  background: rgba(26, 58, 74, 0.8);
+  border-color: rgba(7, 204, 239, 0.3);
+}
+
+.biblioteca-ejercicio.agregado {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.biblioteca-gif {
+  width: 52px;
+  height: 52px;
+  border-radius: 10px;
+  object-fit: cover;
+  background: #07181f;
+  flex-shrink: 0;
+  border: 1px solid rgba(7, 204, 239, 0.15);
+}
+
+.biblioteca-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.biblioteca-nombre {
+  font-size: 0.85rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: white;
+}
+
+.biblioteca-dificultad {
+  font-size: 0.7rem;
+  color: #07ccef;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.biblioteca-dificultad::before {
+  content: '';
+  width: 5px;
+  height: 5px;
+  background: #07ccef;
+  border-radius: 50%;
+}
+
+/* Botones de agregar/check */
+.biblioteca-add,
+.biblioteca-check {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.biblioteca-add {
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  color: #07181f;
+  font-size: 1.3rem;
+}
+
+.biblioteca-check {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  font-size: 1rem;
+}
+
+/* Mensaje cuando no hay ejercicios */
+.biblioteca-vacia {
+  text-align: center;
+  padding: 2rem 1rem;
+  color: #5a7a8a;
+}
+
+.biblioteca-vacia-icon {
+  font-size: 2.5rem;
+  margin-bottom: 0.75rem;
+  opacity: 0.5;
+}
+
+.biblioteca-vacia p {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+/* Loading y Error */
+.loading-editor,
+.error-editor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 50vh;
+  gap: 1rem;
+  color: #7a9aaa;
+}
+
+.loading-spinner {
+  width: 44px;
+  height: 44px;
+  border: 3px solid rgba(7, 204, 239, 0.2);
+  border-top-color: #07ccef;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.error-editor button {
+  padding: 0.85rem 1.75rem;
+  border: none;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  color: #07181f;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(7, 204, 239, 0.3);
+  transition: all 0.3s ease;
+}
+
+.error-editor button:hover {
+  box-shadow: 0 6px 20px rgba(7, 204, 239, 0.4);
+  transform: translateY(-2px);
+}
+
+/* ==================== CICLO MENSUAL ==================== */
+
+.ciclo-config-section {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(7, 204, 239, 0.1);
+}
+
+/* Toggle del ciclo */
+.ciclo-toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ciclo-toggle-label input[type="checkbox"] {
+  display: none;
+}
+
+.toggle-slider {
+  width: 44px;
+  height: 24px;
+  background: linear-gradient(135deg, #1a3a4a 0%, #112830 100%);
+  border-radius: 12px;
+  position: relative;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.toggle-slider::before {
+  content: '';
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #5a7a8a;
+  border-radius: 50%;
+  top: 2px;
+  left: 3px;
+  transition: all 0.3s ease;
+}
+
+.ciclo-toggle-label input:checked + .toggle-slider {
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  border-color: transparent;
+}
+
+.ciclo-toggle-label input:checked + .toggle-slider::before {
+  transform: translateX(20px);
+  background: white;
+}
+
+.toggle-text {
+  font-size: 0.9rem;
+  color: #7a9aaa;
+  font-weight: 500;
+}
+
+.ciclo-toggle-label input:checked ~ .toggle-text {
+  color: #07ccef;
+}
+
+/* Controles del ciclo */
+.ciclo-controls {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+/* Tabs de semana */
+.semana-tabs {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.tab-semana {
+  flex: 1;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  background: linear-gradient(135deg, #112830 0%, #0a1e28 100%);
+  color: #5a7a8a;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.tab-semana:hover {
+  background: linear-gradient(135deg, #1a3a4a 0%, #112830 100%);
+  color: white;
+}
+
+.tab-semana.activa {
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  color: #07181f;
+  border-color: transparent;
+  box-shadow: 0 4px 15px rgba(7, 204, 239, 0.3);
+}
+
+.tab-semana.descarga {
+  border-color: rgba(34, 197, 94, 0.4);
+}
+
+.tab-semana.descarga.activa {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.3);
+}
+
+.badge-descarga {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  font-size: 0.6rem;
+  font-weight: 700;
+  border-radius: 50%;
+  box-shadow: 0 2px 8px rgba(34, 197, 94, 0.4);
+}
+
+/* Selector de semana descarga */
+.descarga-selector {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.descarga-selector label {
+  font-size: 0.8rem;
+  color: #5a7a8a;
+  font-weight: 500;
+}
+
+.descarga-selector select {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 8px;
+  background: linear-gradient(135deg, #112830 0%, #0a1e28 100%);
+  color: #22c55e;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.descarga-selector select:focus {
+  outline: none;
+  border-color: #22c55e;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.25);
+}
+
+/* Botón auto-calcular descarga */
+.btn-auto-descarga {
+  padding: 0.65rem 1rem;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 10px;
+  background: rgba(34, 197, 94, 0.1);
+  color: #22c55e;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-auto-descarga:hover {
+  background: rgba(34, 197, 94, 0.2);
+  border-color: #22c55e;
+}
+
+/* Input descarga (verde) */
+.config-grupo input.input-descarga {
+  border-color: rgba(34, 197, 94, 0.4);
+  color: #22c55e;
+}
+
+.config-grupo input.input-descarga:focus {
+  border-color: #22c55e;
+  box-shadow: 0 0 12px rgba(34, 197, 94, 0.25);
+}
+
+/* Preview de cargas por semana */
+.semanas-preview {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-top: 0.5rem;
+  margin-top: 0.5rem;
+  border-top: 1px solid #1a3a4a;
+}
+
+.peso-semanas-preview,
+.reps-semanas-preview {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.preview-label {
+  font-size: 0.65rem;
+  color: #5a7a8a;
+  font-weight: 600;
+  min-width: 35px;
+}
+
+.peso-preview {
+  padding: 0.35rem 0.6rem;
+  background: rgba(17, 40, 48, 0.8);
+  border-radius: 6px;
+  font-size: 0.7rem;
+  color: #5a7a8a;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.peso-preview:hover {
+  background: rgba(26, 58, 74, 0.8);
+  color: white;
+}
+
+.peso-preview.editando {
+  background: rgba(7, 204, 239, 0.15);
+  color: #07ccef;
+  border-color: rgba(7, 204, 239, 0.3);
+}
+
+.peso-preview.descarga {
+  color: #22c55e;
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+.peso-preview.descarga.editando {
+  background: rgba(34, 197, 94, 0.15);
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .ejercicio-en-rutina {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .ejercicio-info-mini {
+    flex: 1 1 100%;
+    order: 1;
+  }
+
+  .ejercicio-orden {
+    order: 0;
+  }
+
+  .ejercicio-config {
+    order: 2;
+    flex: 1;
+    justify-content: center;
+    padding-top: 0.5rem;
+    border-top: 1px solid #1a3a4a;
+  }
+
+  .btn-eliminar-ejercicio {
+    order: 0;
+  }
+
+  .config-grupo input {
+    width: 50px;
+  }
+}

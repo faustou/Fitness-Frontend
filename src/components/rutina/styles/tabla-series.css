@@ -1,0 +1,433 @@
+.tabla-series-container {
+  margin-top: 1.5rem;
+}
+
+/* Header de la tabla */
+.tabla-series-header {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 60px 50px;
+  gap: 0.5rem;
+  padding: 0.6rem 0.85rem;
+  margin-bottom: 0.6rem;
+  background: linear-gradient(135deg, rgba(7, 24, 31, 0.5) 0%, rgba(13, 37, 53, 0.5) 100%);
+  border-radius: 12px;
+}
+
+.header-col {
+  color: #5a7a8a;
+  font-weight: 600;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  text-align: center;
+  letter-spacing: 0.5px;
+}
+
+/* Body de filas */
+.tabla-series-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+/* Container de cada fila (para swipe) */
+.fila-serie-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+/* Fondo rojo para eliminar */
+.fila-serie-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 14px 14px 0;
+  pointer-events: none;
+}
+
+.eliminar-texto {
+  color: white;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Fila de serie */
+.fila-serie {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr 60px 50px;
+  gap: 0.5rem;
+  padding: 0.9rem 0.85rem;
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border-radius: 14px;
+  align-items: center;
+  cursor: grab;
+  touch-action: pan-y;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.3s ease;
+}
+
+.fila-serie:hover {
+  border-color: rgba(7, 204, 239, 0.2);
+}
+
+.fila-serie:active {
+  cursor: grabbing;
+}
+
+.fila-serie.serie-completada {
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(22, 163, 74, 0.1) 100%);
+  border-color: rgba(34, 197, 94, 0.3);
+}
+
+/* Número de serie */
+.serie-numero {
+  font-weight: 700;
+  text-align: center;
+  font-size: 1rem;
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.fila-serie.serie-completada .serie-numero {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Campo de serie */
+.serie-campo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Inputs */
+.input-serie {
+  width: 58px;
+  padding: 0.55rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #07181f 0%, #0a1e28 100%);
+  color: white;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.input-serie:focus {
+  outline: none;
+  border-color: #07ccef;
+  box-shadow: 0 0 15px rgba(7, 204, 239, 0.3);
+}
+
+.input-serie:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.input-serie::placeholder {
+  color: #3a4a5a;
+}
+
+/* Input RIR más pequeño */
+.input-rir {
+  width: 48px;
+}
+
+/* Wrapper para peso con unidad */
+.input-peso-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.input-peso-wrapper .unidad {
+  color: #5a7a8a;
+  font-size: 0.7rem;
+  font-weight: 500;
+}
+
+/* Botón completar */
+.btn-completar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 2px solid rgba(90, 122, 138, 0.5);
+  background: transparent;
+  color: #5a7a8a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-completar:hover:not(:disabled) {
+  border-color: #07ccef;
+  color: #07ccef;
+  box-shadow: 0 0 15px rgba(7, 204, 239, 0.3);
+}
+
+.btn-completar.completada {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  border-color: transparent;
+  color: white;
+  box-shadow: 0 4px 15px rgba(34, 197, 94, 0.4);
+}
+
+.btn-completar:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Botón agregar serie */
+.btn-agregar-serie {
+  width: 100%;
+  padding: 1rem;
+  margin-top: 1.25rem;
+  border: 2px dashed rgba(90, 122, 138, 0.3);
+  border-radius: 14px;
+  background: transparent;
+  color: #5a7a8a;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-agregar-serie:hover:not(:disabled) {
+  border-color: rgba(7, 204, 239, 0.5);
+  color: #07ccef;
+  background: rgba(7, 204, 239, 0.05);
+}
+
+.btn-agregar-serie:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+/* Modal de confirmación para agregar serie */
+.modal-serie-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(7, 24, 31, 0.9);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modal-serie-content {
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border: 1px solid rgba(7, 204, 239, 0.2);
+  border-radius: 24px;
+  padding: 2rem 1.75rem;
+  max-width: 340px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+}
+
+.modal-serie-icono {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.modal-serie-content h3 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.25rem;
+  color: white;
+  font-weight: 700;
+}
+
+.modal-serie-content p {
+  margin: 0 0 1.5rem 0;
+  color: #7a9aaa;
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.modal-serie-buttons {
+  display: flex;
+  gap: 0.85rem;
+}
+
+.btn-modal-serie {
+  flex: 1;
+  padding: 0.95rem;
+  border: none;
+  border-radius: 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-modal-serie.btn-cancelar {
+  background: linear-gradient(135deg, #07181f 0%, #0a1e28 100%);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.btn-modal-serie.btn-cancelar:hover {
+  background: linear-gradient(135deg, #0c2a3f 0%, #112830 100%);
+  border-color: rgba(7, 204, 239, 0.3);
+}
+
+.btn-modal-serie.btn-confirmar {
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  color: #07181f;
+  box-shadow: 0 6px 20px rgba(7, 204, 239, 0.3);
+}
+
+.btn-modal-serie.btn-confirmar:hover {
+  box-shadow: 0 8px 25px rgba(7, 204, 239, 0.4);
+  transform: translateY(-2px);
+}
+
+/* Header RIR con botón de ayuda */
+.header-rir {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.btn-rir-info {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid #5a7a8a;
+  background: transparent;
+  color: #5a7a8a;
+  font-size: 0.6rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.btn-rir-info:hover {
+  border-color: #07ccef;
+  color: #07ccef;
+}
+
+/* Modal RIR Info */
+.modal-rir-info {
+  text-align: left;
+  max-width: 380px;
+}
+
+.modal-rir-info h3 {
+  text-align: center;
+  margin-bottom: 1rem;
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.rir-definicion {
+  background: rgba(7, 204, 239, 0.1);
+  border-left: 3px solid #07ccef;
+  padding: 0.85rem 1rem;
+  border-radius: 0 10px 10px 0;
+  margin-bottom: 1rem;
+  color: white;
+  font-weight: 500;
+}
+
+.rir-explicacion {
+  margin-bottom: 1.5rem;
+}
+
+.rir-explicacion p {
+  margin-bottom: 0.75rem;
+  color: #9abacc;
+}
+
+.rir-explicacion ul {
+  margin: 0;
+  padding-left: 1.25rem;
+  list-style: none;
+}
+
+.rir-explicacion li {
+  position: relative;
+  color: #7a9aaa;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.rir-explicacion li::before {
+  content: "•";
+  position: absolute;
+  left: -1rem;
+  color: #07ccef;
+}
+
+.rir-explicacion strong {
+  color: #07ccef;
+}
+
+.modal-rir-info .btn-confirmar {
+  width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .tabla-series-header {
+    grid-template-columns: 35px 1fr 1fr 50px 45px;
+    padding: 0.5rem 0.6rem;
+  }
+
+  .fila-serie {
+    grid-template-columns: 35px 1fr 1fr 50px 45px;
+    padding: 0.75rem 0.6rem;
+  }
+
+  .input-serie {
+    width: 50px;
+    padding: 0.45rem;
+    font-size: 0.9rem;
+  }
+
+  .input-rir {
+    width: 42px;
+  }
+
+  .btn-completar {
+    width: 34px;
+    height: 34px;
+  }
+
+  .header-col {
+    font-size: 0.6rem;
+  }
+
+  .serie-numero {
+    font-size: 0.9rem;
+  }
+}

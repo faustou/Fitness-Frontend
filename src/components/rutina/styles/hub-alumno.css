@@ -1,0 +1,1071 @@
+.hub-alumno {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #07181f 0%, #0a1e28 50%, #0d2535 100%);
+  color: white;
+  padding: 1.5rem;
+  padding-bottom: 3rem;
+  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* Loading */
+.hub-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  gap: 1.5rem;
+}
+
+.hub-loading p {
+  color: #5a7a8a;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.loading-spinner {
+  width: 50px;
+  height: 50px;
+  border: 3px solid rgba(7, 204, 239, 0.1);
+  border-top-color: #07ccef;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Error */
+.hub-error {
+  background: linear-gradient(135deg, rgba(239, 68, 68, 0.1) 0%, rgba(239, 68, 68, 0.05) 100%);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 16px;
+  padding: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(10px);
+}
+
+.hub-error p {
+  color: #ef4444;
+  margin: 0 0 1rem 0;
+  font-weight: 500;
+}
+
+.hub-error button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hub-error button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}
+
+/* Header */
+.hub-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hub-saludo h1 {
+  font-size: 1.85rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  background: linear-gradient(135deg, #ffffff 0%, #b8d4e3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hub-fecha {
+  color: #5a7a8a;
+  font-size: 0.9rem;
+  text-transform: capitalize;
+  margin: 0;
+  font-weight: 500;
+}
+
+.hub-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Perfil Menu */
+.perfil-menu-container {
+  position: relative;
+}
+
+.perfil-avatar-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #112830 0%, #1a3a4a 100%);
+  border: 2px solid rgba(7, 204, 239, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  padding: 0;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.perfil-avatar-btn:hover {
+  border-color: #07ccef;
+  box-shadow: 0 4px 20px rgba(7, 204, 239, 0.3);
+  transform: scale(1.05);
+}
+
+.perfil-avatar-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.perfil-avatar-placeholder {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #07ccef;
+}
+
+.perfil-menu-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 99;
+}
+
+.perfil-menu-dropdown {
+  position: absolute;
+  top: calc(100% + 12px);
+  right: 0;
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border: 1px solid rgba(7, 204, 239, 0.2);
+  border-radius: 16px;
+  min-width: 220px;
+  z-index: 100;
+  overflow: hidden;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.perfil-menu-info {
+  padding: 1.25rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.perfil-menu-nombre {
+  font-weight: 600;
+  color: white;
+  font-size: 1rem;
+}
+
+.perfil-menu-email {
+  font-size: 0.8rem;
+  color: #5a7a8a;
+}
+
+.perfil-menu-item {
+  display: block;
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #07ccef;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.perfil-menu-item:hover {
+  background-color: rgba(7, 204, 239, 0.1);
+}
+
+.perfil-menu-logout {
+  width: 100%;
+  padding: 1rem 1.25rem;
+  background-color: transparent;
+  border: none;
+  color: #ef4444;
+  font-size: 0.9rem;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+  font-weight: 500;
+}
+
+.perfil-menu-logout:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+}
+
+/* Card de hoy - Hero Card */
+.hub-card-hoy {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.75rem;
+  background: linear-gradient(135deg, #0f3347 0%, #0a2535 50%, #112830 100%);
+  border-radius: 24px;
+  cursor: pointer;
+  border: 1px solid rgba(7, 204, 239, 0.4);
+  margin-bottom: 2rem;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(7, 204, 239, 0.15),
+              inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.hub-card-hoy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(7, 204, 239, 0.5), transparent);
+}
+
+.hub-card-hoy:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 15px 50px rgba(7, 204, 239, 0.25);
+  border-color: rgba(7, 204, 239, 0.6);
+}
+
+.card-badge-hoy {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  color: #07181f;
+  font-size: 0.65rem;
+  font-weight: 800;
+  padding: 0.4rem 1rem;
+  border-radius: 0 22px 0 16px;
+  letter-spacing: 1px;
+}
+
+.card-icono {
+  font-size: 3rem;
+  flex-shrink: 0;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+}
+
+.card-contenido {
+  flex: 1;
+}
+
+.card-contenido h2 {
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0 0 0.5rem 0;
+  color: #07ccef;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.card-rutina-nombre {
+  font-size: 1.2rem;
+  margin: 0 0 0.5rem 0;
+  color: white;
+  font-weight: 700;
+}
+
+.card-stats {
+  display: flex;
+  gap: 0.75rem;
+  font-size: 0.85rem;
+  color: #5a7a8a;
+}
+
+.card-stats span {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.card-flecha {
+  font-size: 1.75rem;
+  color: #07ccef;
+  flex-shrink: 0;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+}
+
+.hub-card-hoy:hover .card-flecha {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* Sin rutina hoy */
+.hub-sin-rutina-hoy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1.5rem;
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border-radius: 20px;
+  margin-bottom: 2rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sin-rutina-icono {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}
+
+.hub-sin-rutina-hoy p {
+  font-size: 1.15rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem 0;
+  color: #b8d4e3;
+}
+
+.sin-rutina-hint {
+  font-size: 0.85rem;
+  color: #5a7a8a;
+}
+
+/* Sección Semana */
+.hub-semana {
+  margin-bottom: 2rem;
+}
+
+.hub-semana h3 {
+  font-size: 0.75rem;
+  color: #5a7a8a;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 1.25rem 0;
+  font-weight: 600;
+}
+
+/* Sin rutinas asignadas */
+.hub-sin-rutinas {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1.5rem;
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border-radius: 20px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sin-rutinas-icono {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.hub-sin-rutinas p {
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin: 0 0 0.35rem 0;
+  color: #b8d4e3;
+}
+
+.sin-rutinas-hint {
+  font-size: 0.85rem;
+  color: #5a7a8a;
+}
+
+/* Grid de días */
+.semana-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.85rem;
+}
+
+.dia-card {
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border-radius: 16px;
+  padding: 1rem 0.75rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+.dia-card.tiene-rutina {
+  cursor: pointer;
+  border-color: rgba(26, 58, 74, 0.5);
+}
+
+.dia-card.tiene-rutina:hover {
+  border-color: rgba(7, 204, 239, 0.5);
+  background: linear-gradient(135deg, #153545 0%, #112830 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.dia-card.es-hoy {
+  border-color: rgba(7, 204, 239, 0.6);
+  box-shadow: 0 0 20px rgba(7, 204, 239, 0.15);
+}
+
+.dia-card.es-hoy::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #07ccef, transparent);
+}
+
+.dia-card.sin-rutina {
+  opacity: 0.4;
+}
+
+.dia-card.completado {
+  border-color: rgba(34, 197, 94, 0.5);
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+}
+
+.dia-card.completado:hover {
+  border-color: rgba(34, 197, 94, 0.7);
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.15) 0%, rgba(34, 197, 94, 0.08) 100%);
+}
+
+.dia-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.6rem;
+}
+
+.dia-nombre {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #5a7a8a;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.badge-hoy {
+  font-size: 0.5rem;
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  color: #07181f;
+  padding: 0.15rem 0.4rem;
+  border-radius: 6px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+
+.badge-completado {
+  font-size: 0.6rem;
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  color: white;
+  padding: 0.15rem 0.35rem;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.dia-contenido {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.dia-rutina-nombre {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: white;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.dia-ejercicios {
+  font-size: 0.7rem;
+  color: #07ccef;
+  font-weight: 500;
+}
+
+.dia-descanso {
+  align-items: center;
+}
+
+.descanso-icono {
+  font-size: 1.5rem;
+}
+
+.descanso-texto {
+  font-size: 0.7rem;
+  color: #5a7a8a;
+  font-weight: 500;
+}
+
+/* Próxima rutina */
+.hub-proxima {
+  margin-bottom: 2rem;
+}
+
+.hub-proxima h3 {
+  font-size: 0.75rem;
+  color: #5a7a8a;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 1.25rem 0;
+  font-weight: 600;
+}
+
+.proxima-card {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem;
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border-radius: 16px;
+  cursor: pointer;
+  border: 1px solid rgba(26, 58, 74, 0.5);
+  transition: all 0.3s ease;
+}
+
+.proxima-card:hover {
+  border-color: rgba(7, 204, 239, 0.5);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+}
+
+.proxima-dia {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #07ccef;
+  min-width: 75px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.proxima-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.proxima-nombre {
+  font-size: 1rem;
+  font-weight: 600;
+  color: white;
+}
+
+.proxima-ejercicios {
+  font-size: 0.75rem;
+  color: #5a7a8a;
+}
+
+.proxima-flecha {
+  font-size: 1.35rem;
+  color: #07ccef;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.proxima-card:hover .proxima-flecha {
+  opacity: 1;
+  transform: translateX(4px);
+}
+
+/* Progreso semanal */
+.hub-progreso-semanal {
+  margin-bottom: 2rem;
+}
+
+.hub-progreso-semanal h3 {
+  font-size: 0.75rem;
+  color: #5a7a8a;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin: 0 0 1.25rem 0;
+  font-weight: 600;
+}
+
+.progreso-card {
+  background: linear-gradient(135deg, #0f3347 0%, #112830 100%);
+  border-radius: 20px;
+  padding: 1.75rem;
+  text-align: center;
+  border: 1px solid rgba(34, 197, 94, 0.2);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+.progreso-numero {
+  display: flex;
+  justify-content: center;
+  align-items: baseline;
+  gap: 0.3rem;
+  margin-bottom: 0.35rem;
+}
+
+.progreso-actual {
+  font-size: 3rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #22c55e 0%, #4ade80 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.progreso-separador {
+  font-size: 1.75rem;
+  color: #3a5a6a;
+  font-weight: 300;
+}
+
+.progreso-total {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: #5a7a8a;
+}
+
+.progreso-label {
+  font-size: 0.85rem;
+  color: #5a7a8a;
+  display: block;
+  margin-bottom: 1.25rem;
+  font-weight: 500;
+}
+
+.progreso-barra {
+  height: 10px;
+  background-color: rgba(26, 58, 74, 0.5);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.progreso-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #22c55e 0%, #4ade80 50%, #86efac 100%);
+  border-radius: 5px;
+  transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 0 15px rgba(34, 197, 94, 0.4);
+}
+
+/* Panel de Racha */
+.hub-racha {
+  margin-bottom: 2rem;
+}
+
+.racha-card {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.5rem 1.75rem;
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+.racha-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(ellipse at top left, rgba(7, 204, 239, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.racha-card.racha-good {
+  border-color: rgba(251, 191, 36, 0.3);
+  background: linear-gradient(135deg, #1a2f35 0%, #112830 100%);
+}
+
+.racha-card.racha-good::before {
+  background: radial-gradient(ellipse at top left, rgba(251, 191, 36, 0.15) 0%, transparent 50%);
+}
+
+.racha-card.racha-fire {
+  border-color: rgba(249, 115, 22, 0.4);
+  background: linear-gradient(135deg, #2a1f15 0%, #1a1510 100%);
+  animation: fireGlow 2s ease-in-out infinite;
+}
+
+.racha-card.racha-fire::before {
+  background: radial-gradient(ellipse at top left, rgba(249, 115, 22, 0.2) 0%, transparent 50%);
+}
+
+@keyframes fireGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(249, 115, 22, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(249, 115, 22, 0.35);
+  }
+}
+
+.racha-icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.racha-icon {
+  font-size: 2.75rem;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+  position: relative;
+  z-index: 1;
+}
+
+.racha-glow {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.4) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: glowPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes glowPulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.9;
+  }
+}
+
+.racha-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  flex: 1;
+}
+
+.racha-numero {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+}
+
+.racha-card.racha-good .racha-numero {
+  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.racha-card.racha-fire .racha-numero {
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.racha-label {
+  font-size: 0.85rem;
+  color: #5a7a8a;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.racha-mensaje {
+  font-size: 0.8rem;
+  color: #07ccef;
+  font-weight: 600;
+  text-align: right;
+  padding: 0.5rem 0.75rem;
+  background: rgba(7, 204, 239, 0.1);
+  border-radius: 10px;
+  white-space: nowrap;
+}
+
+.racha-card.racha-good .racha-mensaje {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.1);
+}
+
+.racha-card.racha-fire .racha-mensaje {
+  color: #f97316;
+  background: rgba(249, 115, 22, 0.15);
+}
+
+/* Stats */
+.hub-stats {
+  display: flex;
+  gap: 1rem;
+}
+
+.stat-mini {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.25rem 1rem;
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.3s ease;
+}
+
+.stat-mini:hover {
+  border-color: rgba(7, 204, 239, 0.2);
+  transform: translateY(-2px);
+}
+
+.stat-numero {
+  font-size: 1.75rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.stat-label {
+  font-size: 0.7rem;
+  color: #5a7a8a;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 600;
+  margin-top: 0.25rem;
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+  .hub-alumno {
+    padding: 1.25rem;
+    padding-bottom: 2.5rem;
+  }
+
+  .hub-saludo h1 {
+    font-size: 1.5rem;
+  }
+
+  .hub-card-hoy {
+    padding: 1.5rem;
+    gap: 1rem;
+  }
+
+  .card-icono {
+    font-size: 2.5rem;
+  }
+
+  .card-rutina-nombre {
+    font-size: 1.1rem;
+  }
+
+  .semana-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .racha-card {
+    padding: 1.25rem;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .racha-icon {
+    font-size: 2.25rem;
+  }
+
+  .racha-numero {
+    font-size: 2rem;
+  }
+
+  .racha-mensaje {
+    font-size: 0.75rem;
+    width: 100%;
+    text-align: center;
+    margin-top: 0.5rem;
+  }
+}
+
+/* Animaciones de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hub-card-hoy,
+.hub-semana,
+.hub-racha,
+.hub-progreso-semanal,
+.hub-stats {
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+
+.hub-semana {
+  animation-delay: 0.1s;
+}
+
+.hub-racha {
+  animation-delay: 0.2s;
+}
+
+.hub-progreso-semanal {
+  animation-delay: 0.3s;
+}
+
+.hub-stats {
+  animation-delay: 0.4s;
+}
+
+/* ==================== CICLO MENSUAL ==================== */
+
+.hub-ciclo-info {
+  background: linear-gradient(135deg, #112830 0%, #0d2535 100%);
+  border-radius: 20px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(7, 204, 239, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  animation: fadeInUp 0.4s ease-out forwards;
+}
+
+.hub-ciclo-info.es-descarga {
+  background: linear-gradient(135deg, #1a2f1a 0%, #0d2515 100%);
+  border-color: rgba(34, 197, 94, 0.4);
+  box-shadow: 0 0 30px rgba(34, 197, 94, 0.1);
+}
+
+.ciclo-semana-actual {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ciclo-label {
+  font-size: 0.75rem;
+  color: #5a7a8a;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 600;
+}
+
+.ciclo-numero {
+  font-size: 1.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #07ccef 0%, #0099cc 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hub-ciclo-info.es-descarga .ciclo-numero {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Banner de Descarga */
+.ciclo-descarga-banner {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: rgba(34, 197, 94, 0.15);
+  border-radius: 12px;
+  border: 1px solid rgba(34, 197, 94, 0.3);
+}
+
+.descarga-icon {
+  font-size: 2rem;
+}
+
+.descarga-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.descarga-texto strong {
+  font-size: 1rem;
+  color: #22c55e;
+}
+
+.descarga-texto span {
+  font-size: 0.8rem;
+  color: #5a8a5a;
+}
+
+/* Progreso del Ciclo (puntos) */
+.ciclo-progreso {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+
+.ciclo-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: rgba(90, 122, 138, 0.3);
+  border: 2px solid rgba(90, 122, 138, 0.5);
+  transition: all 0.3s ease;
+}
+
+.ciclo-dot.completada {
+  background: #07ccef;
+  border-color: #07ccef;
+  box-shadow: 0 0 10px rgba(7, 204, 239, 0.5);
+}
+
+.ciclo-dot.descarga {
+  border-color: #22c55e;
+}
+
+.ciclo-dot.completada.descarga {
+  background: #22c55e;
+  box-shadow: 0 0 10px rgba(34, 197, 94, 0.5);
+}
+
+/* Estilo de día de descarga en el grid semanal */
+.dia-card.semana-descarga {
+  border-color: rgba(34, 197, 94, 0.4);
+  background: linear-gradient(135deg, rgba(34, 197, 94, 0.1) 0%, rgba(34, 197, 94, 0.05) 100%);
+}
+
+.dia-card.semana-descarga .dia-nombre {
+  color: #22c55e;
+}
+
+.dia-card.semana-descarga .dia-ejercicios {
+  color: #4ade80;
+}

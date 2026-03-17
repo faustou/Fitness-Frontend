@@ -68,7 +68,7 @@ function PlanesCards() {
   const [errorDatos, setErrorDatos] = useState('');
   const [enviandoDatos, setEnviandoDatos] = useState(false);
 
-  initMercadoPago('TEST-9b5a1571-f0d1-4a1a-a736-cbbc620946b9', {
+  initMercadoPago(import.meta.env.VITE_MP_PUBLIC_KEY, {
     locale: 'es-AR',
   });
 

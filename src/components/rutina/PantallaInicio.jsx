@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import './styles/pantalla-inicio.css';
 
-function PantallaInicio({ rutina, onComenzar, onVolver, esDescarga, semanaActual }) {
+function PantallaInicio({ rutina, onComenzar, onVerCalentamiento, onVolver, esDescarga, semanaActual }) {
   const totalSeries = rutina.ejercicios.reduce((acc, ej) => acc + ej.series.length, 0);
   const totalEjercicios = rutina.ejercicios.length;
 
@@ -86,14 +86,39 @@ function PantallaInicio({ rutina, onComenzar, onVolver, esDescarga, semanaActual
         </div>
       </div>
 
-      <motion.button
-        className="btn-comenzar"
-        onClick={onComenzar}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
-      >
-        Comenzar Workout
-      </motion.button>
+      {rutina.calentamiento?.tipo ? (
+        <div className="inicio-calentamiento-bloque">
+          <div className="inicio-calentamiento-info">
+            <span className="calentamiento-fire">🔥</span>
+            <span>Esta rutina incluye entrada en calor</span>
+          </div>
+          <div className="inicio-calentamiento-botones">
+            <motion.button
+              className="btn-ver-calentamiento"
+              onClick={onVerCalentamiento}
+              whileTap={{ scale: 0.97 }}
+            >
+              Ver calentamiento
+            </motion.button>
+            <motion.button
+              className="btn-omitir-calentamiento"
+              onClick={onComenzar}
+              whileTap={{ scale: 0.97 }}
+            >
+              Omitir y comenzar
+            </motion.button>
+          </div>
+        </div>
+      ) : (
+        <motion.button
+          className="btn-comenzar"
+          onClick={onComenzar}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          Comenzar Workout
+        </motion.button>
+      )}
     </motion.div>
   );
 }

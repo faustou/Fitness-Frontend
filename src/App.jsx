@@ -32,6 +32,9 @@ import Registro from './components/auth/Registro';
 import ProtectedRoute from './components/auth/ProtectedRoute';
 import ProfesorPendiente from './components/auth/ProfesorPendiente';
 import AdminProfesores from './components/auth/AdminProfesores';
+import GestionEjercicios from './components/ejercicios/GestionEjercicios';
+import PagoExitoso from './components/planes/PagoExitoso';
+import PagoPendiente from './components/planes/PagoPendiente';
 
 function MainSite() {
   return (
@@ -106,6 +109,15 @@ function App() {
               <EditorRutina />
             </ProtectedRoute>
           } />
+          <Route path="/profesor/ejercicios" element={
+            <ProtectedRoute requiredRole="profesor">
+              <GestionEjercicios />
+            </ProtectedRoute>
+          } />
+
+          {/* Páginas de resultado de pago */}
+          <Route path="/pago-exitoso" element={<PagoExitoso />} />
+          <Route path="/pago-pendiente" element={<PagoPendiente />} />
 
           {/* Ruta anterior - Biblioteca de ejercicios (backup) */}
           <Route path="/ejercicios/*" element={<Ejercicios />}>

@@ -4,9 +4,11 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useRutinaState } from '../../hooks/useRutinaState';
 import { getMisRutinas } from '../../services/api';
 import { getEjercicioById } from '../../data/ejerciciosDB';
+import { getCalentamientoEjercicios } from '../../data/calentamientoDB';
 import { useAuth } from '../../context/AuthContext';
 
 import PantallaInicio from './PantallaInicio';
+import EntradaCalor from './EntradaCalor';
 import TimerWorkout from './TimerWorkout';
 import BarraProgreso from './BarraProgreso';
 import EjercicioActual from './EjercicioActual';
@@ -40,6 +42,13 @@ const adaptarRutinaAPI = (rutinaAPI, diaSemana) => {
     fecha: new Date().toISOString().split('T')[0],
     nombreRutina: rutinaAPI.nombre,
     diaSemana: diaSemana,
+    calentamiento: {
+      tipo: rutinaAPI.tipo_calentamiento || null,
+      ejercicios: getCalentamientoEjercicios(
+        rutinaAPI.tipo_calentamiento,
+        rutinaAPI.series_calentamiento
+      ),
+    },
     ejercicios: rutinaAPI.ejercicios.map((ej, index) => {
       // Obtener info del ejercicio desde ejerciciosDB local (para gifs)
       const ejercicioLocal = getEjercicioById(ej.ejercicioId);
@@ -48,7 +57,7 @@ const adaptarRutinaAPI = (rutinaAPI, diaSemana) => {
         id: index + 1,
         ejercicioId: ej.ejercicioId,
         nombre: ej.nombre || ejercicioLocal?.nombre || ej.ejercicioId,
-        gif: ejercicioLocal?.gif || null,
+        gif: ejercicioLocal?.gif || ej.gif || null,
         muscle: ejercicioLocal?.muscle || null,
         descripcion: ej.descripcion || ejercicioLocal?.descripcion || '',
         dificultad: ej.dificultad || ejercicioLocal?.dificultad || 'Intermedio',
@@ -66,6 +75,7 @@ function RutinaDia() {
   const navigate = useNavigate();
   const { perfil } = useAuth();
   const [mostrarConfirmFinish, setMostrarConfirmFinish] = useState(false);
+  const [mostrandoCalentamiento, setMostrandoCalentamiento] = useState(false);
   const [rutinaData, setRutinaData] = useState(null);
   const [cicloInfo, setCicloInfo] = useState(null);
   const [cargando, setCargando] = useState(true);
@@ -136,6 +146,7 @@ function RutinaDia() {
     anteriorEjercicio,
     finalizarDescanso,
     completarWorkout,
+    completarCalentamiento,
     tiempoTotal,
   } = useRutinaState(rutinaData);
 
@@ -179,11 +190,23 @@ function RutinaDia() {
 
   // Pantalla de inicio (antes de comenzar)
   if (!workoutIniciado) {
+    if (mostrandoCalentamiento && rutina.calentamiento?.tipo) {
+      return (
+        <div className="rutina-dia-container">
+          <EntradaCalor
+            calentamiento={rutina.calentamiento}
+            onComenzar={() => { completarCalentamiento(); iniciarWorkout(); }}
+            onOmitir={iniciarWorkout}
+          />
+        </div>
+      );
+    }
     return (
       <div className="rutina-dia-container">
         <PantallaInicio
           rutina={rutina}
           onComenzar={iniciarWorkout}
+          onVerCalentamiento={() => setMostrandoCalentamiento(true)}
           onVolver={() => navigate('/alumno')}
           esDescarga={cicloInfo?.esDescarga}
           semanaActual={cicloInfo?.semanaActual}

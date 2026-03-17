@@ -501,24 +501,41 @@
   padding: 1rem;
 }
 
-.modal-content {
+.compra-modal {
   background: linear-gradient(135deg, rgba(17, 40, 48, 0.98) 0%, rgba(13, 37, 53, 0.98) 100%);
-  padding: 2.5rem;
+  padding: 2rem;
   border-radius: 1.5rem;
   color: white;
   text-align: center;
   position: relative;
   border: 1px solid rgba(59, 233, 255, 0.2);
-  max-width: 450px;
+  max-width: 420px;
   width: 100%;
   box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
 }
 
-.modal-title {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin: 0 0 1.5rem;
-  letter-spacing: 1px;
+/* Close button — circular, buen contraste */
+.modal-close {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  z-index: 1;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: #3be9ff;
   color: #3be9ff;
 }
 
@@ -526,97 +543,110 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 1.25rem;
 }
 
+/* Plan identity — vertical, centrado, sin depender de herencia */
 .modal-plan-header {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1.5rem;
-  border-radius: 1rem;
-  margin-bottom: 1.5rem;
-  text-align: center;
   align-items: center;
-  gap: 1rem;
+  gap: 0.3rem;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1.25rem;
+  border-radius: 1rem;
 }
 
 .modal-icon {
-  font-size: 2.5rem;
+  font-size: 2.25rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
 }
 
-.modal-plan-title {
-  font-size: 1rem;
-  font-weight: 700;
+.modal-plan-name {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: #fff;
   margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
-.modal-price-container {
+.modal-plan-duration {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.38);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+/* Divisor */
+.modal-divider {
+  width: 100%;
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+  margin: -0.25rem 0;
+}
+
+/* Price block */
+.modal-price-block {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.25rem;
-  margin-top: 0.5rem;
+  gap: 0.4rem;
 }
 
 .modal-price-old {
-  font-size: 1rem;
-  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.28);
   text-decoration: line-through;
-  margin: 0;
+  letter-spacing: 0.5px;
 }
 
 .modal-price-final {
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: #22c55e;
-  margin: 0;
+  line-height: 1;
 }
 
-.modal-price-final span {
+/* Badge de descuento — sólido, visible */
+.modal-discount-badge {
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  background: linear-gradient(135deg, #3be9ff 0%, #00d4aa 100%);
+  border-radius: 2rem;
   font-size: 0.85rem;
-  font-weight: 500;
-  color: #3be9ff;
+  font-weight: 800;
+  color: #07181f;
+  letter-spacing: 1px;
 }
 
 .modal-mp {
-  margin: 1rem 0;
   width: 100%;
   max-width: 300px;
 }
 
+/* Warning — aviso secundario */
 .modal-warning {
-  color: #f59e0b;
-  font-size: 0.9rem;
-  margin: 0.5rem 0 0;
-  padding: 0.75rem;
-  background: rgba(245, 158, 11, 0.1);
-  border-radius: 0.5rem;
-  border: 1px solid rgba(245, 158, 11, 0.2);
-}
-
-.modal-close {
-  position: absolute;
-  top: 1rem;
-  right: 1rem;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 0.5rem;
-  color: white;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-
-.modal-close:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(59, 233, 255, 0.3);
-  color: #3be9ff;
+  align-items: flex-start;
+  gap: 0.45rem;
+  width: 100%;
+  color: rgba(255, 255, 255, 0.3);
+  font-size: 0.76rem;
+  line-height: 1.5;
+  margin: 0;
+  padding-top: 0.875rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  text-align: left;
+  background: transparent;
+  border-left: none;
+  border-right: none;
+  border-bottom: none;
+  border-radius: 0;
 }
 
 /* MercadoPago Button Override */
@@ -726,24 +756,12 @@
   }
 
   /* Modal Mobile */
-  .modal-content {
-    padding: 2rem 1.5rem;
-  }
-
-  .modal-title {
-    font-size: 1rem;
-  }
-
-  .modal-icon {
-    font-size: 2rem;
-  }
-
-  .modal-plan-title {
-    font-size: 0.9rem;
+  .compra-modal {
+    padding: 1.75rem 1.25rem;
   }
 
   .modal-price-final {
-    font-size: 1.25rem;
+    font-size: 2rem;
   }
 }
 
@@ -774,4 +792,80 @@
   .planes-bg-gradient-2 {
     display: none;
   }
+}
+
+/* ── Modal datos visitante ────────────────────────────────── */
+.modal-datos-titulo {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e8f4f8;
+  margin: 0 0 0.25rem;
+  text-align: center;
+}
+
+.modal-datos-subtitulo {
+  font-size: 0.8rem;
+  color: #5a7a8a;
+  text-align: center;
+  margin: 0 0 1.25rem;
+}
+
+.modal-datos-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.modal-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  text-align: left;
+}
+
+.modal-field label {
+  font-size: 0.78rem;
+  color: #7a9aaa;
+  font-weight: 500;
+}
+
+.modal-field input {
+  background: #07181f;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: #e8f4f8;
+  padding: 0.65rem 0.9rem;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.modal-field input:focus {
+  border-color: rgba(7, 204, 239, 0.5);
+}
+
+.modal-error {
+  font-size: 0.8rem;
+  color: #f87171;
+  text-align: center;
+  margin: 0;
+}
+
+.modal-btn-continuar {
+  width: 100%;
+  padding: 0.9rem;
+  background: linear-gradient(135deg, #07ccef, #3be9ff);
+  border: none;
+  border-radius: 12px;
+  color: #07181f;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.25rem;
+  transition: opacity 0.2s;
+}
+
+.modal-btn-continuar:disabled {
+  opacity: 0.6;
+  cursor: default;
 }

@@ -584,3 +584,167 @@
     font-size: 1rem;
   }
 }
+
+/* ── Alumnos sin asignar ─────────────────────────────────── */
+.sin-asignar-section {
+  margin: 0 1.25rem 1.5rem;
+}
+
+.sin-asignar-titulo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #3be9ff;
+  margin-bottom: 0.75rem;
+}
+
+.sin-asignar-count {
+  background: #07ccef;
+  color: #07181f;
+  font-size: 0.75rem;
+  font-weight: 800;
+  border-radius: 99px;
+  padding: 0.1rem 0.5rem;
+}
+
+.sin-asignar-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.sin-asignar-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem 1rem;
+  background: #112830;
+  border: 1px solid rgba(7, 204, 239, 0.2);
+  border-radius: 14px;
+}
+
+.sin-asignar-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  flex: 1;
+  min-width: 0;
+}
+
+.sin-asignar-nombre {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #e8f4f8;
+  margin: 0;
+}
+
+.sin-asignar-email,
+.sin-asignar-tel {
+  font-size: 0.8rem;
+  color: #5a7a8a;
+  margin: 0;
+}
+
+.sin-asignar-meta {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 0.2rem;
+}
+
+.sin-asignar-plan {
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(7, 204, 239, 0.12);
+  color: #07ccef;
+  border-radius: 6px;
+  padding: 0.15rem 0.5rem;
+}
+
+.sin-asignar-fecha {
+  font-size: 0.75rem;
+  color: #3a5a6a;
+}
+
+.btn-tomar-alumno {
+  padding: 0.55rem 1rem;
+  background: linear-gradient(135deg, #07ccef, #3be9ff);
+  border: none;
+  border-radius: 10px;
+  color: #07181f;
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+/* Modal confirmación hub */
+.modal-overlay-hub {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1.5rem;
+}
+
+.modal-confirm-hub {
+  background: #112830;
+  border: 1px solid rgba(7, 204, 239, 0.2);
+  border-radius: 20px;
+  padding: 1.75rem;
+  max-width: 360px;
+  width: 100%;
+}
+
+.modal-confirm-hub h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e8f4f8;
+  margin: 0 0 0.5rem;
+}
+
+.modal-confirm-hub p {
+  font-size: 0.85rem;
+  color: #7a9aaa;
+  margin: 0 0 1.25rem;
+  line-height: 1.5;
+}
+
+.modal-confirm-hub strong {
+  color: #3be9ff;
+}
+
+.modal-confirm-btns {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-cancelar-confirm {
+  flex: 1;
+  padding: 0.7rem;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+  color: #5a7a8a;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.btn-confirmar-confirm {
+  flex: 1;
+  padding: 0.7rem;
+  background: linear-gradient(135deg, #07ccef, #3be9ff);
+  border: none;
+  border-radius: 10px;
+  color: #07181f;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}

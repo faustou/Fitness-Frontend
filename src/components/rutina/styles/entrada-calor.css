@@ -1,0 +1,259 @@
+.entrada-calor {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 1.5rem;
+  background: linear-gradient(180deg, #07181f 0%, #0a1e28 50%, #0d2535 100%);
+  gap: 1rem;
+}
+
+/* Header */
+.ec-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.ec-titulo {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #3be9ff;
+  margin: 0;
+}
+
+.ec-btn-omitir {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  color: #5a7a8a;
+  font-size: 0.8rem;
+  padding: 0.4rem 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ec-btn-omitir:hover {
+  color: #07ccef;
+  border-color: rgba(7, 204, 239, 0.4);
+}
+
+/* Barra de progreso */
+.ec-progreso-container {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.ec-progreso-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #07ccef, #3be9ff);
+  border-radius: 4px;
+  transition: width 0.4s ease;
+}
+
+.ec-progreso-label {
+  font-size: 0.8rem;
+  color: #5a7a8a;
+  text-align: center;
+  margin: 0;
+}
+
+/* Ejercicio */
+.ec-ejercicio {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.ec-gif {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 16px;
+  border: 1px solid rgba(7, 204, 239, 0.2);
+}
+
+.ec-gif-placeholder {
+  width: 200px;
+  height: 200px;
+  border-radius: 16px;
+  background: #112830;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
+
+.ec-nombre {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #e8f4f8;
+  margin: 0;
+  text-align: center;
+}
+
+.ec-descripcion {
+  font-size: 0.88rem;
+  color: #7a9aaa;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0;
+  max-width: 340px;
+}
+
+.ec-config-info {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #3be9ff;
+}
+
+/* Series */
+.ec-series {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+
+.ec-serie-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  background: #112830;
+  color: #7a9aaa;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: default;
+  transition: all 0.2s;
+}
+
+.ec-serie-btn.actual {
+  border-color: #07ccef;
+  color: #07ccef;
+  cursor: pointer;
+  background: rgba(7, 204, 239, 0.08);
+}
+
+.ec-serie-btn.actual:hover {
+  background: rgba(7, 204, 239, 0.15);
+}
+
+.ec-serie-btn.hecha {
+  border-color: #07ccef;
+  background: linear-gradient(135deg, #07ccef22, #07ccef11);
+  color: #3be9ff;
+}
+
+.ec-ej-completado {
+  font-size: 0.85rem;
+  color: #3be9ff;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Navegación */
+.ec-navegacion {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+}
+
+.ec-btn-nav {
+  flex: 1;
+  padding: 0.75rem;
+  background: #112830;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #5a7a8a;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.ec-btn-nav:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
+
+.ec-btn-nav.ec-btn-siguiente:not(:disabled) {
+  border-color: rgba(7, 204, 239, 0.4);
+  color: #07ccef;
+}
+
+/* Botón comenzar rutina */
+.ec-btn-comenzar {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #07ccef, #3be9ff);
+  border: none;
+  border-radius: 16px;
+  color: #07181f;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+/* PantallaInicio — bloque calentamiento */
+.inicio-calentamiento-bloque {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: rgba(7, 204, 239, 0.06);
+  border: 1px solid rgba(7, 204, 239, 0.2);
+  border-radius: 16px;
+  margin-bottom: 0.5rem;
+}
+
+.inicio-calentamiento-info {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #3be9ff;
+  font-weight: 500;
+}
+
+.calentamiento-fire {
+  font-size: 1.2rem;
+}
+
+.inicio-calentamiento-botones {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.btn-ver-calentamiento {
+  flex: 1;
+  padding: 0.8rem;
+  background: linear-gradient(135deg, #07ccef, #3be9ff);
+  border: none;
+  border-radius: 12px;
+  color: #07181f;
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-omitir-calentamiento {
+  flex: 1;
+  padding: 0.8rem;
+  background: #112830;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  color: #5a7a8a;
+  font-size: 0.9rem;
+  cursor: pointer;
+}

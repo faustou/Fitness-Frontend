@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { getAlumnos, diasSemana, crearInvitacion, getProfesoresPendientes } from '../../services/api';
+import { getAlumnos, diasSemana, crearInvitacion, getProfesoresPendientes, getAlumnosPendientes, tomarAlumnoPendiente } from '../../services/api';
 import { useAuth } from '../../context/AuthContext';
 import './styles/hub-profesor.css';
 
@@ -14,6 +14,8 @@ function HubProfesor() {
   const [error, setError] = useState(null);
 
   const [pendientesCount, setPendientesCount] = useState(0);
+  const [alumnosSinAsignar, setAlumnosSinAsignar] = useState([]);
+  const [tomandoAlumno, setTomandoAlumno] = useState(null); // id del alumno que se está confirmando
 
   // Modal de nuevo alumno
   const [mostrarModal, setMostrarModal] = useState(false);
@@ -41,6 +43,10 @@ function HubProfesor() {
         .then(data => setPendientesCount(data.length))
         .catch(() => {});
     }
+
+    getAlumnosPendientes()
+      .then(data => setAlumnosSinAsignar(data))
+      .catch(() => {});
   }, []);
 
   const handleLogout = async () => {
@@ -73,6 +79,18 @@ function HubProfesor() {
   const calcularAsistencia = (stats) => {
     if (stats.rutinasTotales === 0) return 0;
     return Math.round((stats.rutinasCompletadas / stats.rutinasTotales) * 100);
+  };
+
+  const handleTomarAlumno = async (alumno) => {
+    try {
+      await tomarAlumnoPendiente(alumno.id, perfil.id, { email: alumno.email, nombre: alumno.nombre });
+      setAlumnosSinAsignar(prev => prev.filter(a => a.id !== alumno.id));
+      setTomandoAlumno(null);
+      const data = await getAlumnos(perfil.id);
+      setAlumnos(data);
+    } catch (err) {
+      console.error('Error tomando alumno:', err);
+    }
   };
 
   // Manejar creación de invitación
@@ -141,6 +159,14 @@ function HubProfesor() {
             </motion.button>
           )}
           <motion.button
+            className="btn-admin"
+            whileTap={{ scale: 0.95 }}
+            onClick={() => navigate('/profesor/ejercicios')}
+            title="Biblioteca de ejercicios"
+          >
+            Ejercicios
+          </motion.button>
+          <motion.button
             className="btn-agregar-alumno"
             whileTap={{ scale: 0.95 }}
             onClick={() => setMostrarModal(true)}
@@ -168,6 +194,63 @@ function HubProfesor() {
           className="input-busqueda"
         />
       </div>
+
+      {/* Alumnos sin asignar (pagaron pero no tienen cuenta) */}
+      {alumnosSinAsignar.length > 0 && (
+        <div className="sin-asignar-section">
+          <h3 className="sin-asignar-titulo">
+            🆕 Alumnos nuevos sin asignar
+            <span className="sin-asignar-count">{alumnosSinAsignar.length}</span>
+          </h3>
+          <div className="sin-asignar-lista">
+            {alumnosSinAsignar.map(alumno => (
+              <div key={alumno.id} className="sin-asignar-card">
+                <div className="sin-asignar-info">
+                  <p className="sin-asignar-nombre">{alumno.nombre}</p>
+                  <p className="sin-asignar-email">{alumno.email}</p>
+                  {alumno.telefono && <p className="sin-asignar-tel">{alumno.telefono}</p>}
+                  <div className="sin-asignar-meta">
+                    <span className="sin-asignar-plan">Plan {alumno.plan}</span>
+                    <span className="sin-asignar-fecha">
+                      {new Date(alumno.created_at).toLocaleDateString('es-AR', { day: 'numeric', month: 'short' })}
+                    </span>
+                  </div>
+                </div>
+                <button
+                  className="btn-tomar-alumno"
+                  onClick={() => setTomandoAlumno(alumno)}
+                >
+                  Tomar alumno
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Modal confirmación tomar alumno */}
+      <AnimatePresence>
+        {tomandoAlumno && (
+          <motion.div
+            className="modal-overlay-hub"
+            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            onClick={() => setTomandoAlumno(null)}
+          >
+            <motion.div
+              className="modal-confirm-hub"
+              initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} exit={{ scale: 0.9, opacity: 0 }}
+              onClick={e => e.stopPropagation()}
+            >
+              <h4>¿Tomar a {tomandoAlumno.nombre} como tu alumno?</h4>
+              <p>Se creará una invitación al email <strong>{tomandoAlumno.email}</strong> y quedará vinculado a tu cuenta.</p>
+              <div className="modal-confirm-btns">
+                <button className="btn-cancelar-confirm" onClick={() => setTomandoAlumno(null)}>Cancelar</button>
+                <button className="btn-confirmar-confirm" onClick={() => handleTomarAlumno(tomandoAlumno)}>Confirmar</button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Lista de alumnos */}
       <div className="lista-alumnos">

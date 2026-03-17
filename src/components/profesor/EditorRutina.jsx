@@ -2,7 +2,8 @@ import { useState, useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence, Reorder } from 'framer-motion';
 import { ejerciciosDB, getAllEjercicios } from '../../data/ejerciciosDB';
-import { getAlumnoById, getRutinasAlumno, guardarRutina as guardarRutinaAPI, diasSemana, getCicloConfigAlumno, configurarCiclo, getMesActual, getNombreMes } from '../../services/api';
+import { CALENTAMIENTO_TIPOS, CALENTAMIENTO_DEFAULTS } from '../../data/calentamientoDB';
+import { getAlumnoById, getRutinasAlumno, guardarRutina as guardarRutinaAPI, diasSemana, getCicloConfigAlumno, configurarCiclo, getMesActual, getNombreMes, getEjerciciosDB } from '../../services/api';
 import './styles/editor-rutina.css';
 
 function EditorRutina() {
@@ -27,10 +28,15 @@ function EditorRutina() {
   const [mostrarBiblioteca, setMostrarBiblioteca] = useState(false);
   const [categoriaActiva, setCategoriaActiva] = useState('piernas');
   const [busqueda, setBusqueda] = useState('');
+  const [ejerciciosSupabase, setEjerciciosSupabase] = useState([]);
   // Valores temporales mientras se edita un input (para evitar parseInt en cada keystroke)
   const [editingValues, setEditingValues] = useState({});
   // Día de la rutina (para edición de rutinas existentes)
   const [diaRutina, setDiaRutina] = useState(diaParam);
+
+  // Estado del calentamiento
+  const [tipoCalentamiento, setTipoCalentamiento] = useState(null);
+  const [seriesCalentamiento, setSeriesCalentamiento] = useState({});
 
   // Estado del ciclo mensual
   const [cicloActivo, setCicloActivo] = useState(false);
@@ -65,6 +71,13 @@ function EditorRutina() {
     cargarDatos();
   }, [alumnoId]);
 
+  // Cargar ejercicios de Supabase al abrir la biblioteca
+  useEffect(() => {
+    if (mostrarBiblioteca && ejerciciosSupabase.length === 0) {
+      getEjerciciosDB().then(setEjerciciosSupabase).catch(() => {});
+    }
+  }, [mostrarBiblioteca]);
+
   // Normalizar reps: si es número lo convierte a array, si es array lo deja
   const normalizarReps = (reps, cantidadSeries) => {
     if (Array.isArray(reps)) {
@@ -87,7 +100,9 @@ function EditorRutina() {
         const rutina = rutinasExistentes[dia];
         if (rutina && rutina.id === rutinaId) {
           setNombreRutina(rutina.nombre || '');
-          setDiaRutina(dia); // Guardar el día de la rutina
+          setDiaRutina(dia);
+          setTipoCalentamiento(rutina.tipo_calentamiento || null);
+          setSeriesCalentamiento(rutina.series_calentamiento || {});
           setEjerciciosSeleccionados(
             (rutina.ejercicios || []).map((ej, idx) => {
               const series = ej.series || 3;
@@ -109,10 +124,15 @@ function EditorRutina() {
     }
   }, [cargando, esNueva, rutinaId, rutinasExistentes]);
 
-  // Obtener info del ejercicio desde la DB
+  // Obtener info del ejercicio desde la DB local o desde Supabase
   const getEjercicioInfo = (ejercicioId) => {
     const todos = getAllEjercicios();
-    return todos.find(ej => ej.id === ejercicioId);
+    const local = todos.find(ej => ej.id === ejercicioId);
+    if (local) return local;
+    // Buscar en ejercicios de Supabase (guardados en el objeto del ejercicio seleccionado)
+    const ejSel = ejerciciosSeleccionados.find(ej => ej.id === ejercicioId || ej.ejercicioId === ejercicioId);
+    if (ejSel?.nombreDB) return { nombre: ejSel.nombreDB, gif: ejSel.gifDB, dificultad: ejSel.dificultadDB };
+    return null;
   };
 
   // Agregar ejercicio a la rutina
@@ -121,6 +141,10 @@ function EditorRutina() {
     const nuevoEjercicio = {
       id: `${ejercicio.id}-${Date.now()}`,
       ejercicioId: ejercicio.id,
+      // Datos extra para ejercicios de Supabase (undefined para locales, no afecta nada)
+      nombreDB: ejercicio.nombre,
+      gifDB: ejercicio.gif_url || null,
+      dificultadDB: ejercicio.dificultad,
       series: seriesDefault,
       reps: Array(seriesDefault).fill(12),
       peso: 0,
@@ -338,6 +362,27 @@ function EditorRutina() {
     }
   };
 
+  // Manejar cambio de tipo de calentamiento
+  const handleTipoCalentamiento = (nuevoTipo) => {
+    setTipoCalentamiento(nuevoTipo || null);
+    if (nuevoTipo && CALENTAMIENTO_DEFAULTS[nuevoTipo]) {
+      setSeriesCalentamiento(
+        Object.fromEntries(
+          Object.entries(CALENTAMIENTO_DEFAULTS[nuevoTipo]).map(([id, vals]) => [id, { ...vals }])
+        )
+      );
+    } else {
+      setSeriesCalentamiento({});
+    }
+  };
+
+  const handleCalSeriesChange = (ejId, campo, valor) => {
+    setSeriesCalentamiento(prev => ({
+      ...prev,
+      [ejId]: { ...(prev[ejId] || {}), [campo]: Math.max(1, parseInt(valor) || 1) },
+    }));
+  };
+
   // Guardar rutina
   const guardarRutina = async () => {
     const diaGuardar = diaRutina || diaParam;
@@ -347,6 +392,8 @@ function EditorRutina() {
     try {
       const rutina = {
         nombre: nombreRutina || `Rutina ${diasSemana[diaGuardar]}`,
+        tipoCalentamiento: tipoCalentamiento,
+        seriesCalentamiento: tipoCalentamiento ? seriesCalentamiento : null,
         ejercicios: ejerciciosSeleccionados.map(ej => ({
           ejercicioId: ej.ejercicioId,
           series: ej.series,
@@ -369,9 +416,11 @@ function EditorRutina() {
   };
 
   // Filtrar ejercicios por categoría y búsqueda
-  const ejerciciosFiltrados = ejerciciosDB[categoriaActiva]?.filter(ej =>
-    ej.nombre.toLowerCase().includes(busqueda.toLowerCase())
-  ) || [];
+  const ejerciciosFiltrados = categoriaActiva === 'supabase'
+    ? ejerciciosSupabase.filter(ej => ej.nombre.toLowerCase().includes(busqueda.toLowerCase()))
+    : (ejerciciosDB[categoriaActiva]?.filter(ej =>
+        ej.nombre.toLowerCase().includes(busqueda.toLowerCase())
+      ) || []);
 
   // Categorías disponibles
   const categorias = [
@@ -380,6 +429,7 @@ function EditorRutina() {
     { id: 'brazosHombros', nombre: 'Brazos' },
     { id: 'pechoAbdomen', nombre: 'Pecho' },
     { id: 'movilidad', nombre: 'Movilidad' },
+    { id: 'supabase', nombre: 'Personalizados' },
   ];
 
   if (cargando) {
@@ -704,6 +754,65 @@ function EditorRutina() {
         </motion.button>
       </section>
 
+      {/* Sección Entrada en Calor */}
+      <section className="calentamiento-section">
+        <div className="seccion-header">
+          <h3>Entrada en Calor</h3>
+        </div>
+
+        <div className="calentamiento-tipo-selector">
+          <label>Tipo de calentamiento</label>
+          <select
+            value={tipoCalentamiento || ''}
+            onChange={(e) => handleTipoCalentamiento(e.target.value)}
+          >
+            <option value="">Sin calentamiento</option>
+            <option value="superior">Superior</option>
+            <option value="inferior">Inferior</option>
+          </select>
+        </div>
+
+        {tipoCalentamiento && CALENTAMIENTO_TIPOS[tipoCalentamiento] && (
+          <div className="calentamiento-ejercicios">
+            <p className="calentamiento-hint">
+              {CALENTAMIENTO_TIPOS[tipoCalentamiento].nombre} — ajustá series y reps para cada ejercicio
+            </p>
+            {CALENTAMIENTO_TIPOS[tipoCalentamiento].ejercicios.map(ej => {
+              const config = seriesCalentamiento[ej.id] || CALENTAMIENTO_DEFAULTS[tipoCalentamiento][ej.id];
+              return (
+                <div key={ej.id} className="calentamiento-ej-row">
+                  <span className="calentamiento-ej-nombre">{ej.nombre}</span>
+                  <div className="calentamiento-ej-config">
+                    <div className="config-grupo">
+                      <label>Series</label>
+                      <input
+                        type="number"
+                        inputMode="numeric"
+                        value={config?.series ?? 2}
+                        min="1"
+                        max="5"
+                        onChange={(e) => handleCalSeriesChange(ej.id, 'series', e.target.value)}
+                      />
+                    </div>
+                    <div className="config-grupo">
+                      <label>{ej.unidad === 'seg' ? 'Seg' : 'Reps'}</label>
+                      <input
+                        type="number"
+                        inputMode="numeric"
+                        value={config?.reps ?? 10}
+                        min="5"
+                        max="60"
+                        onChange={(e) => handleCalSeriesChange(ej.id, 'reps', e.target.value)}
+                      />
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </section>
+
       {/* Modal Biblioteca de ejercicios */}
       <AnimatePresence>
         {mostrarBiblioteca && (
@@ -769,13 +878,17 @@ function EditorRutina() {
                     const yaAgregado = ejerciciosSeleccionados.some(
                       ej => ej.ejercicioId === ejercicio.id
                     );
+                    const gifSrc = ejercicio.gif || ejercicio.gif_url;
                     return (
                       <div
                         key={ejercicio.id}
                         className={`biblioteca-ejercicio ${yaAgregado ? 'agregado' : ''}`}
                         onClick={() => !yaAgregado && agregarEjercicio(ejercicio)}
                       >
-                        <img src={ejercicio.gif} alt={ejercicio.nombre} className="biblioteca-gif" />
+                        {gifSrc
+                          ? <img src={gifSrc} alt={ejercicio.nombre} className="biblioteca-gif" />
+                          : <div className="biblioteca-gif biblioteca-gif-placeholder">🏋️</div>
+                        }
                         <div className="biblioteca-info">
                           <span className="biblioteca-nombre">{ejercicio.nombre}</span>
                           <span className="biblioteca-dificultad">{ejercicio.dificultad}</span>

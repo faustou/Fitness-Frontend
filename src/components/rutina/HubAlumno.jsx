@@ -211,6 +211,17 @@ function HubAlumno() {
         </div>
       )}
 
+      {/* Banner sin plan activo */}
+      {!perfil?.suscripcion_activa && (
+        <div className="hub-sin-plan-banner">
+          <div className="sin-plan-texto">
+            <strong>No tenés un plan activo</strong>
+            <span>Adquirí un plan para acceder a tus rutinas personalizadas</span>
+          </div>
+          <a href="/#planes" className="sin-plan-btn">Ver planes</a>
+        </div>
+      )}
+
       {/* Banner de Ciclo Mensual */}
       {cicloInfo?.activo && (
         <section className={`hub-ciclo-info ${cicloInfo.esDescarga ? 'es-descarga' : ''}`}>

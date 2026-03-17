@@ -322,6 +322,8 @@ export const getMisRutinas = async (profileId) => {
       id: rutina.id,
       nombre: rutina.nombre,
       diaSemana: rutina.dia_semana,
+      tipo_calentamiento: rutina.tipo_calentamiento ?? null,
+      series_calentamiento: rutina.series_calentamiento ?? null,
       ejercicios: ejerciciosOrdenados.map(re => {
         // Obtener peso, reps y rir para la semana actual si hay ciclo activo
         let pesoSemana = re.peso;
@@ -499,6 +501,8 @@ export const getRutinasAlumno = async (alumnoId, mesAnio = null) => {
       id: rutina.id,
       nombre: rutina.nombre,
       mesAnio: rutina.mes_anio,
+      tipo_calentamiento: rutina.tipo_calentamiento ?? null,
+      series_calentamiento: rutina.series_calentamiento ?? null,
       ejercicios: rutina.rutina_ejercicios.map(re => ({
         ejercicioId: re.ejercicio_id,
         series: re.series,
@@ -618,7 +622,12 @@ export const guardarRutina = async (alumnoProfileId, diaSemana, rutina, mesAnio 
     // Actualizar rutina existente
     const { data, error } = await supabase
       .from('rutinas')
-      .update({ nombre: rutina.nombre, mes_anio: mesAnio })
+      .update({
+        nombre: rutina.nombre,
+        mes_anio: mesAnio,
+        tipo_calentamiento: rutina.tipoCalentamiento ?? null,
+        series_calentamiento: rutina.seriesCalentamiento ?? null,
+      })
       .eq('id', existente.id)
       .select()
       .single();
@@ -640,6 +649,8 @@ export const guardarRutina = async (alumnoProfileId, diaSemana, rutina, mesAnio 
         dia_semana: diaSemana,
         nombre: rutina.nombre,
         mes_anio: mesAnio,
+        tipo_calentamiento: rutina.tipoCalentamiento ?? null,
+        series_calentamiento: rutina.seriesCalentamiento ?? null,
       })
       .select()
       .single();
@@ -1777,4 +1788,151 @@ export const seedEntrenamientosTodosAlumnos = async (profesorId) => {
   }
 
   return resultados;
+};
+
+// ==================== EJERCICIOS ====================
+
+export const getEjerciciosDB = async () => {
+  const { data, error } = await supabase
+    .from('ejercicios')
+    .select('id, nombre, categoria, descripcion, dificultad, gif_url, creado_por')
+    .order('nombre');
+  if (error) throw error;
+  return data || [];
+};
+
+export const crearEjercicio = async (datos, profileId) => {
+  const { data, error } = await supabase
+    .from('ejercicios')
+    .insert({ id: crypto.randomUUID(), ...datos, creado_por: profileId })
+    .select()
+    .single();
+  if (error) throw error;
+  return data;
+};
+
+export const editarEjercicio = async (ejercicioId, datos) => {
+  const { error } = await supabase
+    .from('ejercicios')
+    .update(datos)
+    .eq('id', ejercicioId);
+  if (error) throw error;
+};
+
+export const eliminarEjercicio = async (ejercicioId) => {
+  // Verificar si está en uso en alguna rutina activa
+  const { data: enUso, error: checkError } = await supabase
+    .from('rutina_ejercicios')
+    .select('id')
+    .eq('ejercicio_id', ejercicioId)
+    .limit(1);
+  if (checkError) throw checkError;
+  if (enUso && enUso.length > 0) {
+    throw new Error('Este ejercicio está en uso y no puede eliminarse');
+  }
+
+  // Obtener gif_url para eliminar del Storage
+  const { data: ejercicio } = await supabase
+    .from('ejercicios')
+    .select('gif_url')
+    .eq('id', ejercicioId)
+    .single();
+
+  if (ejercicio?.gif_url) {
+    const bucketPath = ejercicio.gif_url.split('/ejercicios-gifs/')[1];
+    if (bucketPath) {
+      await supabase.storage.from('ejercicios-gifs').remove([bucketPath]);
+    }
+  }
+
+  const { error } = await supabase
+    .from('ejercicios')
+    .delete()
+    .eq('id', ejercicioId);
+  if (error) throw error;
+};
+
+export const subirGifEjercicio = async (ejercicioId, archivo) => {
+  if (archivo.size > 5 * 1024 * 1024) {
+    throw new Error('El archivo no puede superar 5MB');
+  }
+  const extension = archivo.name.split('.').pop();
+  const path = `${ejercicioId}/${Date.now()}.${extension}`;
+  const { error } = await supabase.storage
+    .from('ejercicios-gifs')
+    .upload(path, archivo, { upsert: true });
+  if (error) throw error;
+  const { data } = supabase.storage.from('ejercicios-gifs').getPublicUrl(path);
+  return data.publicUrl;
+};
+
+export const actualizarCalentamientoRutina = async (rutinaId, tipoCal, seriesConfig) => {
+  const { error } = await supabase
+    .from('rutinas')
+    .update({
+      tipo_calentamiento: tipoCal ?? null,
+      series_calentamiento: seriesConfig ?? null,
+    })
+    .eq('id', rutinaId);
+  if (error) throw error;
+};
+
+// ── Flujo pagos / alumnos pendientes ────────────────────────────────────────
+
+export const getAlumnosPendientes = async () => {
+  const { data, error } = await supabase
+    .from('alumnos_pendientes')
+    .select('*')
+    .eq('estado', 'sin_asignar')
+    .order('created_at', { ascending: false });
+  if (error) throw error;
+  return data || [];
+};
+
+export const tomarAlumnoPendiente = async (alumnosPendienteId, profesorProfileId, datosAlumno) => {
+  // Asignar el profesor en alumnos_pendientes
+  const { error } = await supabase
+    .from('alumnos_pendientes')
+    .update({ estado: 'asignado', profesor_id: profesorProfileId })
+    .eq('id', alumnosPendienteId);
+  if (error) throw error;
+
+  // La invitación ya fue creada por el webhook — solo actualizamos el profesor_id
+  await supabase
+    .from('invitaciones')
+    .update({ profesor_id: profesorProfileId })
+    .eq('email', datosAlumno.email)
+    .eq('usado', false);
+
+  // Si el alumno ya tiene cuenta, vincularlo directamente al profesor
+  const { data: perfilExistente } = await supabase
+    .from('profiles')
+    .select('id')
+    .eq('email', datosAlumno.email)
+    .eq('rol', 'alumno')
+    .maybeSingle();
+
+  if (perfilExistente) {
+    await supabase
+      .from('alumnos')
+      .update({ profesor_id: profesorProfileId })
+      .eq('profile_id', perfilExistente.id);
+
+    await supabase
+      .from('invitaciones')
+      .update({ usado: true })
+      .eq('email', datosAlumno.email)
+      .eq('usado', false);
+  }
+};
+
+export const verificarPagoPrevio = async (email) => {
+  const { data, error } = await supabase
+    .from('alumnos_pendientes')
+    .select('*')
+    .eq('email', email)
+    .eq('estado', 'asignado')
+    .single();
+  if (error && error.code !== 'PGRST116') throw error;
+  return data || null;
 };

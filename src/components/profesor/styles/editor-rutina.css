@@ -995,3 +995,90 @@
     width: 50px;
   }
 }
+
+/* ========== SECCIÓN CALENTAMIENTO ========== */
+.calentamiento-section {
+  margin: 0 1rem 1.5rem;
+  padding: 1.25rem;
+  background: #112830;
+  border-radius: 16px;
+  border: 1px solid rgba(7, 204, 239, 0.15);
+}
+
+.calentamiento-tipo-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1rem;
+}
+
+.calentamiento-tipo-selector label {
+  font-size: 0.85rem;
+  color: #7a9aaa;
+}
+
+.calentamiento-tipo-selector select {
+  background: #07181f;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  color: #e8f4f8;
+  padding: 0.55rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.calentamiento-hint {
+  font-size: 0.82rem;
+  color: #3be9ff;
+  margin-bottom: 0.75rem;
+}
+
+.calentamiento-ejercicios {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.calentamiento-ej-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  padding: 0.65rem 0.75rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.calentamiento-ej-nombre {
+  font-size: 0.88rem;
+  color: #c8dde8;
+  flex: 1;
+}
+
+.calentamiento-ej-config {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.calentamiento-ej-config .config-grupo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.calentamiento-ej-config .config-grupo label {
+  font-size: 0.72rem;
+  color: #5a7a8a;
+}
+
+.calentamiento-ej-config .config-grupo input {
+  width: 52px;
+  text-align: center;
+  background: #07181f;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  color: #e8f4f8;
+  padding: 0.3rem;
+  font-size: 0.9rem;
+}

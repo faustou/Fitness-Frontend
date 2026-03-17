@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import './PlanesStyles.css';
 import { initMercadoPago, Wallet } from '@mercadopago/sdk-react';
 import axios from 'axios';
+import { useAuth } from '../../context/AuthContext';
 
 const plansData = [
   {
@@ -53,26 +54,72 @@ const vipPlan = {
 };
 
 function PlanesCards() {
+  const { perfil } = useAuth();
+  const esVisitante = !perfil;
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalPlan, setModalPlan] = useState(null);
   const [preferenceId, setPreferenceId] = useState(null);
+
+  // Modal datos del visitante
+  const [modalDatosVisible, setModalDatosVisible] = useState(false);
+  const [planSeleccionado, setPlanSeleccionado] = useState(null);
+  const [datosVisitante, setDatosVisitante] = useState({ nombre: '', email: '', telefono: '' });
+  const [errorDatos, setErrorDatos] = useState('');
+  const [enviandoDatos, setEnviandoDatos] = useState(false);
 
   initMercadoPago('TEST-9b5a1571-f0d1-4a1a-a736-cbbc620946b9', {
     locale: 'es-AR',
   });
 
+  const crearPreferencia = async (planInfo, opts = {}) => {
+    const response = await axios.post(`${import.meta.env.VITE_API_URL}/create_preference`, {
+      planId: planInfo.name,
+      monto: planInfo.price,
+      email: opts.email || perfil?.email,
+      nombre: opts.nombre || perfil?.nombre,
+      telefono: opts.telefono || null,
+      profileId: perfil?.id || null,
+      esVisitante: opts.esVisitante ?? esVisitante,
+    });
+    return response.data.id;
+  };
+
   const handleBuy = async (planInfo) => {
+    if (esVisitante) {
+      setPlanSeleccionado(planInfo);
+      setDatosVisitante({ nombre: '', email: '', telefono: '' });
+      setErrorDatos('');
+      setModalDatosVisible(true);
+    } else {
+      try {
+        const id = await crearPreferencia(planInfo);
+        setPreferenceId(id);
+        setModalPlan(planInfo);
+        setIsModalOpen(true);
+      } catch (error) {
+        console.error('Error creando preferencia:', error);
+      }
+    }
+  };
+
+  const handleConfirmarDatos = async (e) => {
+    e.preventDefault();
+    if (!datosVisitante.nombre || !datosVisitante.email || !datosVisitante.telefono) {
+      setErrorDatos('Completá todos los campos');
+      return;
+    }
     try {
-      const response = await axios.post(`${import.meta.env.VITE_API_URL}/create_preference`, {
-        title: planInfo.title,
-        quantity: 1,
-        price: planInfo.price,
-      });
-      setPreferenceId(response.data.id);
-      setModalPlan(planInfo);
+      setEnviandoDatos(true);
+      const id = await crearPreferencia(planSeleccionado, { ...datosVisitante, esVisitante: true });
+      setPreferenceId(id);
+      setModalPlan(planSeleccionado);
+      setModalDatosVisible(false);
       setIsModalOpen(true);
     } catch (error) {
-      console.log(error);
+      setErrorDatos('Error al procesar. Intentá de nuevo.');
+    } finally {
+      setEnviandoDatos(false);
     }
   };
 
@@ -169,6 +216,7 @@ function PlanesCards() {
                     oldPrice: plan.oldPrice,
                     name: plan.name,
                     duration: plan.duration,
+                    discount: plan.discount,
                   })
                 }
               >
@@ -228,6 +276,7 @@ function PlanesCards() {
                     oldPrice: vipPlan.oldPrice,
                     name: 'VIP',
                     duration: vipPlan.duration,
+                    discount: vipPlan.discount,
                   })
                 }
               >
@@ -256,6 +305,86 @@ function PlanesCards() {
         <div className="vip-border-anim"></div>
       </motion.div>
 
+      {/* MODAL DATOS VISITANTE */}
+      <AnimatePresence>
+        {modalDatosVisible && planSeleccionado && (
+          <motion.div
+            className="modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setModalDatosVisible(false)}
+          >
+            <motion.div
+              className="compra-modal"
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button className="modal-close" onClick={() => setModalDatosVisible(false)} aria-label="Cerrar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+
+              <div className="modal-box">
+                <div className="modal-plan-header">
+                  <span className="modal-icon">
+                    {planSeleccionado.name === 'ORO' && '🥇'}
+                    {planSeleccionado.name === 'PLATA' && '🥈'}
+                    {planSeleccionado.name === 'BRONCE' && '🥉'}
+                    {planSeleccionado.name === 'VIP' && '👑'}
+                  </span>
+                  <p className="modal-plan-name">Plan {planSeleccionado.name}</p>
+                  <p className="modal-plan-duration">{planSeleccionado.duration}</p>
+                </div>
+
+                <div className="modal-divider" />
+
+                <p className="modal-datos-titulo">Tus datos</p>
+                <p className="modal-datos-subtitulo">Para que puedas recibir el plan una vez confirmado el pago</p>
+
+                <form className="modal-datos-form" onSubmit={handleConfirmarDatos}>
+                  <div className="modal-field">
+                    <label>Nombre completo</label>
+                    <input
+                      type="text"
+                      placeholder="Juan Pérez"
+                      value={datosVisitante.nombre}
+                      onChange={(e) => setDatosVisitante(p => ({ ...p, nombre: e.target.value }))}
+                    />
+                  </div>
+                  <div className="modal-field">
+                    <label>Email</label>
+                    <input
+                      type="email"
+                      placeholder="juan@email.com"
+                      value={datosVisitante.email}
+                      onChange={(e) => setDatosVisitante(p => ({ ...p, email: e.target.value }))}
+                    />
+                  </div>
+                  <div className="modal-field">
+                    <label>Teléfono</label>
+                    <input
+                      type="tel"
+                      placeholder="+54 9 11 1234 5678"
+                      value={datosVisitante.telefono}
+                      onChange={(e) => setDatosVisitante(p => ({ ...p, telefono: e.target.value }))}
+                    />
+                  </div>
+                  {errorDatos && <p className="modal-error">{errorDatos}</p>}
+                  <button type="submit" className="modal-btn-continuar" disabled={enviandoDatos}>
+                    {enviandoDatos ? 'Procesando...' : 'Continuar al pago'}
+                  </button>
+                </form>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* MODAL */}
       <AnimatePresence>
         {isModalOpen && modalPlan && (
@@ -267,16 +396,21 @@ function PlanesCards() {
             onClick={() => setIsModalOpen(false)}
           >
             <motion.div
-              className="modal-content"
+              className="compra-modal"
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
               onClick={(e) => e.stopPropagation()}
             >
-              <h2 className="modal-title">RESUMEN DE COMPRA</h2>
+              <button className="modal-close" onClick={() => setIsModalOpen(false)} aria-label="Cerrar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
 
               <div className="modal-box">
+                {/* Plan identity — layout vertical, sin herencia de text-align problemática */}
                 <div className="modal-plan-header">
                   <span className="modal-icon">
                     {modalPlan.name === 'ORO' && '🥇'}
@@ -284,15 +418,17 @@ function PlanesCards() {
                     {modalPlan.name === 'BRONCE' && '🥉'}
                     {modalPlan.name === 'VIP' && '👑'}
                   </span>
-                  <div className="modal-plan-text">
-                    <p className="modal-plan-title">{`PLAN ${modalPlan.name} – ${modalPlan.duration}`}</p>
-                    <div className="modal-price-container">
-                      <p className="modal-price-old">${modalPlan.oldPrice.toLocaleString()}</p>
-                      <p className="modal-price-final">
-                        ${modalPlan.price.toLocaleString()} <span>*30%OFF*</span>
-                      </p>
-                    </div>
-                  </div>
+                  <p className="modal-plan-name">Plan {modalPlan.name}</p>
+                  <p className="modal-plan-duration">{modalPlan.duration}</p>
+                </div>
+
+                <div className="modal-divider" />
+
+                {/* Price block */}
+                <div className="modal-price-block">
+                  <span className="modal-price-old">${modalPlan.oldPrice.toLocaleString()}</span>
+                  <span className="modal-price-final">${modalPlan.price.toLocaleString()}</span>
+                  <span className="modal-discount-badge">{modalPlan.discount}</span>
                 </div>
 
                 {preferenceId && (
@@ -302,15 +438,12 @@ function PlanesCards() {
                 )}
 
                 <p className="modal-warning">
+                  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" style={{ flexShrink: 0, marginTop: '1px' }}>
+                    <circle cx="12" cy="12" r="10" /><line x1="12" y1="8" x2="12" y2="12" /><line x1="12" y1="16" x2="12.01" y2="16" />
+                  </svg>
                   Una vez hecho el pago, nos pondremos en contacto contigo.
                 </p>
               </div>
-
-              <button className="modal-close" onClick={() => setIsModalOpen(false)}>
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M18 6L6 18M6 6l12 12" />
-                </svg>
-              </button>
             </motion.div>
           </motion.div>
         )}

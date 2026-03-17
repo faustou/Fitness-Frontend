@@ -167,7 +167,6 @@ export function AuthProvider({ children }) {
           .single();
 
         if (invitacion) {
-          // Buscar si ya existe un registro en alumnos con esta invitación
           const { data: alumnoExistente } = await supabase
             .from('alumnos')
             .select('id')
@@ -175,13 +174,11 @@ export function AuthProvider({ children }) {
             .single();
 
           if (alumnoExistente) {
-            // Vincular el registro existente con el nuevo profile_id y profesor_id
             await supabase
               .from('alumnos')
               .update({ profile_id: data.user.id, profesor_id: invitacion.profesor_id })
               .eq('id', alumnoExistente.id);
           } else {
-            // Crear nuevo registro con ambos IDs y profesor_id
             await supabase.from('alumnos').insert({
               profile_id: data.user.id,
               invitacion_id: invitacion.id,
@@ -191,18 +188,45 @@ export function AuthProvider({ children }) {
             });
           }
 
-          // Marcar la invitación como usada
           await supabase
             .from('invitaciones')
             .update({ usado: true })
             .eq('id', invitacion.id);
         } else {
-          // No hay invitación, crear registro nuevo
           await supabase.from('alumnos').insert({
             profile_id: data.user.id,
             objetivo: 'General',
             dias_semana: [],
           });
+        }
+
+        // Verificar si hay pago previo (visitante que pagó y fue asignado por un profesor)
+        const { data: pagoPrevio } = await supabase
+          .from('alumnos_pendientes')
+          .select('*')
+          .eq('email', email)
+          .eq('estado', 'asignado')
+          .single();
+
+        if (pagoPrevio) {
+          const DURACION = { BRONCE: 30, PLATA: 90, ORO: 180, VIP: 30 };
+          const dias = DURACION[pagoPrevio.plan] || 30;
+          const vencimiento = new Date();
+          vencimiento.setDate(vencimiento.getDate() + dias);
+
+          await supabase
+            .from('profiles')
+            .update({
+              suscripcion_activa: true,
+              plan_activo: pagoPrevio.plan,
+              fecha_vencimiento_plan: vencimiento.toISOString(),
+            })
+            .eq('id', data.user.id);
+
+          await supabase
+            .from('alumnos_pendientes')
+            .update({ estado: 'registrado' })
+            .eq('id', pagoPrevio.id);
         }
       } else if (rol === 'profesor') {
         await supabase.from('profesores').insert({
@@ -230,6 +254,12 @@ export function AuthProvider({ children }) {
     const { error } = await supabase.auth.signOut();
     if (error) throw error;
     setPerfil(null);
+  };
+
+  // Refrescar perfil desde Supabase (útil tras un pago aprobado)
+  const refrescarPerfil = async () => {
+    if (!usuario?.id) return;
+    await cargarPerfil(usuario.id);
   };
 
   // Actualizar avatar del usuario
@@ -261,6 +291,7 @@ export function AuthProvider({ children }) {
     login,
     logout,
     actualizarAvatar,
+    refrescarPerfil,
     esAlumno: perfil?.rol === 'alumno',
     esProfesor: perfil?.rol === 'profesor',
     esAdmin: perfil?.es_admin === true || perfil?.rol === 'profesor',

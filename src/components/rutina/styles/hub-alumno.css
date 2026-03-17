@@ -944,6 +944,53 @@
   animation-delay: 0.4s;
 }
 
+/* ==================== BANNER SIN PLAN ==================== */
+
+.hub-sin-plan-banner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(7, 204, 239, 0.3);
+  border-radius: 16px;
+  padding: 1rem 1.25rem;
+  margin: 0 1rem 1rem;
+}
+
+.sin-plan-texto {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.sin-plan-texto strong {
+  color: #fff;
+  font-size: 0.95rem;
+}
+
+.sin-plan-texto span {
+  color: rgba(255,255,255,0.55);
+  font-size: 0.8rem;
+}
+
+.sin-plan-btn {
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #07ccef, #3be9ff);
+  color: #07181f;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.5rem 1.1rem;
+  border-radius: 10px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.sin-plan-btn:hover {
+  opacity: 0.9;
+  color: #07181f;
+}
+
 /* ==================== CICLO MENSUAL ==================== */
 
 .hub-ciclo-info {

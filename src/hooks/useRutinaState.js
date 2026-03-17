@@ -8,6 +8,7 @@ export function useRutinaState(rutinaInicial) {
   const [tiempoTotal, setTiempoTotal] = useState(0);
   const [mostrandoDescanso, setMostrandoDescanso] = useState(false);
   const [tiempoDescanso, setTiempoDescanso] = useState(0);
+  const [calentamientoCompletado, setCalentamientoCompletado] = useState(false);
 
   // Sincronizar cuando rutinaInicial cambia (ej: cuando se carga desde API)
   useEffect(() => {
@@ -58,6 +59,11 @@ export function useRutinaState(rutinaInicial) {
   };
 
   const progresoPercent = calcularProgresoGranular();
+
+  // Completar calentamiento
+  const completarCalentamiento = useCallback(() => {
+    setCalentamientoCompletado(true);
+  }, []);
 
   // Iniciar workout
   const iniciarWorkout = useCallback(() => {
@@ -245,8 +251,10 @@ export function useRutinaState(rutinaInicial) {
     totalEjercicios,
     progresoPercent,
     ejercicioActualCompletado,
+    calentamientoCompletado,
 
     // Acciones
+    completarCalentamiento,
     iniciarWorkout,
     actualizarSerie,
     completarSerie,

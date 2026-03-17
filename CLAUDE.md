@@ -18,8 +18,20 @@
   - `ejercicios/` — biblioteca de ejercicios
 - Estado global SOLO en `src/context/AuthContext.jsx` — no crear nuevos contextos sin consultar
 - Custom hooks en `src/hooks/` — lógica de estado compleja va ahí, no en los componentes
-- Todas las llamadas a Supabase van en `src/services/api.js` — NUNCA llamar a supabase directamente desde un componente
+- NUNCA llamar a supabase directamente desde un componente — siempre usar las funciones de `src/services/`
 - Assets estáticos en `src/assets/img/`
+
+## Organización de servicios
+Las llamadas a Supabase están divididas por dominio en `src/services/`:
+- `rutinas.api.js` — rutinas, ejercicios de rutina, ciclos, calentamiento
+- `ejercicios.api.js` — catálogo de ejercicios, GIFs
+- `alumnos.api.js` — alumnos, profesores, invitaciones, alumnos pendientes
+- `pagos.api.js` — pagos, suscripciones
+- `historial.api.js` — historial de entrenamientos, estadísticas
+- `calculos.js` — funciones de cálculo (calcularE1RM, calcularMejorE1RM)
+- `api.js` — archivo índice que re-exporta todo, no agregar lógica acá
+
+Cuando agregues funciones nuevas, identificá el dominio correspondiente y agregalo al archivo correcto. Si un dominio nuevo supera 3 funciones, creá un archivo nuevo.
 
 ## Patrones de código establecidos
 
@@ -81,7 +93,7 @@ const { perfil, esAlumno, esProfesor, esAdmin } = useAuth()
 - No crear nuevos sistemas de protección de rutas
 
 ## Cálculos de fitness
-- **e1RM**: usar siempre `calcularE1RM(peso, reps, rir)` de `api.js` — fórmula de Brzycki con RIR
+- **e1RM**: usar siempre `calcularE1RM(peso, reps, rir)` de `calculos.js` — fórmula de Brzycki con RIR
 - **RIR (Reps In Reserve)**: es el esfuerzo percibido. 0 = al fallo, 3 = fácil
 - **Ciclos de entrenamiento**: la app maneja semanas de carga/descarga (`cicloInfo.esDescarga`)
 - **Días de semana**: 0-6, donde 0 = Lunes (convención del proyecto)

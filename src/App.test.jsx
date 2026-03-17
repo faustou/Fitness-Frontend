@@ -41,8 +41,12 @@ vi.mock('./services/api', () => ({
   getAlumnos: vi.fn(() => Promise.resolve([])),
   getMisRutinas: vi.fn(() => Promise.resolve({})),
   getEntrenamientosSemanaActual: vi.fn(() => Promise.resolve([])),
+  getRachaAlumno: vi.fn(() => Promise.resolve(0)),
   diasSemana: ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'],
   crearInvitacion: vi.fn(),
+  getProfesoresPendientes: vi.fn(() => Promise.resolve([])),
+  getAlumnosPendientes: vi.fn(() => Promise.resolve([])),
+  tomarAlumnoPendiente: vi.fn(() => Promise.resolve()),
 }));
 
 // Importar después de los mocks

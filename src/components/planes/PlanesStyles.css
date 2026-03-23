@@ -140,8 +140,8 @@
 /* Popular Badge */
 .popular-badge {
   position: absolute;
-  top: 1rem;
-  right: -2rem;
+  top: 1.5rem;
+  right: -2.8rem;
   background: linear-gradient(135deg, #3be9ff 0%, #00d4aa 100%);
   color: #0b0f10;
   font-size: 0.7rem;

@@ -193,6 +193,7 @@
   border: 1px solid rgba(59, 233, 255, 0.15);
   backdrop-filter: blur(4px);
   transition: all 0.3s ease;
+  top: 17px!important;
 }
 
 .onclickButton:hover {
@@ -250,5 +251,8 @@ html {
   .logo-first,
   .logo-last {
     font-size: 1.1rem;
+  }
+  .onclickButton {
+    top: 13px!important;
   }
 }

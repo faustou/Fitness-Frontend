@@ -195,6 +195,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  z-index: 1;
   color: #0b0f10;
   box-shadow: 0 0 20px rgba(59, 233, 255, 0.4);
 }
